@@ -1,0 +1,142 @@
+\documentclass[kulak]{kulakarticle} % options: kulak (default) or kul
+
+\usepackage[dutch]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+
+\setlength{\parindent}{0pt}
+
+\title{Oplossing Examen Statistiek}
+\author{Vincent Van Schependom}
+\date{14 juni 2024}
+\address{
+	\textbf{Statistiek} \\
+	Prof. Bram De Rock}
+
+\begin{document}
+
+\maketitle
+
+\section*{Vraag 1}
+
+\begin{itemize}
+	\item Leg gedetailleerd uit wat de mediaantest is en geef de hypothesen die we aan de hand hiervan kunnen testen.
+	\item Leg uit wat de determinatiecoëfficiënt is en illustreer grafisch.
+	\item Veronderstel dat \(X \sim N(\mu,\sigma^2)\). Geef twee verschillende schatters voor de variantie \(\sigma^2\) en toon aan dat de onvertekende schatter niet de minimale variantie heeft.
+\end{itemize}
+
+\section*{Vraag 2}
+
+Laad de dataset met het commando \texttt{load(N:\textbackslash\textbackslash SRebry\textbackslash people.RData)}. We maken gebruik van onderstaande variabelen:
+\begin{center}
+\begin{tabular}{l|p{5cm}}
+	\texttt{leis\_time} & Tijd besteed door de respondent aan ontspanning in uur per week \\
+	\hline
+	\texttt{hh\_nchild}        & Aantal leden van het gezin jonger dan 18 jaar \\
+	\hline
+	\texttt{ind\_income}       & Persoonlijk netto inkomen van de respondent in euro per maand \\
+	\hline
+	\texttt{ind\_gender}       & Geslacht van de respondent
+\end{tabular}
+\end{center}
+\begin{itemize}
+	\item Is de proportie van werkende vrouwen verschillend naar gelang er in het gezin kinderen jonger dan 18 jaar zijn?
+	\item Gegegeven het lineair model \texttt{lm(log10(leis\_time)\(\sim\)log10(ind\_income)+children)}. Hierbij is \texttt{children} een binaire dummy-variabele die aangeeft of er kinderen zijn in het gezin (\texttt{TRUE}) of niet (\texttt{FALSE}). Je hoeft geen aanpassingen te maken aan het model.
+	\begin{itemize}
+		\item Noteer de vergelijking(en) van het gegeven model.
+		\item Bespreek de betekenis van de coëfficiënten in dit model (ongeacht hun significantie).
+		\item Bespreek de inferentie van de individuele coëfficiënten.
+	\end{itemize}
+\end{itemize}
+
+\newpage
+
+\section*{Vraag 3}
+Gustav heeft 14 winkels en verkoopt onder andere kippenboutjes. Hij wil weten of dit effectief rendeert. Dat is het geval is het aantal verkochte kippenboutjes minstens 1000 is. Als hij komende week minder dan 950 kippenboutjes verkoopt, zal hij ze schrappen uit zijn catalogus. Uit voortdurende analyses van de verkoop weet Gustav dat de standaarddeviatie van de verkochte kippenboutjes 100 bedraagt.
+
+\begin{itemize}
+	\item Formuleer gepaste hypothesen, teststatistiek en criteria. Welke voorwaarden zijn er? Ga ervan uit dat aan deze voorwaarden voldaan is.
+
+	\underline{Oplossing}
+
+	We doen een test voor één gemiddelde met gekende variantie. De nul- en alternatieve hypothese zijn:
+
+	\[\begin{cases}
+		H_0: \mu \geq \mu_0 = 1000 \Rightarrow \text{neem } \mu = 1000 \\
+		H_1: \mu < \mu_0 = 1000
+	\end{cases}\]
+	Stel
+	\begin{itemize}
+		\item \(X=\) het aantal verkochte kippenboutjes voor 1 winkel in 1 week tijd
+		\item \(\bar{X}=\) het gemiddeld aantal verkochte kippenboutjes voor 14 winkels in 1 week tijd
+	\end{itemize}
+
+	Nu geldt wegens de Centrale Limietstelling dat \(\bar{X}\sim N\left(\mu,\frac{100^2}{14}\right)\), onder voorwaarde dat \(X\) zelf niet te scheef (en liefst ook normaal) verdeeld is.
+	\\
+
+	Onder \(H_0\) kennen we bijgevolg de verdeling van de teststatistiek \(Z\): \[Z = \frac{\bar{X}-1000}{\frac{100}{\sqrt{14}}}\sim N(0,1)\]
+
+	\item Wat is de kans dat Gustav kippenboutjes schrapt van zijn catalogus, als de verkoop weldegelijk rendeert?
+
+	\underline{Oplossing}
+	\begin{align*}
+		\alpha & = P(\text{type I fout})                                                        \\
+		& = P(H_0 \text{ verwerpen}) \mid H_0 \text{ waar})                              \\
+		& = P\left(\bar{X}<950 \mid \frac{\bar{X}-1000}{100/\sqrt{14}}\sim N(0,1)\right) \\
+		& = P\left(Z<\frac{950-1000}{100/\sqrt{14}} \mid Z \sim N(0,1) \right)                  \\
+		& = \texttt{pnorm(950,1000,100/sqrt(14))}\\
+		& = 0.03
+	\end{align*}
+
+	\item Wat is het onderscheidingsvermogen van de test? Hoe groot moet het verschil zijn tussen de werkelijke gemiddelde verkoop en de beoogde verkoop om met 95\% zekerheid kippenboutjes te schrappen uit de catalogus?
+
+	\underline{Oplossing}
+	\begin{align*}
+		1-\beta |_{\mu_1} & = 1-P(\text{type II fout})                                                            \\
+		        & = 1-P(H_0 \text{ niet verwerpen}) \mid H_0 \text{ niet waar})                         \\
+		        & = 1-P\left(\bar{X}>950 \mid \mu = \mu_1 \neq \mu_0 \right)     \\
+		        & = 1-\left[1-P\left(\frac{\bar{X}-1000}{100/\sqrt{14}}<\frac{950-1000}{100/\sqrt{14}} \mid \frac{\bar{X}-\mu_1}{100/\sqrt{14}}\sim N(0,1) \right)\right] \\
+		        & = P\left(\frac{\bar{X}-1000}{100/\sqrt{14}}+\frac{1000-\mu_1}{100/\sqrt{14}}<\frac{950-1000}{100/\sqrt{14}}+\frac{1000-\mu_1}{100/\sqrt{14}} \mid \frac{\bar{X}-\mu_1}{100/\sqrt{14}}\sim N(0,1) \right) \\
+		        & = P\left(\frac{\bar{X}-\mu_1}{100/\sqrt{14}} < \frac{950-\mu_1}{100/\sqrt{14}} \mid \frac{\bar{X}-\mu_1}{100/\sqrt{14}}\sim N(0,1) \right) \\
+		        & = \Phi\left(\frac{950-\mu_1}{100/\sqrt{14}} \right)
+	\end{align*}
+
+	We zoeken \(\mu_1\) zodat het onderscheidingsvermogen 95\% is:
+	\begin{align*}
+		&1-\beta |_{\mu_1} = 0.95\\
+		\Longleftrightarrow \, & \Phi\left(\frac{950-\mu_1}{100/\sqrt{14}} \right) = 0.95\\
+		\Longleftrightarrow \, & \frac{950-\mu_1}{100/\sqrt{14}} = \Phi^{-1}(0.95) \\
+		\Longleftrightarrow \, & 950-\mu_1 = \left(\frac{100}{\sqrt{14}}\right)\Phi^{-1}(0.95) \\
+		\Longleftrightarrow \, & \mu_1 = 950 - \left(\frac{100}{\sqrt{14}}\right)\Phi^{-1}(0.95) \\
+		\Longleftrightarrow \, & \mu_1 = \texttt{950 - (100/sqrt(14))*qnorm(0.95)} \\
+		\Longleftrightarrow \, & \mu_1 = 906
+	\end{align*}
+
+
+	\item Hoe groot moet de steekproef zijn zodat Gustav met 95\% zekerheid kan zeggen dat hij niet genoeg verkoopt, als de werkelijke verkoop 940 bedraagt?
+
+	\underline{Oplossing}
+	\begin{align*}
+		\Phi\left(\frac{950-940}{100/\sqrt{n}} \right) = 0.95
+		\Longleftrightarrow \, & \frac{10}{100/\sqrt{n}} = \Phi^{-1}(0.95) \\
+		\Longleftrightarrow \, & \sqrt{n}=10\cdot\Phi^{-1}(0.95) \\
+		\Longleftrightarrow \, & n=\texttt{(10*qnorm(0.95))**2} \\
+		\Longleftrightarrow \, & n=270
+	\end{align*}
+\end{itemize}
+
+\end{document}

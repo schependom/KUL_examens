@@ -1,0 +1,84 @@
+\documentclass[kulak]{kulakarticle} % options: kulak (default) or kul
+
+\usepackage[dutch]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+
+\title{Examen Technieken voor Wiskundige Analyse (A\&C2)}
+\author{Vincent Van Schependom}
+\date{8 juni 2024}
+\address{
+	\textbf{Technieken voor Wiskundige Analyse} \\
+	Prof. dr. Ir. Hans Dierckx\\\textit{(always remember)}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Vraag 1}
+
+Gegeven is volgende functie:
+\[f(x)=\begin{cases}
+	1 & 0 \leq x \leq \frac{\pi}{2} \\
+	0 & \frac{\pi}{2} < x < \pi
+\end{cases} \]
+
+\begin{enumerate}
+	\item[a)] \(F(x)\) is de even periodieke uitbreiding van \(f\) met periode \(T=2\pi\). Maak een schets van \(F(x)\) voor \(-2\pi < x <2\pi\) en bepaal de Fourierreeks van deze functie.
+	\item[b)] \(G(x)\) is de oneven periodieke uitbreiding van \(f\) met periode \(T=2\pi\). Maak een schets van \(G(x)\) voor \(-2\pi < x <2\pi\) en bepaal de Fourierreeks van deze functie.
+	\item[c)] Als de Fourierreeks van een functie \(g(x)\) gegeven wordt door
+	\[ \frac{a_0}{2} + \sum_{k=1}^\infty{a_k\cos\left(\frac{2\pi kx}{T}\right)}
+	+ \sum_{k=1}^\infty{b_k\sin\left(\frac{2\pi kx}{T}\right)}, \]
+	dan geldt volgens de gelijkheid van Parseval dat
+	\[ \frac{2}{T}\int_{-T/2}^{T/2}g^2(x)= \frac{a_0^2}{2} + \sum_{k=1}^\infty{(a_k^2+b_k^2)} \]
+
+	Gebruik een van de hierboven berekende Fourierreeksen om de volgende som te berekenen:
+	\[1+\frac{1}{3^2}+\frac{1}{5^2}+\frac{1}{7^2}+...\]
+\end{enumerate}
+
+\section*{Vraag 2}
+
+Een producent maakt blikken met een volume van 500 kubieke centimeter uit metaal. Hiervoor gebruiken ze ten eerste twee vierkanten, waarvan de zijde gelijk is aan de diameter van de schijf die eruit wordt gesneden voor het boven- en ondervlak. Daarnaast gebruiken ze voor de mantel van het blik een rechthoek met breedte \(h\). Omwille van esthetische redenen wil de producent dat de verhouding van de hoogte op de straal van het boven- en ondervlak (\(\frac{h}{r}\)) tussen de 3 en de 5 cm ligt.
+
+\begin{enumerate}
+	\item[a)] Bepaal de straal \(r\) en hoogte \(h\) waarvoor de producent zo weinig mogelijk metaal gebruikt.
+	\item[b)] Zou de producent veel meer winst hebben als hij geen esthetische eis zou opleggen? Gebruik je berekening uit a) om dit te illustreren.
+\end{enumerate}
+
+\newpage
+
+\section*{Vraag 3}
+
+Voor deze oefening gaan we omgekeerd te werk. Gegeven een oplossing van het homogene stelsel differentiaalvergelijkingen \(\vec{Y}'(t)=\textbf{A}\vec{Y}(t)\):
+\[e^{-t}\left( \left[\begin{matrix}
+	1\\
+	-1
+\end{matrix}\right]t + \left[ \begin{matrix}
+1 \\
+0
+\end{matrix} \right] \right)\]
+
+\begin{enumerate}
+	\item[a)] Geef de matrix \(\textbf{A}\).
+	\item[b)] Vorm dit stelsel differentiaalvergelijkingen om tot een tweede orde differentiaalvergelijking van de vorm \(f(y'',y',y)=0\).
+	\item[b)] Los de niet-homogene vergelijking \(f(y'',y',y)=\frac{e^{-t}}{t}\) op. Als je b) niet gevonden had, mag je gebruiken dat \(f(y'',y',y)=y''+2y'+y\).
+\end{enumerate}
+
+
+
+
+
+
+\end{document}

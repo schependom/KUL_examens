@@ -1,0 +1,77 @@
+\documentclass[kulak]{kulakarticle} % options: kulak (default) or kul
+
+\usepackage[dutch]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{siunitx}
+\usepackage{graphicx}
+
+\title{Examen Wiskundig Redeneren}
+\author{Vincent Van Schependom}
+\date{12 januari 2024}
+\address{\textbf{Wiskundig Redeneren}\\
+	Prof. Karel Dekimpe}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Vraag 1}
+
+	Zijn onderstaande beweringen waar of onwaar? Verklaar waarom.
+
+	\begin{enumerate}
+		\item Zij \(A\) een eindige verzameling. De kardinaliteit van de verzameling van alle relaties van \(A\) naar zichzelf is gelijk aan \(2^{(\#A)^2}\).
+		\item De GGF ... is een tautologie.
+		\item Beschouw de afbeeldingen \(f:X\rightarrow Y\) en \(g:Y \rightarrow X\). Als \(f\circ g \circ f\) een bijectie is, is \(f\) dat ook.
+	\end{enumerate}
+
+	\section*{Vraag 2}
+
+	Beschouw de afbeelding \(f:\mathbb{N}\rightarrow\mathbb{R}:n\mapsto\sqrt{n}\) en de verzamelingen
+	\begin{itemize}
+		\item[-] \(X_0=\{0\}\)
+		\item[-] \(X_1=\{1\}\)
+		\item[-] \(X_n=f^{-1}([0,n])\setminus X_{n-1}\) \hspace{1cm} voor \(n\geq2\) met \(n\in \mathbb{N}_0\)
+	\end{itemize}
+
+	\noindent Gevraagd:
+
+	\begin{enumerate}
+		\item Geef \(X_3\).
+		\item Bewijs dat voor elke \(n \in \mathbb{N}\) geldt dat \[\#X_n=\frac{(-1)^n+n^2+n+1}{2}\]
+		\item Bewijs dat voor elke \(n \in \mathbb{N}\) geldt dat \(X_{n}\subset X_{n+2}\)
+	\end{enumerate}
+
+	\section*{Vraag 3}
+
+	Een oefening op de - \textit{partieel (en dus niet totaal), maar wel volledige} - geordende verzameling \((\mathcal{P}(X),\subset)\) en infimum. Lijkt heel hard op oefening 8b.
+
+	\section*{Vraag 4}
+
+	\begin{enumerate}
+		\item Zij \(R\) een relatie. Bewijs dat \(R\) symmetrisch is a.s.a. \(R^{-1}\subset R\)
+		\item Beschouw twee relaties \(R\) en \(S\) met \(S=R\setminus R^{-1}\). Bewijs of geef een tegenvoorbeeld:
+		\begin{enumerate}
+			\item \(S\) is reflexief
+			\item \(S\) is symmetrisch
+			\item \(S\) is anti-symmetrisch
+			\item \(S\) is transitief
+		\end{enumerate}
+	\end{enumerate}
+
+	\newpage
+
+	\section*{Vraag 5}
+
+	Tuur is op bezoek bij opa. In zijn speeldoos zitten speelgoedauto's van verschillende kleuren: 3 blauwe, 4 gele, 6 rode en 7 witte.
+
+	\begin{enumerate}
+		\item Hoeveel verschillende combinaties zijn er mogelijk indien alle auto's van dezelfde kleur naast elkaar moeten staan?\\
+		\textit{Ga er hierbij vanuit dat twee auto's van dezelfde kleur onderling verschillend zijn.}
+		\item Tuur moet 10 auto's uit de doos halen en minstens 2 daarvan moeten wit zijn.
+		\item Hoeveel verschillende kleurencombinaties zijn er mogelijk indien je maar 4 auto's mag gebruiken?
+		\textit{Ga er hierbij vanuit dat twee auto's van dezelfde kleur gelijkwaardig zijn.}
+	\end{enumerate}
+
+
+\end{document}

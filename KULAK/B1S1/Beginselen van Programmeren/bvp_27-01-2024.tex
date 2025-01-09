@@ -1,0 +1,129 @@
+\documentclass[kulak]{kulakarticle} % options: kulak (default) or kul
+
+\usepackage[dutch]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{listings}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\boxed}[1]{\text{\fboxsep=.3em\fbox{#1}}}
+
+\title{Examen Beginselen van Programmeren}
+\author{Vincent Van Schependom}
+\date{27 januari 2024}
+\address{
+	\textbf{	Beginselen van Programmeren} \\
+	Prof. Tommy Messelis
+	}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Vraag 1: gestructureerd programmeren}
+
+	Door de staking in Hollywood moeten er zo veel mogelijk kosten bespaard worden bij het filmen van een nieuwe film. Daarom zoekt de regisseur van die film een zo optimaal mogelijk draaischema voor de opnames. De opnamedagen sluiten aan op elkaar en elke scène duurt exact 1 dag om te filmen. Dat wil dus zeggen dat er evenveel aansluitende filmdagen zijn als er scenes zijn die moeten gefilmd worden.\\
+
+	Elke acteur heeft een bepaalde loonkost per dag dat hij/zij/het werkt. Indien een acteur meer dan 3 dagen pauze heeft tussen twee opnames, heeft die acteur pech. Als er echter minder dan 3 dagen tussen twee opnames zitten, wordt de acteur in kwestie ook uitbetaald voor deze \textit{brugdagen}. In Tabel \ref{tabel} is een voorbeeld te zien van de gegevens.\\
+
+	Gevraagd:
+	\begin{itemize}
+		\item Een beschrijving van de voorstellingswijze van de gegevens en de oplossing van het probleem
+		\item Een functie die als invoer de scènes - met bijhorende acteurs - en de loonkost per acteur neemt, en als uitvoer het optimale draaischema met minimale loonkost heeft.
+		\item \textbf{Uitbreiding}: wat verandert er indien elke acteur enkel op opeenvolgende dagen op de set kan staan, en er dus geen gaten mogen zitten tussen twee opnamedagen voor elke acteur?
+	\end{itemize}
+
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{| c | l |}
+			\hline
+			Scène & Acteurs \\
+			\hline
+			1 & Acteur 1, Acteur 2 \\
+			\hline
+			2 & Acteur 1, Acteur 5, Acteur 7 \\
+			\hline
+			3 & Acteur 2, Acteur 4 \\
+			\hline
+			\ldots & \ldots \\
+			\hline
+			10 & Acteur 6, Acteur 2, Acteur 8 \\
+			\hline
+		\end{tabular}
+		\hspace{1cm}
+		\begin{tabular}{| l | l |}
+			\hline
+			Acteur & Loonkost \\
+			\hline
+			Acteur 1 & 10.000 \\
+			\hline
+			Acteur 2 & 8.000 \\
+			\hline
+			Broke acteur & 600 \\
+			\hline
+			\ldots & \ldots \\
+			\hline
+			Acteur \(n\) & 12.000 \\
+			\hline
+		\end{tabular}
+
+		\caption{de scenes en de benodigde acteurs voor die scenes, alsook de loonkosten voor elke acteur}
+		\label{tabel}
+	\end{table}
+
+	\newpage
+
+	\section*{Vraag 2: objectgericht programmeren}
+
+	Op een veiling worden er verschillende items verkocht. De eenvoudigste items zijn de generieke items; die hebben enkel een naam en een beschrijving. Daarnaast zijn er ook kunstitems, die ook een kunstenaar hebben. Antieke kunstitems zijn kunstitems waarvan ook het tijdsvak en de stroming wordt bijgehouden. Van elektronische items wordt de staat bijgehouden. Het merendeel van de items die verkocht worden zijn auto's. Daarvan wordt het merk, het model en het bouwjaar bijgehouden. \\
+
+	Veilingen hebben altijd een verkoper. Die verkoper verkoopt dan 1 of meerdere items. Er moet altijd een startprijs opgegeven worden voor de biedingen en de verkoper kan optioneel ook een geheime grensprijs opgeven. Een verkoop is pas geklonken indien het hoogste bod hoger is dan de grensprijs. De winnaar van de veiling is dan de persoon die het hoogste bod heeft gedaan.\\
+
+	Er zijn twee types veilingen: open veilingen en gesloten veilingen. Bij open veilingen is het mogelijk om de boden en de hoogste bieder op te halen, bij gesloten veilingen wordt dit afgeschermd. Bij open veilingen wordt een nieuw bod enkel geregistreerd indien het hoger is dan het huidige hoogste bod, of als het hoger is dan de startprijs indien er nog geen bod werd gedaan. Bij gesloten veilingen worden alle boden geregistreerd die groter zijn dan het huidige hoogste bod.\\
+
+	Er zijn gewone gebruikers en premium gebruikers. Gewone gebruikers kunnen enkel boden uitbrengen, premium gebruikers kunnen daarnaast ook een veiling opstarten als verkoper. Premium gebruikers hebben als voordeel dat, indien er meerdere mensen het hoogste bod hebben, een premium gebruiker steeds de veiling zal winnen. Als er meerdere premium gebruikers het hoogste bod hebben, is de winnaar van de veiling de gebruiker die in het verleden al voor het hoogste bedrag iets heeft verkocht op een veiling. Indien er verder nog een ex aequo is, wordt er een willekeurige winnaar gekozen onder de hoogste bieders. \\
+
+	Gevraagd:
+	\begin{itemize}
+		\item Maak een klassendiagram dat de veiling voorstelt.
+		\item Maak een functie die een gebruiker in staat stelt een bod te doen.
+		\item Maak een functie die de winnaar van een veiling bepaalt.
+	\end{itemize}
+
+	\newpage
+
+	\section*{Vraag 3: interpreteren van code en complexiteit}
+
+	\begin{itemize}
+		\item Wat is de output van onderstaande code?
+		\item Beschrijf in woorden wat de functie \texttt{waarde(.)} precies berekent.
+		\item Wat is de complexiteit van de functie \texttt{waarde(.)}? \\Toon dit aan met een formele complexiteitsberekening.
+		\item Schrijf zelf een efficiëntere functie en toon aan dat je eigen functie effectief beter is aan de hand van een complexiteitsberekening.
+	\end{itemize}
+	\hfill
+	\begin{verbatim}
+	def waarde(p):
+	    i = len(p)-1
+	    r = []
+	    while i>=0:
+	        j = 0
+	        while j<=i:
+	            w = p[i]-p[j]
+	            r.append(w)
+	            j += 1
+	        i -= 1
+	    w = None
+	    for x in r:
+	        if w == None or abs(x) > w:
+	            w = abs(x)
+	    return w
+
+	print([1,2,3,4,5])
+	print([5,4,3,2,1])
+	print(range(0,100,2))
+	print(range(100,1000,50))
+	\end{verbatim}
+
+\end{document}

@@ -1,0 +1,79 @@
+\documentclass[kulak]{kulakarticle} % options: kulak (default) or kul
+
+\usepackage[dutch]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{amsthm}
+
+\DeclareMathOperator{\Bgsin}{Bgsin}
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\renewcommand{\boxed}[1]{\text{\fboxsep=.3em\fbox{#1}}}
+
+\title{Examen Fundamenten voor de Informatica}
+\author{Vincent Van Schependom}
+\date{1 februari 2024}
+\address{
+	\textbf{Fundamenten voor de Informatica} \\
+	Stijn Rebry \& Prof. Tommy Messelis
+	}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Theorie}
+
+	\subsection*{Vraag 1 (3.5 pt.)}
+
+	\begin{itemize}
+		\item Beschrijf wat het \textit{chromatisch getal} van een graaf is.
+		\item Bewijs dat het chromatisch getal van een enkelvoudige, vlakke graaf nooit meer dan 5 kan zijn.
+	\end{itemize}
+
+	\subsection*{Vraag 2 (1.5 pt.)}
+
+	Is onderstaande stelling juist of fout? Beargumenteer uitgebreid waarom.\\
+	\textit{Bij het doorlopen van een volledige, binaire boom vergt breedte-eerst meer geheugenruimte dan diepte-eerst.}
+
+	\subsection*{Vraag 3 (5 pt.)}
+
+	\begin{itemize}
+		\item Definieer de klasse $\mathcal{R}$ van reguliere talen. Wat is het verband met eindige automaten?
+		\item Toon aan dat reguliere talen tot \textbf{P} behoren.
+		\item Bewijs dat \(L= \{ 0^i1^i \mid i \in \N \} \) geen reguliere taal is.
+		\item Tot welke complexiteitsklasse behoort \(L\)?
+	\end{itemize}
+
+	\newpage
+
+	\section*{Oefeningen}
+
+	\subsection*{Oefening 1 (5 pt.)}
+
+	De \textit{cyclische graaf} \(C_n\) is de enkelvoudige graaf met \(n\geq3\) knopen die samen een kring vormen. Het \textit{wiel} \(W_n\) met \(n\geq3\) spaken bestaat uit een cyclische graaf \(C_n\), waaraan 1 knoop is toegevoegd, die verbonden is met elke andere knoop. De lijngraaf \(L(G)\) van een graaf \(G\) is een graaf met voor elke boog in \(G\) een knoop, waarbij twee knopen verbonden zijn indien de overeenkomstige bogen in \(G\) een gemeenschappelijke knoop hebben.
+
+	\begin{itemize}
+		\item Teken de lijngrafen \(L(W_3)\), \(L(W_4)\) en \(L(W_5)\).
+		\item Wat zijn het aantal knopen, het aantal bogen en de graden van de knopen in algemene grafen \(L(W_n)\)?
+		\item Voor welke waarden van \(n\) is \(L(W_n)\) vlak?
+	\end{itemize}
+
+	\subsection*{Oefening 2 (3 pt.)}
+
+	Een manier om een lijst te sorteren is het \textit{Gnome sort} algoritme. Hierbij wordt over een lijst \texttt{a} geïtereerd vanaf index 0 tot index \texttt{len(a)} als volgt. Indien \(\sigma_{i-1}=\sigma_i\), worden de symbolen omgewisseld en wordt de index met 1 verlaagd. Indien dit niet het geval is, wordt de index met 1 verhoogd.
+
+	\begin{itemize}
+		\item Beschrijf een Turingmachine die een string over het alfabet \( \{ 1,2,3 \} \) sorteert aan de hand van het \textit{Gnome sort} algoritme.
+		\item Bepaal de tijdscomplexiteit van deze Turingmachine.
+	\end{itemize}
+
+	\subsection*{Oefening 3 (2 pt.)}
+	Voer het maximale stromingsalgoritme uit op een netwerk \(G(V,E)\).
+
+\end{document}

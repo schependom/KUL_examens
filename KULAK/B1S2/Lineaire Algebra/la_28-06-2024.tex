@@ -1,0 +1,94 @@
+\documentclass[kulak]{kulakarticle} % options: kulak (default) or kul
+
+\usepackage[dutch]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+
+\setlength{\parindent}{0pt}
+
+\title{Examen Lineaire Algebra}
+\author{Vincent Van Schependom}
+\date{28 juni 2024}
+\address{
+	\textbf{Lineaire Algebra} \\
+	Prof. Paul Igodt
+	}
+
+\begin{document}
+
+\maketitle
+
+\section*{OV-1 (mondeling)}
+
+\begin{itemize}
+	\item[a)] De dimensie van een eindig voortgebrachte vectorruimte \((\R, V, +)\) wordt gedefinieerd als het aantal elementen van een basis van die vectorruimte. Toch is deze definitie onafhankelijk van de gekozen basis. Aan de hand van welk resultaat kan je dit verklaren? Geef een bewijs van dit resultaat.
+	\item[b)] In de vectorruimte \((\R, V, +)\) met dimensie \(n\) vormt een voortbrengende verzameling met \(n\) elementen een basis. Welke redenering volg je om dit in te zien? Toon alle stappen aan.
+\end{itemize}
+
+\section*{OV-2}
+
+Beschouw in de vectorruimte \((\R, \R^4, +)\) de basis \(\beta=\{v_1,v_2,v_3,v_4\}\). Het voorschrift van de lineaire afbeelding \(L_k:\R^4\to\R^4\) wordt gegeven door:
+\begin{align*}
+&L_k(v_1) = -8v_1 + 10v_4 \\
+&L_k(v_2) = kv_1 + (5+k)v_2 + v_3 - 2kv_4 \\
+&L_k(v_3) = -2kv_1+(-12-2k)v_2-3v_2+4kv_4 \\
+&L_k(v_4) = -5v_1+7v_4
+\end{align*}
+
+\begin{itemize}
+	\item[a)] Bepaal het spectrum van \(L_k\). \hspace{1cm} \textit{hint:} \(-1 \in \text{Spec}(L_k)\)
+	\item[b)] Onderzoek systematisch de diagonaliseerbaarheid van \(L_k\) zonder expliciet de eigenruimten te bepalen. Maak gevalsonderscheid en verricht het minimale werk. Maak tot slot een mooi overzicht.
+	\item[c)] \begin{itemize}
+		\item[i)] Kies één vaste waarde \(k\) waarvoor \(L_k\) diagonaliseerbaar is.
+		\item[ii)] Bepaal alle eigenruimten bij de eigenvectoren voor \(L_k\).
+		\item[iii)] Construeer de matrix \([L_k]_{\beta}^{\beta}\). Bepaal vervolgens de diagonaalmatrix \(D\) en de inverteerbare matrix \(P\) zodat \([L_k]_{\beta}^{\beta}=PDP^{-1}\).
+		\item[iv)] \(P\) is een matrix van basisverandering. Tussen welke twee basissen zet \(P\) vectoren om?
+	\end{itemize}
+\end{itemize}
+
+\section*{OV-3}
+
+Beschouw de vectorruimte \((\R, \R[X]_{\leq 3}, +)\) met veeltermen van hoogstens graad 3.
+
+\begin{itemize}
+	\item[a)] Kan de verzameling \(A=\{ X^2+2X-1, X^3-X, X^3+X^2+X+1 \}\) aangevuld worden tot basis voor \((\R, \R[X]_{\leq 3}, +)\)? Zo ja, op hoeveel manieren kan dat? Zo niet, leg uit waarom.
+	\item[b)] Kan de verzameling \(B = \{ X, X^2, X-X^2, X^3+2X, X^3+3X^2-X, X^2+X^3,X \}\) gereduceerd worden tot basis voor \((\R, \R[X]_{\leq 3}, +)\)? Zo ja, wat is die basis dan? Zo niet, leg uit waarom.
+	\item[c)] Beschouw de lineaire afbeelding \[L:\R[X]_{\leq 3}\to \R[X]_{\leq 3} : p(X) \mapsto Xp'(X)-p(X).\] Bepaal een basis voor \(\text{Ker} \,L\) en voor \(\text{Im} \,L\). Geldt voor \(L\) dat \(\R[X]_{\leq 3}= \text{Ker} \,L \oplus \text{Im} \,L\)?
+\end{itemize}
+
+\newpage
+
+\section*{Meerkeuze}
+
+\textit{\(\leq\)1 goed antwoord: 0 punten\\
+2 goede antwoorden: 1 punt\\
+3 goede antwoorden: 2 punten\\
+4 goede antwoorden: 3 punten
+}\\
+
+Duid bij elke bewering aan of ze juist dan wel fout is. Je hoeft geen verklaring te geven; alleen het plaatsen van de letter J (juist) of F (fout) in het voorziene hokje volstaat.\\
+
+Veronderstel voor elk van de beweringen dat \(A\in\R^{6\times 6}\).
+
+\begin{itemize}
+	\item Als \(A\) diagonaliseerbaar is en alle eigenwaarden verschillen van nul, dan is \(A\) regulier.
+	\item \(  (\mathbb{I}_6-A)^2=\mathbb{I}_6-A  \) als \(A^2=A\).
+	\item De nulliteit van \(A\) kan eender welke gehele waarde tussen 0 en 6 aannemen (beiden inclusief).
+	\item De rang van \(A^TA\) is strikt groter dan de rang van \(A\).
+\end{itemize}
+
+\end{document}

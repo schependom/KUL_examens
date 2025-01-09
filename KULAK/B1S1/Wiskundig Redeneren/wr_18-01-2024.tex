@@ -1,0 +1,77 @@
+\documentclass[kulak]{kulakarticle} % options: kulak (default) or kul
+
+\usepackage[dutch]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{siunitx}
+\usepackage{graphicx}
+
+\title{Examen Wiskundig Redeneren}
+\author{Vincent Van Schependom}
+\date{18 januari 2024}
+\address{\textbf{Wiskundig Redeneren}\\
+	Prof. Karel Dekimpe}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Vraag 1}
+
+	Zijn onderstaande beweringen waar of onwaar? Verklaar waarom.
+
+	\begin{enumerate}
+		\item Zij \(A\) een eindige verzameling. Het aantal deelverzamelingen van \(A\) die hoogstens 2 elementen bevatten, is gelijk aan \(\frac{\# A(\# A+1)}{2}\).
+		\item De GGF \( (((p\land q) \Rightarrow r) \land ((p\land q) \lor \neg r)) \Rightarrow s \) is een tautologie.
+		\item Zij \(f:X\rightarrow Y\) een afbeelding. \(f\) is injectief als en slechts als voor alle \(A\subset X\) geldt dat \(\# A= \# f(A)\)
+	\end{enumerate}
+
+	\section*{Vraag 2}
+
+	Beschouw de afbeelding \(f:\mathbb{R}\rightarrow\mathbb{R}:n\mapsto n^2\) en de verzamelingen
+	\begin{itemize}
+		\item[-] \(X_0=\{0\}\)
+		\item[-] \(X_n=(f([0,n])\cap \mathbb{N}) \setminus X_{n-1}\) \hspace{1cm} voor \(n\in \mathbb{N}_0\)
+	\end{itemize}
+
+	\noindent Gevraagd:
+
+	\begin{enumerate}
+		\item Geef \(X_3\).
+		\item Bewijs dat voor elke \(n \in \mathbb{N}\) geldt dat \[\#X_n=\frac{1+(-1)^n}{2}-{ n+1 \choose 2}\]
+		\item Bewijs dat \(X_{n}\subset X_{n+2}\) voor elke \(n \in \mathbb{N}\)
+	\end{enumerate}
+
+	\section*{Vraag 3}
+
+	Beschouw de deelverzameling \[ A = \left\{ \left[\frac{n}{n+1},1+\frac{n}{n+1} \right] \right\} \] van de geordende verzameling \(\mathcal{P}(\mathbb{R}), \subset\). Wat is \(\text{sup}(A)\)? Verklaar uitgebreid waarom.
+
+	\section*{Vraag 4}
+
+	\begin{enumerate}
+		\item Beschouw de relatie \(R\) op \(X\) en de relatie \(I_X= \{ (x,x)\in X\times X \mid x \in X \} \)
+		\begin{enumerate}
+			\item[a)] Bewijs dat \(R\) anti-symmetrisch is als en slechts als \(R^{-1}\cap R \subset I_X\).
+			\item[b)] Beschouw de relatie \(S=R\cup R^{-1}\). Bewijs of geef een tegenvoorbeeld:
+			\begin{enumerate}
+				\item[-] \(S\) is reflexief
+				\item[-] \(S\) is symmetrisch
+				\item[-] \(S\) is anti-symmetrisch
+				\item[-] \(S\) is transitief
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+
+	\newpage
+
+	\section*{Vraag 5}
+
+	Je moet oma helpen met het versieren van haar kerstboom. Oma heeft 2 kleuren ballen: rode en goude. Van elke kleur zijn er zowel grote als kleine ballen. In totaal zijn er dus 4 verschillende soorten ballen. Neem aan dat oma minstens 20 ballen heeft van elke soort en dat 2 ballen van dezelfde kleur en grootte als gelijk worden beschouwd.
+
+	\begin{enumerate}
+		\item Hoeveel combinaties van 20 ballen kan je maken indien oma eist dat er minstens 2 rode ballen tussen moeten zitten? Volgorde is hierbij niet van belang.
+		\item Je legt 10 rode ballen en 10 goude ballen op een rij, zodat de kleuren elkaar afwisselen. Je kan beginnen met eender welke kleur. Op hoeveel verschillende manieren kan je zo'n rij vormen?
+		\item Op hoeveel manieren kan je een rij van 10 rode en 10 goude ballen vormen indien de kleuren elkaar niet moeten afwisselen?
+	\end{enumerate}
+
+
+\end{document}

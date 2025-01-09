@@ -1,0 +1,109 @@
+\documentclass[kulak]{kulakarticle} % options: kulak (default) or kul
+
+\usepackage[dutch]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{amsthm}
+
+\DeclareMathOperator{\Bgsin}{Bgsin}
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\R}{\mathbb{R}}
+
+\title{Examen Analyse \& Calculus}
+\author{Vincent Van Schependom}
+\date{23 januari 2024}
+\address{
+	\textbf{Analyse \& Calculus I}\\
+	Prof. Wim Malfait}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Open vragen}
+
+	\subsection*{Vraag 1}
+	\renewcommand{\arraystretch}{2}
+	Beschouw de functie \[ f :\R \to \R : x \mapsto \left\{
+	\begin{array}{ll}
+		\dfrac{  e^{-1/x^2}  }{ |x| } 	& \text{als } x\neq0 \\
+		0 														& \text{als } x=0
+	\end{array} \right. \ \]
+
+	\begin{enumerate}
+		\item Toon aan dat \(f\) afleidbaar is in \(0\).
+		\item Bepaal de afgeleide functie \(f'\).
+		\item Onderzoek en bespreek de extreme waarden van \(f\).
+	\end{enumerate}
+
+	\subsection*{Vraag 2}
+
+	Beschouw de functie \(f\) en het gebied \(D\): \[ f : \R \to \R : (x,y,z) \mapsto f(x,y,z) = yz \]\[ D = \{ (x,y,z) \in \R^3 \mid x^2+y^2=18 \text{ en } z=2x \} \]
+
+	In welk(e) punt(en) bereikt \(f\) haar minimum?
+
+	\subsection*{Vraag 3}
+
+	Beschouw het lichaam \(D\) dat ingesloten is tussen de oppervlakken \(x^2=y^2+z^2\) en \(x^2+4y^2+4z^2=4\) in de halfruimte \(x\geq0\).
+
+	\begin{enumerate}
+		\item Beschrijf \(D\) door middel van (gepaste) cilindercoördinaten.
+		\item Bereken het volume van \(D\).
+	\end{enumerate}
+
+	\section*{Meerkeuzevragen}
+
+	\subsection*{Vraag 1}
+
+	De booglengte van de kromme met vergelijking \[ y=\sqrt{x-x^2} + \Bgsin \sqrt{x} \] voor \(x\in[0,1]\) is gelijk aan
+	\begin{itemize}
+		\item -1
+		\item 0
+		\item 2
+		\item \(+\infty\)
+	\end{itemize}
+
+	\subsection*{Vraag 2}
+
+	Beschouw de volgende reeksen:
+	\begin{align*}
+		\text{(I)} \sum_{n=1}^{+\infty}n\cdot\sin{\left(\frac{1}{n}\right)} && \text{(II)} \sum_{n=1}^{+\infty} \frac{1}{\ln^n(n+1)}
+	\end{align*}
+
+	\begin{itemize}
+		\item (I) en (II) zijn beide divergent.
+		\item (I) is divergent en (II) is convergent.
+		\item (I) is convergent en (II) is divergent.
+		\item (I) en (II) zijn beide convergent.
+	\end{itemize}
+
+	\subsection*{Vraag 3}
+
+	Van welke functie is onderstaande machtreeks de reeksontwikkeling? \[ \sum_{n=1}^{+\infty}\frac{2^n}{n}x^{2n} \]
+
+	\begin{itemize}
+		\item \( -\ln{(1-2x^2)} \)
+		\item \( -\ln{(1+2x^2)} \)
+		\item \( \ln{(1-2x^2)} \)
+		\item \( \ln{(1+2x^2)} \)
+	\end{itemize}
+
+	\subsection*{Vraag 4}
+
+	Beschouw de functie \[ f : \R^2 \to \R : (x,y) \mapsto -e^{-\sqrt{x^2+y^2}} \]
+	Welke van onderstaande grafieken met niveaulijnen hoort bij de functie \(f\)? Dit was echt ontiegelijk makkelijk aangezien de grafiek van \(f\) in 3D ook gewoon gegeven was.
+
+	\subsection*{Vraag 5}
+
+	\(y\) is de oplossing van de differentiaalvergelijking \[ y' + (\sin{x})y = e^{\cos{x}} \] met beginvoorwaarde \(y(0)=0\). \(y(\pi)\) is gelijk aan
+	\begin{itemize}
+		\item \(0\)
+		\item \(\frac{1}{e}\)
+		\item \(\frac{\pi}{e}\)
+		\item \(\pi\)
+	\end{itemize}
+
+\end{document}

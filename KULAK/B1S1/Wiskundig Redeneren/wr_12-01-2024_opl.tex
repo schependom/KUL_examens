@@ -1,0 +1,234 @@
+\documentclass[kulak]{kulakarticle} % options: kulak (default) or kul
+
+\usepackage[dutch]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{amsthm}
+
+\title{Oplossing examen Wiskundig Redeneren}
+\author{Vincent Van Schependom}
+\date{12 januari 2024}
+\address{\textbf{Wiskundig Redeneren}\\
+	Prof. Karel Dekimpe}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Vraag 1}
+
+	Zijn onderstaande beweringen waar of onwaar? Verklaar waarom.
+
+	\begin{enumerate}
+		\item \textit{Zij \(A\) een eindige verzameling. De kardinaliteit van de verzameling van alle relaties van \(A\) naar zichzelf is gelijk aan \(2^{(\#A)^2}\).}
+
+		\textbf{Waar}: een relatie van \(A\) naar \(A\) is een deelverzameling van het cartesiaans product \(A\times A\). Stel dat \(\#A=n\). Wegens het productprincipe geldt dan dat \(\#(A\times A)=n\cdot n=n^2=(\# A)^2\).
+
+		Omdat we nu voor elk koppel \((x,y)\in A\times A\) moeten beslissen of dat koppel al dan niet tot de relatie behoort, komt dit neer op een \(k\)-permutatie met herhaling, waarbij \(k=n^2=(\# A)^2\) en we telkens twee keuzes hebben (wel/niet).
+
+		Het aantal mogelijke relaties van \(A\) naar zichzelf is dus \(\bar{P}(2,n^2)=2^{n^2}=2^{(\# A)^2}\).
+
+		\item \textit{De GGF ... is een tautologie.}
+		\item \textit{Beschouw de afbeeldingen \(f:X\rightarrow Y\) en \(g:Y \rightarrow X\). Als \(f\circ g \circ f\) een bijectie is, is \(f\) dat ook.}
+
+		\textbf{Waar}: om aan te tonen dat \(f\) bijectief is, tonen we aan dat \(f\) zowel surjectief als injectief is.
+
+		\begin{itemize}
+			\item[-] \underline{Surjectiviteit}:\\
+			Neem \(y \in Y\) willekeurig. Omdat \(f\circ g \circ f\) een bijectie is, is \(f\circ g \circ f\) surjectief. Daarom bestaat voor de \(y\) die we gekozen hebben zeker een \(x_0\in X\) zodat \(f(g(f(x_0)))=y\). Omdat \(g(f(x_0))\in X\), hebben we dus een \(x\in X\) gevonden waarvoor \(f(x)=y\), namelijk \(x=g(f(x_0))\). Omdat we \(y\) willekeurig in \(Y\) hebben gekozen en we bewezen hebben dat er een \(x \in X\) bestaat zodat \(f(x)=y\), is \(f\) surjectief.
+
+			\item[-] \underline{Injectiviteit}:\\
+			Neem \(x_1,x_2 \in X\) willekeurig en stel dat \(f(x_1)=f(x_2)\). Zowel \(f(x_1)\) als \(f(x_2)\) behoren tot \(Y\). Omdat \(g\) een afbeelding is, geldt dus dat \(f(x_1),f(x_2)\in \text{dom}(g)\). Uit \(f(x_1)=f(x_2)\) volgt dat \(g(f(x_1))=g(f(x_2))\). Op analoge manier als hiervoor, kunnen we besluiten - wegens het feit dat \(f\) een afbeelding is - dat \(g(f(x_1)),g(f(x_2))\in \text{dom}(f)=X\). En dus geldt ook dat \(f(g(f(x_1)))=f(g(f(x_2)))\). Omdat \(f\circ g \circ f\) een bijectie is, is \(f\circ g \circ f\) injectief en volgt uit  het vorige dus dat \(x_1=x_2\). Omdat we \(x_1\) en \(x_2\) willekeurig kozen in \(X\) en hebben aangetoond dat \(f(x_1)=f(x_2)\Rightarrow x_1=x_2\) geldt, is \(f\) injectief.
+		\end{itemize}
+	\end{enumerate}
+
+	\section*{Vraag 2}
+
+	\textit{	Beschouw de afbeelding \(f:\mathbb{N}\rightarrow\mathbb{R}:n\mapsto\sqrt{n}\) en de verzamelingen}
+	\begin{itemize}
+		\item[-] \(X_0=\{0\}\)
+		\item[-] \(X_1=\{1\}\)
+		\item[-] \(X_n=f^{-1}([0,n])\setminus X_{n-1}\) \hspace{1cm} voor \(n\geq2\) met \(n\in \mathbb{N}_0\)
+	\end{itemize}
+
+	\noindent \textit{Gevraagd:}
+
+	\begin{enumerate}
+		\item \textit{Geef \(X_3\).}
+		\item \textit{Bewijs dat \(\#X_n=\frac{(-1)^n+n^2+n+1}{2}\)}
+		\item \textit{Bewijs dat \(X_{n}\subset X_{n+2}\)}
+	\end{enumerate}
+
+	\newpage
+
+	\( X_0=\{ 0 \} \\ X_1=\{ 1 \} \\ X_2=\{ 0,1,2,3,4 \} \setminus \{ 1 \} = \{ 0,2,3,4 \} \\ X_3=\{ 0,1,2,3,4,5,6,7,8,9 \} \setminus \{ 0,2,3,4 \} = \{ 1,5,6,7,8,9 \} \) \\
+
+	Om aan te tonen dat \(X_n=\frac{(-1)^n+n^2+n+1}{2}\) voor alle \(n\in \mathbb{N}\), bewijzen we eerst dat \[\# f^{-1}([0,n])=n^2+1\]
+
+	\begin{proof}
+		Volgens de definitie van invers beeld is
+		\begin{align*}
+			f^{-1}([0,n])		&= \{ k\in \mathbb{N} \mid \sqrt{k}\in [0,n] \} \\
+								&= \{ k\in \mathbb{N} \mid 0 \leq \sqrt{k} \leq n \} \\
+								&= \{ k\in \mathbb{N} \mid 0 \leq k \leq n^2 \} \\
+								&= \{0,1,2,3,...,n^2\}\\
+								&= E_{n^2} \cup \{0\}
+		\end{align*}
+
+		De kardinaliteit van \(E_n\) is \(n\) en dus is de kardinaliteit van \(E_{n^2}=n^2\). Omdat \(f^{-1}([0,n])\) één element, zijnde het getal 0, meer bevat dan \(E_{n^2}\), is \(\# f^{-1}([0,n])=n^2+1\).
+
+	\end{proof}
+
+	Nu tonen we aan dat \(X_n=\frac{(-1)^n+n^2+n+1}{2}\) voor alle \(n\in \mathbb{N}\).
+
+	\begin{proof}
+		Per volledige inductie op \(n \in \mathbb{N}\).
+
+		\begin{itemize}
+			\item[-] \textbf{Basisstap}: voor \(n=0\) en \(n=1\) klopt de bewering, want \( \# X_0 = \#\{ 0 \} = \# X_1 = \#\{ 1 \} = 1 \) en \(\frac{(-1)^0+0^2+0+1}{2}=\frac{-1+1^2+1+1}{2}=1\)
+			\item[-] \textbf{Inductiestap}: neem aan dat de bewering klopt voor \(k\geq1\) en dat dus geldt dat \(X_k=\frac{(-1)^k+k^2+k+1}{2}\).
+
+			Omdat \(k+1 \geq 2\), volgt uit het gegeven dat \(X_{k+1}=f^{-1}([0,k+1])\setminus X_{k}\).
+
+			Merk op dat \(f^{-1}([0,k+1])=(f^{-1}([0,k+1])\setminus X_{k}) \cup (f^{-1}([0,k+1])\cap X_{k})\) en dat deze unie disjunct is. Uit het optelprincipe volgt dan dat \[\#(f^{-1}([0,k+1]))=\#(f^{-1}([0,k+1])\setminus X_{k}) + \# (f^{-1}([0,k+1])\cap X_{k})\]
+
+			Nu is \(\#(f^{-1}([0,k+1])\setminus X_{k}) = \# X_{k+1}\) en bovendien toonden we al aan dat \( \# (f^{-1}([0,k+1])) = (k+1)^2+1 \). Omdat \(X_{k} \subset (f^{-1}([0,k+1])\) is bovendien \((f^{-1}([0,k+1])\cap X_{k})=X_{k}\). Uit deze drie zaken en uit de inductiehypothese volgt dan dat
+			\begin{align*}
+				\# X_{k+1} &= (k+1)^2+1 - \#X_{k}\\
+									&= (k+1)^2+1 - \left(  \frac{(-1)^k+k^2+k+1}{2} \right)\\
+									&= \frac{ 2k^2+4k+2+2-(-1)^k-k^2-k-1 }{2}\\
+									&= \frac{ k^2+3k+3+(-1)(-1)^k }{2}\\
+									&= \frac{ (k+1)^2+(k+1)+1+(-1)^{k+1} }{2}
+			\end{align*}
+
+			Hiermee is de inductiestap bewezen.
+
+			\item[-] \textbf{Conclusie}: omdat we de basis- en inductiestap hebben aangetoond, volgt uit het principe van volledige inductie dat voor alle \(n\in \mathbb{N}\) geldt dat \(X_n=\frac{(-1)^n+n^2+n+1}{2}\).
+		\end{itemize}
+	\end{proof}
+
+	\newpage
+
+	We tonen aan dat voor alle \(n\in \mathbb{N}\) geldt dat \(X_n \subset X_{n+2}\).
+
+	\begin{proof}
+		Per volledige inductie op \(n\in \mathbb{N}\).
+
+		\begin{itemize}
+
+			\item[-] \textbf{Basisstap}: voor \(n=0\) klopt de bewering: \( X_0 = \{ 0 \} \) en \( X_2 = \{ 0,2,3,4 \} \) en \( \{ 0 \} \subset \{ 0,2,3,4 \} \). \\Voor \(n=1\) klopt de bewering ook: \( X_1 = \{ 1 \} \) en \( X_3 = \{ 1,5,6,7,8,9 \} \) en \( \{ 1 \} \subset \{ 1,5,6,7,8,9 \} \).
+
+			\item[-] \textbf{Inductiestap}: Stel dat \(X_k \subset X_{k+2}\) voor \(k \geq 1\), dan bewijzen we dat ook \(X_{k+1} \subset X_{k+3}\).
+
+			Neem \(x\in X_{k+1}\) willekeurig. Merk op dat \(k+1\geq2\). Volgens het gegeven weten we dan dat \(X_{k+1}=f^{-1}([0,k+1])\setminus X_{k}\). Er geldt dat \(k+2\geq2\) en dus is \(X_{k+2}=f^{-1}([0,k+2])\setminus X_{k+1}\). Omdat \(x\in X_{k+1}\), volgt hieruit dat \(x\notin X_{k+2}\).
+
+			Nu is ook \(k+3\geq2\) en dus geldt dat \(X_{k+3}=f^{-1}([0,k+3])\setminus X_{k+2}\). Uit het voorgaande weten we al dat \(x\notin X_{k+2}\). Bovendien volgt uit \(x\in X_{k+1}\) dat \(x\in f^{-1}([0,k+1])\) en dus ook dat \(x\in f^{-1}([0,k+3])\), aangezien \( f^{-1}([0,k+1]) \subset  f^{-1}([0,k+3])\).
+
+			Omdat \(x\in f^{-1}([0,k+3])\) en \(x\notin X_{k+2}\), volgt dat \(x\in X_{k+3}\). We hebben \(x\) willekeurig gekozen in \(X_{k+1}\) en aangetoond dat \(x \in X_{k+1} \Rightarrow x \in X_{k+3}\), dus geldt de inclusie \(X_{k+1} \subset X_{k+3}\)
+
+			\item[-] \textbf{Conclusie}: omdat we de basis- en inductiestap hebben bewezen, volgt uit het principe van volledige inductie dat \(X_n \subset X_{n+2}\) voor alle \(n \in \mathbb{N}\).
+		\end{itemize}
+	\end{proof}
+
+	\section*{Vraag 3}
+
+	Een oefening op de - \textit{partieel (en dus niet totaal), maar wel volledige} - geordende verzameling \((\mathcal{P}(X),\subset)\) en infimum. Lijkt heel hard op oefening 8b.
+
+	\section*{Vraag 4}
+
+	\begin{enumerate}
+		\item \textit{Zij \(R\) een relatie. Bewijs dat \(R\) symmetrisch is a.s.a. \(R^{-1}\subset R\)}
+
+		\begin{proof}
+			We tonen twee implicaties aan.
+
+			\begin{itemize}
+				\item[-] \underline{\(R\) is symmetrisch \(\Rightarrow R^{-1}\subset R\)}
+
+				Neem \((y,x)\in R^{-1}\) willekeurig. Uit de definitie van de inverse relatie volgt dan dat \((x,y)\in R\). Aangezien \(R\) symmetrisch is, volgt uit \((x,y)\in R\) dat \((y,x)\in R\). Omdat we \((y,x)\) willekeurig kozen in \(R^{-1}\) en we de implicatie \((y,x)\in R^{-1}\Rightarrow (y,x)\in R\) hebben aangetoond, is meteen ook bewezen dat \(R^{-1}\subset R\).
+
+				\item[-] \underline{\( R^{-1}\subset R \Rightarrow R\) is symmetrisch}
+
+
+				Neem \((x,y)\in R\) willekeurig. Uit het feit dat \(R^{-1}\subset R\) volgt dat ook \((x,y)\in R^{-1}\). Volgens de definitie van de inverse relatie geldt dan dat \((y,x)\in R\). Omdat we \((x,y) \in R\) willekeurig kozen en de implicatie \((x,y)\in R \Rightarrow (y,x)\in R\) hebben aangetoond, is \(R\) symmetrisch.
+
+			\end{itemize}
+
+			Aangezien we beide implicaties bewezen hebben, volgt hieruit: \(R\) is symmetrisch \(\Leftrightarrow R^{-1}\subset R\)
+		\end{proof}
+
+		\item \textit{Beschouw twee relaties \(R\) en \(S\) met \(S=R\setminus R^{-1}\). Bewijs of geef een tegenvoorbeeld:}
+		\begin{enumerate}
+			\item \(S\) is reflexief: \textbf{NW} (tegenvb.)
+			\item \(S\) is symmetrisch: \textbf{NW} (tegenvb.)
+			\item \(S\) is anti-symmetrisch: \textbf{W} (uit het ongerijmde)
+			\item \(S\) is transitief: \textbf{NW} (tegenvb.)
+		\end{enumerate}
+	\end{enumerate}
+
+	\section*{Vraag 5}
+
+	\textit{Tuur is op bezoek bij opa. In zijn speeldoos zitten speelgoedauto's van verschillende kleuren: 3 blauwe, 4 gele, 6 rode en 7 witte.}
+
+	\begin{enumerate}
+		\item \textit{Hoeveel verschillende combinaties zijn er mogelijk indien alle auto's van dezelfde kleur naast elkaar moeten staan? Ga er hierbij vanuit dat twee auto's van dezelfde kleur onderling verschillend zijn.}
+
+		We hebben 4 groepen waarin auto's van dezelfde kleur naast elkaar staan.
+
+		In elke kleurgroep kiezen we voor elke positie in die groep, zonder herhaling, een auto van die kleur. Er zijn evenveel posities als het aantal auto's. We zullen dus evenveel keer kiezen als er auto's zijn van een bepaalde kleur en de volgorde is daarbij van belang. Voor elke groep hebben we dus een \(n\)-permutatie zonder herhaling, met \(n\) het aantal auto's van die kleur.
+
+		Voor de blauwe groep hebben we dus \(P(3,3)=3!\) mogelijke ordeningen, voor de groene \(4!\), voor de rode \(6!\) en voor de witte \(7!\).
+
+		Daarnaast kunnen we de 4 kleurengroepen ook onderling van plaats wisselen. Dit komt ook neer op een permutatie, dit keer \(P(4,4)=4!\)
+
+		Om het totaal aantal mogelijke combinaties te vinden, vermenigvuldigen we al deze faculteiten: \[3!\cdot 4! \cdot 4! \cdot 6! \cdot 7!\]
+
+		\item \textit{Tuur moet 10 auto's uit de doos halen en minstens 2 daarvan moeten wit zijn.}
+
+		Voor dit telprobleem gebruiken we het complement.
+
+		We berekenen eerst het aantal mogelijke combinaties van 10 auto's zonder rekening te houden met de extra voorwaarde dat er minstens 2 witte auto's tussen moeten zitten. Hierbij is volgorde van belang en mag elke auto hoogstens 1 keer gekozen worden, dus we hebben \(P(20,10)\) mogelijke combinaties.
+
+		Vervolgens berekenen we het aantal combinaties waar geen witte auto in voorkomt. Hiervoor kiezen we 10 keer uit 13 auto's; volgorde is van belang en er is geen herhaling mogelijk. Dit zijn dus \(P(13,10)\) mogelijke combinaties.
+
+		Tot slot berekenen we hoeveel combinaties we kunnen maken indien er exact 1 witte auto voorkomt. We leggen voor deze auto eerst een positie vast. Hiervoor hebben we \(C(10,1)={10 \choose 1}=10\) keuze's. Voor de auto zelf hebben we 7 keuzes. Daarna kiezen we nog 9 auto's uit de overige 13. Hierbij is volgorde van belang en herhaling niet mogelijk. We hebben dus in totaal \(7\cdot 10\cdot P(13,9)\) mogelijkheden.
+
+		Het aantal mogelijke combinaties met minstens 2 witte auto's wordt dan: \[P(20,10) - P(13,10) - 7\cdot 10\cdot P(13,9)\]
+
+		\newpage
+
+		\item \textit{Hoeveel verschillende kleurencombinaties zijn er mogelijk indien je maar 4 auto's mag gebruiken? Ga er hierbij vanuit dat twee auto's van dezelfde kleur gelijkwaardig zijn.}
+
+		Hiervoor maken we onderscheid tussen een aantal verschillende scenario's:
+
+		\begin{itemize}
+			\item[-] \underline{Alle 4 de auto's hebben dezelfde kleur}
+
+			Dan hebben we 3 mogelijkheden.
+
+			\item[-] \underline{3 van de 4 auto's hebben dezelfde kleur}
+
+			Dan kiezen we eerst de kleur die 3 keer voorkomt. Hiervoor hebben we keuze uit 4 kleuren. Vervolgens kiezen we voor deze 3 auto's een positie. Hierbij is volgorde niet van belang en mag er geen herhaling optreden. Dit zijn dus \(C(4,3)={4 \choose 3}=4\) mogelijkheden. De positie van de andere kleur ligt dan ook vast. Voor die kleur hebben we nog 3 mogelijkheden, want we kozen al 1 kleur. We hebben voor dit geval dus in totaal \(4 \cdot C(4,3) \cdot 3 \) mogelijkheden.
+
+			\item[-] \underline{We hebben 2 keer 2 auto's van dezelfde kleur}
+
+			Voor de eerste kleur hebben we 4 mogelijkheden, voor de tweede kleur 3. Daarnaast hebben we \(C(4,2)={4\choose 2}\) mogelijke keuzes voor het vastleggen van de positie van een van de kleuren. We kiezen namelijk zonder herhaling en volgorde is niet van belang. In totaal zijn er dus \(4 \cdot 3 \cdot {4 \choose 2}\) mogelijkheden.
+
+			\item[-] \underline{2 auto's van dezelfde kleur en 2 auto's van een verschillende kleur}
+
+			Voor de 2 auto's met dezelfde kleur hebben we keuze uit 4 kleuren. Dan leggen we de posities voor deze 2 auto's vast. Hierbij is volgorde niet van belang en is er geen herhaling mogelijk. We hebben dus \(C(4,2)={4 \choose 2}\) mogelijkheden. Tot slot kiezen we de twee andere kleuren uit de 3 overige kleuren. Hierbij is volgorde van belang en hebben we dus \(P(3,2)\) mogelijkheden. In totaal hebben we \(4 \cdot {4 \choose 2} \cdot P(3,2)\) mogelijkheden voor dit geval.
+
+			\item[-] \underline{Alle auto's hebben een verschillende kleur}
+
+			Dit komt neer op een \(n\)-permutatie met \(n=4\). We hebben dus m.a.w. \(4!\) mogelijkheden.
+
+		\end{itemize}
+
+		Om nu het totaal aantal mogelijke combinaties te berekenen, tellen we het aantal combinaties van elk geval op.
+	\end{enumerate}
+
+
+\end{document}

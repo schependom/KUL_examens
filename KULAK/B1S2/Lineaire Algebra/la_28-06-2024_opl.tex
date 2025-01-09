@@ -1,0 +1,175 @@
+\documentclass[kulak]{kulakarticle} % options: kulak (default) or kul
+
+\usepackage[dutch]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+
+\setlength{\parindent}{0pt}
+
+\title{Oplossing Examen Lineaire Algebra}
+\author{Vincent Van Schependom}
+\date{28 juni 2024}
+\address{
+	\textbf{Lineaire Algebra} \\
+	Prof. Paul Igodt
+}
+
+\begin{document}
+
+\maketitle
+
+\section*{OV-1 (mondeling)}
+
+\begin{itemize}
+	\item[a)] De dimensie van een eindig voortgebrachte vectorruimte \((\R, V, +)\) wordt gedefinieerd als het aantal elementen van een basis van die vectorruimte. Toch is deze definitie onafhankelijk van de gekozen basis. Aan de hand van welk resultaat kan je dit verklaren? Geef een bewijs van dit resultaat.
+	\item[b)] In de vectorruimte \((\R, V, +)\) met dimensie \(n\) vormt een voortbrengende verzameling met \(n\) elementen een basis. Welke redenering volg je om dit in te zien? Toon alle stappen aan.
+\end{itemize}
+
+\section*{OV-2}
+
+Beschouw in de vectorruimte \((\R, \R^4, +)\) de basis \(\beta=\{v_1,v_2,v_3,v_4\}\). Het voorschrift van de lineaire afbeelding \(L_k:\R^4\to\R^4\) wordt gegeven door:
+\begin{align*}
+&L_k(v_1) = -8v_1 + 10v_4 \\
+&L_k(v_2) = kv_1 + (5+k)v_2 + v_3 - 2kv_4 \\
+&L_k(v_3) = -2kv_1+(-12-2k)v_2-3v_2+4kv_4 \\
+&L_k(v_4) = -5v_1+7v_4
+\end{align*}
+
+\begin{itemize}
+	\item[a)] Bepaal het spectrum van \(L_k\). \hspace{1cm} \textit{hint:} \(-1 \in \text{Spec}(L_k)\)
+
+	\underline{Oplossing:}
+	\begin{align*}
+		\varphi_{L_k}(x)=0 \Longleftrightarrow& \, \text{det}\left(\begin{matrix}
+			-8-x & k     & -2k    & -5  \\
+			0    & 5+k-x & -12-2k & 0   \\
+			0    & 1     & -3-x   & 0   \\
+			10   & -2k   & 4k     & 7-x
+		\end{matrix}\right) = 0 \\
+						\Longleftrightarrow& \, (x+3)(x+1)(x-2)(3+k-x)=0
+	\end{align*}
+
+	Hieruit volgt dat \(\text{Spec}(L_k)=\{-3,-1,2,3+k\}\).
+
+	\item[b)] Onderzoek systematisch de diagonaliseerbaarheid van \(L_k\) zonder expliciet de eigenruimten te bepalen. Maak gevalsonderscheid en verricht het minimale werk. Maak tot slot een mooi overzicht.
+
+	\underline{Oplossing:}
+
+	Stel, om de notatie te vergemakkelijken, voor elke \(k\in\R\) de matrix \(A_{k,\lambda}\) gelijk aan \[A_{k,\lambda}=  [L_k]_{\beta}^{\beta}-\lambda \mathbb{I}_4.\] Om de (dimensie van de) eigenruimte voor een eigenwaarde \(\lambda\) te vinden, zoeken we een basis (resp. de dimensie) van de nulruimte van \(A_{k,\lambda}\). Er geldt namelijk dat \[\text{co}_{\beta}(E_{\lambda})=N(A_{k,\lambda})\]
+
+	\begin{itemize}
+		\item \underline{\(k \in \R \setminus \{-6,-4,-1\} \):}\\
+		Het spectrum is enkelvoudig, dus \(L_k\) is diagonaliseerbaar.
+
+		\item \underline{\(k = -6\):}\\
+		\(\text{Spec}(L_{-6})=\{-3^{(2)},-1,2\}\). Als we \(A_{-6,-3}\) in trapvorm zetten, zien we dat er 2 vrije variabelen zijn, wat impliceert dat \(\text{dim}_{\R}N(A_{-6,-3})=\text{dim}_{\R}E_{-3}=2\). Omdat \(d(-3)=m(-3)=2\) en voor de eigenwaarden \(-1\) en \(2\) geldt dat hun algebraïsche en meetkundige multipliciteit gelijk is aan 1, is \(L_{-6}\) diagonaliseerbaar.
+
+		\item \underline{\(k = -4\):}\\
+		\(\text{Spec}(L_{-6})=\{-3,-1^{(2)},2\}\). Als we \(A_{-4,-1}\) in trapvorm zetten, zien we dat er slechts 1 vrije variabele is, wat impliceert dat \(1=d(-1)\neq m(-1)=2\). We besluiten dat \(L_{-4}\) niet diagonaliseerbaar is.
+
+		\item \underline{\(k = -1\):}\\
+		\(\text{Spec}(L_{-6})=\{-3,-1,2^{(2)}\}\). Als we \(A_{-1,2}\) in trapvorm zetten, zien we dat er slechts 1 vrije variabele is, wat impliceert dat \(1=d(2)\neq m(2)=2\). We besluiten dat \(L_{-1}\) niet diagonaliseerbaar is.
+	\end{itemize}
+
+	\item[c)] \begin{itemize}
+		\item[i)] Kies één vaste waarde \(k\) waarvoor \(L_k\) diagonaliseerbaar is.
+		\item[ii)] Bepaal alle eigenruimten bij de eigenvectoren voor \(L_k\).
+		\item[iii)] Construeer de matrix \([L_k]_{\beta}^{\beta}\). Bepaal vervolgens de diagonaalmatrix \(D\) en de inverteerbare matrix \(P\) zodat \([L_k]_{\beta}^{\beta}=PDP^{-1}\).
+		\item[iv)] \(P\) is een matrix van basisverandering. Tussen welke twee basissen zet \(P\) vectoren om?
+	\end{itemize}
+	\vspace{0.1cm}
+	\underline{Oplossing:}
+
+	Kies \(k=-6\), aangezien we in vraag b) reeds de trapvorm hebben berekend van \(A_{-6,-3}\). \\
+	Herinner: voor \(k=-6\) is \(\text{Spec}(L_{-6})=\{-3^{(2)},-1,2\}\).
+
+	Na het zoeken van de nulruimten van \(A_{-6,-3}\), \(A_{-6,-1}\) en \(A_{-6,2}\) vinden we:
+	\begin{align*}
+		\text{co}_{\beta}(E_{-3}) &= \text{vct}\{(12,0,5,0),(-1,0,0,1)\} & \Rightarrow& \, &E_{-3} &= \text{vct}\{12v_1+5v_3,-v_1+v_4\}&\\
+		\text{co}_{\beta}(E_{-1}) &= \text{vct}\{(0,2,1,0)\} & \Rightarrow& \, &E_{-1} &= \text{vct}\{2v_2+v_1\}&\\
+		\text{co}_{\beta}(E_{2}) &= \text{vct}\{(-1,0,0,2)\} & \Rightarrow& \, &E_{2} &= \text{vct}\{-v_1+2v_4\}&
+	\end{align*}
+
+	Stel nu de basis \(\alpha\) van eigenvectoren voor \(L_k\) op: \[\alpha=\{12v_1+5v_3,-v_1+v_4,2v_2+v_1,-v_1+2v_4\}\]
+	De inverteerbare matrix \(P=[\text{Id}]_{\alpha}^{\beta}\) is de matrix van basisverandering van \(\alpha\) naar \(\beta\) met in de kolommen de coördinaten van de eigenvectoren van \(L_k\) tegenover de gegeven basis \(\beta\).
+
+	We vinden dat
+	\begin{align*}
+		[L_k]_{\beta}^{\beta} &=PDP^{-1}\\
+								&=[\text{Id}]_{\alpha}^{\beta} \cdot [L_k]_{\alpha}^{\alpha} \cdot [\text{Id}]_{\beta}^{\alpha}\\
+								&=[\text{Id}]_{\alpha}^{\beta} \cdot [L_k]_{\alpha}^{\alpha} \cdot ([\text{Id}]_{\alpha}^{\beta})^{-1}\\
+								&\Updownarrow\\
+		\left( \begin{matrix}
+			-8 & -6 & 12 & -5 \\
+			0 & -1 & 0 & 0 \\
+			0 & 1 & -3 & 0 \\
+			10 & 12 & -24 & 7
+		\end{matrix} \right) &= \left( \begin{matrix}
+		12 & -1 & 0 & -1 \\
+		0 & 0 & 2 & 0 \\
+		5 & 0 & 1 & 0 \\
+		0 & 1 & 0 & 2
+		\end{matrix} \right) \cdot \left( \begin{matrix}
+		-3 & 0 & 0 & 0 \\
+		0 & -3 & 0 & 0 \\
+		0 & 0 & -1 & 0 \\
+		0 & 0 & 0 & 2
+		\end{matrix} \right) \cdot \left( \begin{matrix}
+		12 & -1 & 0 & -1 \\
+		0 & 0 & 2 & 0 \\
+		5 & 0 & 1 & 0 \\
+		0 & 1 & 0 & 2
+		\end{matrix} \right)^{-1}
+	\end{align*}
+\end{itemize}
+
+\section*{OV-3}
+
+Beschouw de vectorruimte \((\R, \R[X]_{\leq 3}, +)\) met veeltermen van hoogstens graad 3.
+
+\begin{itemize}
+	\item[a)] Kan de verzameling \(A=\{ X^2+2X-1, X^3-X, X^3+X^2+X+1 \}\) aangevuld worden tot basis voor \((\R, \R[X]_{\leq 3}, +)\)? Zo ja, op hoeveel manieren kan dat? Zo niet, leg uit waarom.
+	\item[b)] Kan de verzameling \(B = \{ X, X^2, X-X^2, X^3+2X, X^3+3X^2-X, X^2+X^3,X \}\) gereduceerd worden tot basis voor \((\R, \R[X]_{\leq 3}, +)\)? Zo ja, wat is die basis dan? Zo niet, leg uit waarom.
+	\item[c)] Beschouw de lineaire afbeelding \[L:\R[X]_{\leq 3}\to \R[X]_{\leq 3} : p(X) \mapsto Xp'(X)-p(X).\] Bepaal een basis voor \(\text{Ker} \,L\) en voor \(\text{Im} \,L\). Geldt voor \(L\) dat \(\R[X]_{\leq 3}= \text{Ker} \,L \oplus \text{Im} \,L\)?
+\end{itemize}
+
+\newpage
+
+\section*{Meerkeuze}
+
+\textit{\(\leq\)1 goed antwoord: 0 punten\\
+2 goede antwoorden: 1 punt\\
+3 goede antwoorden: 2 punten\\
+4 goede antwoorden: 3 punten
+}\\
+
+Duid bij elke bewering aan of ze juist dan wel fout is. Je hoeft geen verklaring te geven; alleen het plaatsen van de letter J (juist) of F (fout) in het voorziene hokje volstaat.\\
+
+Veronderstel voor elk van de beweringen dat \(A\in\R^{6\times 6}\).
+
+\begin{itemize}
+	\item Als \(A\) diagonaliseerbaar is en alle eigenwaarden verschillen van nul, dan is \(A\) regulier.\\
+	\textbf{\(\rightarrow\) JUIST}
+	\item \(  (\mathbb{I}_6-A)^2=\mathbb{I}_6-A  \) als \(A^2=A\).\\
+	\textbf{\(\rightarrow\) JUIST}
+	\item De nulliteit van \(A\) kan eender welke gehele waarde tussen 0 en 6 aannemen (beiden inclusief).\\
+	\textbf{\(\rightarrow\) JUIST}
+	\item De rang van \(A^TA\) is strikt groter dan de rang van \(A\).\\
+	\textbf{\(\rightarrow\) FOUT}
+\end{itemize}
+
+\end{document}
