@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[a4paper, margin={15mm, 15mm}]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\basis}[3]{#1^{#2}_{#3}}
+
+\usepackage[dutch]{babel}
+\usepackage{amsthm}
+
+\setlength{\parindent}{0pt}
+
+\title{Lineaire Afbeeldingen p164-165}
+\author{Vincent Van Schependom}
+\date{\today}
+
+\begin{document}
+
+	\maketitle
+	
+	\rule{1cm}{0.01mm}
+	
+	\textbf{Gegeven:}\\
+	De surjectieve lineaire afbeelding \(L: V \to W\) en het voorbrengend deel \( \{ v_1,....,v_n \} \) voor \(V\)
+	
+	\textbf{Te bewijzen:}\\
+	 \(W\) wordt voortgebracht door \( \{ L(v_1),...,L(v_n) \} \)
+	
+	\begin{proof}
+		
+		Neem \(w \in W\) willekeurig. \(L\) is surjectief, dus er geldt dat \(\exists v \in V: L(v)=w\). 
+		
+		Omdat \(V\) wordt voortgebracht door \( \{ v_1,....,v_n \} \), is \(v = \sum x_i v_i\) (\(x_i \in \R\)). 
+		
+		En dus volgt uit \( w = L(v) = L( \sum x_i v_i) =  \sum x_i L(v_i)\ \) dat elke \(w \in W\) een lineaire combinatie is van vectoren uit \( \{ L(v_1),...,L(v_n) \} \), wat betekent dat \(W\) wordt voortgebracht door \( \{ L(v_1),...,L(v_n) \} \).
+	\end{proof}
+	
+	
+	
+	\rule{1cm}{0.01mm}
+	
+	\textbf{Gegeven:}\\
+	De injectieve lineaire afbeelding \(L: V \to W\) en het vrij deel \( \{ v_1,....,v_n \} \) voor \(V\)
+	
+	\textbf{Te bewijzen:}\\
+	\( \{ L(v_1),...,L(v_n) \} \) is vrij in \(W\)
+	
+	\begin{proof}
+		
+		Om te bewijzen dat \( \{ L(v_1),...,L(v_n) \} \) vrij is, nemen we een lineaire combinatie van de vectoren in deze verzameling en bewijzen we dat alle coëfficiënten in deze lineaire combinatie gelijk zijn aan \(0\).
+		
+		Stel dat \( \sum x_i L(v_i) = L( \sum x_i v_i) = 0 \). Omdat \(L\) injectief is en ook \( L(0) = 0 \), moet \( \sum x_i v_i   = 0\). Aangezien nu \( \{ v_1,....,v_n \} \) een vrij deel is, moeten de \(x_i\) allemaal gelijk zijn aan \(0\), wat wil zeggen dat ook \( \{ L(v_1),...,L(v_n) \} \) vrij is.
+		
+	\end{proof}
+	
+	
+	
+	\rule{1cm}{0.01mm}
+	
+	\textbf{Gegeven:}\\
+	Het isomorfisme \(L: V \to W\) en de basis \( \{ v_1,....,v_n \} \) voor \(V\)
+	
+	\textbf{Te bewijzen:}\\
+	\( \{ L(v_1),...,L(v_n) \} \) is een basis voor \(W\)
+	
+	\begin{proof}
+		
+		Omdat \( \{ v_1,....,v_n \} \) een basis is voor \(V\), is deze verzameling zowel vrij als voortbrengend. Anderzijds volgt uit het feit dat \(L\) een isomorfisme is, uiteraard dat \(L\) een lineaire afbeelding is.
+		
+		Uit voorgaande bewijzen volgt dan dat \( \{ L(v_1),...,L(v_n) \} \) voortbrengend voor \(W\) is en bovendien ook vrij, wat wil zeggen dat \( \{ L(v_1),...,L(v_n) \} \) een basis is voor \(W\).
+		
+	\end{proof}
+	
+\end{document}
+
+
+

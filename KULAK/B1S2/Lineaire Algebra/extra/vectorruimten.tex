@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[a4paper, margin={10mm, 10mm}]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\setlength{\parindent}{0pt}
+
+\title{Vectorruimten}
+\author{Vincent Van Schependom}
+\date{ }
+
+\begin{document}
+
+	\maketitle
+	
+	\begin{tabular}{l | l }
+		
+		\( (\R,\R^2,+) \) = \( (\R,\Pi_0,+) \) &
+		favoriete voorbeeld, het vlak \\
+	
+		\( (\R,\R^n,+) \) &
+		\(n\)-tallen \\
+		
+		\( (\R,\R^{m\times n},+) \) &
+		\(m\times n\) matrices \\
+		
+		\( (\R,\R,+) \), \( (\R,\C,+) \) &
+		reële vectorruimten \\
+		
+		\( (\C,\C,+) \) maar \underline{niet} \( (\C,\R,+) \) &
+		complexe vectorruimte \\
+		
+		\( (\Q,\Q,+) \), \( (\Q,\Q^n,+) \), \( (\Q,\R,+) \) &
+		vectorruimten met rationale coëfficiënten \\
+		
+		\(\R[x]\) = \( \{ \sum_{i=0}^n a_i x^i \mid n \in \N, a_i \in \R \} \) &
+		veeltermen in \(x\) met reële coëfficiënten\\
+		
+		\( \R[x]_{\leqslant n} \) maar \underline{niet} \( \R[x]_{= n} \)\\
+		
+		\( \R^S \), \( \R^\R \) &
+		functies van \(S\to \R\) resp. \(\R \to \R\) \\
+		
+		\( F=\{ (x_n)_{n \in \N} \mid x_n \in \R, \forall n \geq 2: x_n = x_{n-1} + x_{n-2} \} \) &
+		fibonnacci-achtige rijen\\
+		
+		\(C(\R) = \{f:\R \to \R \mid f = \text{ct}^{\text{u}}\}, C^i(\R)\)&continue functies (die \(i\) keer continu afleidbaar zijn)\\
+		
+		\(C^i[a,b], C^\infty[a,b], C[a,b] \) & continue functies \([a,b]\to\R\) die minstens \(i\) keer afleidbaar zijn\\
+		
+		\( \{  X \in \R^n \mid A \cdot X = 0 \} 
+		\) \underline{niet} \( \{  X \in \R^n \mid A \cdot X = B\in\R^m \} \) & oplossingsverzameling van een homogeen \(m\times n\) stelsel\\ & = nulruimte = deelruimte van \((\R,\R^n,+)\)\\
+		
+		\( \{ \sum_{i=1}^n\lambda_i x_i \mid n\in \N_0; x_1, ..., x_n \in D; \lambda_1, ..., \lambda_n \in \R \} \) & \(\text{vct}(D)=\text{span}(D)\)\\& = vectorruimte voortgebracht door (on)eindige verzameling \(D\neq\emptyset\)\\
+		
+		
+		
+		
+		
+	\end{tabular}
+	
+	
+\end{document}
+
+
+

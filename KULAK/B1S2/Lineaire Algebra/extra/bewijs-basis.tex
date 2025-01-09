@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[a4paper, margin={10mm, 10mm}]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\usepackage[dutch]{babel}
+
+\setlength{\parindent}{0pt}
+
+\title{Bewijs equivalente uitdrukkingen i.v.m. de basis v/e vectorruimte \(V\)}
+\author{Vincent Van Schependom}
+\date{\today}
+
+\begin{document}
+
+	\maketitle
+	
+	Te bewijzen: \(\beta\) is een basis voor \(V\) \(\Leftrightarrow\) \(\beta\) is maximaal vrij.\\
+	We bewijzen hiervoor twee implicaties.\\
+	
+	\begin{itemize}
+		
+		\item[\(\Rightarrow\)]\underline{GEG}: \(\beta\) is een basis, i.e. \(\beta\) is voortbrengend en vrij.\\
+		\underline{TB}: \(\beta\) is maximaal vrij\\
+		
+		Stel dat \(\beta\) niet maximaal vrij is. Dan bestaat er een vector \(v \in V\) zodat \(\beta \cup \{v\}\) nog vrij is.\\
+		Omdat \(\beta\) een basis is, en dus voortbrengend, kunnen we die vector \(v\) schrijven als een lineaire combinatie van vectoren in \(\beta\). We bekomen dus een contradictie met de veronderstelling dat \(\beta \cup \{v\}\) nog vrij is. Bijgevolg kan het veronderstelde niet kloppen en dus is \(\beta\) maximaal vrij. \\
+		
+		\item[\(\Leftarrow\)]\underline{GEG}: \(\beta\) is maximaal vrij\\
+		\underline{TB}: \(\beta\) is voortbrengend (er is reeds gegeven dat \(\beta\) vrij is)
+		
+		Stel dat \(\beta\) niet voortbrengend is. Dan geldt dat \(\exists v \in V: v \notin \text{vct}(\beta)\). Deze vector \(v\) kunnen we toevoegen aan de verzameling \(\beta\) zonder het vrij zijn van \(\beta\) te schaden. En dus kan \(\beta\) niet maximaal zijn, wat een tegenspraak levert met het gegeven. Hieruit volgt dat het veronderstelde niet klopt en \(\beta\) dus voortbrengend is.
+		
+	\end{itemize}	
+	
+\end{document}
+
+
+

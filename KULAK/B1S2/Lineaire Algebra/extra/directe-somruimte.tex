@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[a4paper, margin={15mm, 15mm}]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\theoremstyle{definition}
+\newtheorem*{propositie}{Propositie}
+
+\usepackage[dutch]{babel}
+
+\setlength{\parindent}{0pt}
+
+\title{Bewijs i.v.m. de voorwaarden van een directe som (algemener)}
+\author{Vincent Van Schependom}
+\date{\today}
+
+\tcolorboxenvironment{propositie}{
+	boxrule=1pt,
+	boxsep=2pt,
+	left=2pt,right=2pt,top=2pt,bottom=2pt,
+	sharp corners,
+	before skip=\topsep,
+	after skip=\topsep,
+}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{propositie}
+		Gegeven is een vectorruimte \((\R,V,+)\).
+		Zij \(U_1,U_2,...,U_k\) deelruimten van \(V\). Dan is \[W=\oplus_{i=1}^k U_i\] als en slechts als
+		\begin{enumerate}
+			\item[(a)] \(W=\sum_{i=1}^k U_i\)
+			\item[(b)] voor alle \(i=1,...,k\) geldt dat \[U_i \cap (U_1+...+U_{i-1}+U_{i+1}+...+U_k)=\{0\} \]
+		\end{enumerate}
+	\end{propositie}
+
+	\begin{proof}
+		
+		Veronderstel dat \(W=\oplus_{i=1}^k U_i\). Voor een willekeurige vector \(w \in W\) geldt dan dat er unieke vectoren
+		\(u_1 \in U_1, u_2 \in U_2, ..., u_k \in U_k\) bestaan, zó dat \(w=\sum_{i=1}^{k}u_i\). Dus is zeker \(W = \sum_{i=1}^k U_i\). \\
+		
+		We beweren dat \(U_i \cap (U_1+...+U_{i-1}+U_{i+1}+...+U_k)=\{0\}\).
+		Veronderstel immers dat \[0\neq v \in U_i \cap (U_1+...+U_{i-1}+U_{i+1}+...+U_k).\]
+		Dan kunnen we die vector \(v\) schrijven als \[v=v+0=0+v,\] waarbij de eerste
+		keer \(v\) als vector van \(U_i\) en de tweede keer \(v\) als vector van \((U_1+...+U_{i-1}+U_{i+1}+...+U_k)\) opgevat wordt. Bijgevolg zou de somruimte \(U_i+(U_1+...+U_{i-1}+U_{i+1}+...+U_k) = \sum_{i=1}^k U_i\) geen directe som zijn, wat een tegenspraak levert met het gegeven. De doorsnede \(U_i \cap (U_1+...+U_{i-1}+U_{i+1}+...+U_k)\) moet dus wel beperkt zijn tot \(\{0\}\). \\
+		
+		Veronderstel nu omgekeerd dat \(W=\sum_{i=1}^k U_i\) en dat voor alle \(i=1,...,k\) geldt dat \[U_i \cap (U_1+...+U_{i-1}+U_{i+1}+...+U_k)=\{0\}. \]
+		We tonen aan dat de som \(W=\sum_{i=1}^k U_i = U_i+(U_1+...+U_{i-1}+U_{i+1}+...+U_k)\) een directe som is. Veronderstel dat er een vector \(w \in W\) is die op meerdere wijzen als som van een vector uit \(U_i\) en \((U_1+...+U_{i-1}+U_{i+1}+...+U_k)\) kan geschreven worden (met \(i \in \{1,...,k\} \)). Veronderstel met andere woorden dat \[w=u_i+u_j=u_i'+u_j',\] met
+		\(u_i,u_i' \in U_i\) en \(u_j,u_j' \in (U_1+...+U_{i-1}+U_{i+1}+...+U_k)\). Dan volgt dat \[u_i-u_i'=u_j'-u_j \in U_i \cap (U_1+...+U_{i-1}+U_{i+1}+...+U_k) = \{0\}.\] Bijgevolg moet \(u_i=u_i'\) en \(u_j=u_j'\).
+		
+	\end{proof}
+	
+	
+\end{document}
+
+
+

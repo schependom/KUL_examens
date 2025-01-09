@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[a4paper, margin={10mm, 10mm}]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\basis}[3]{#1^{#2}_{#3}}
+
+\usepackage[dutch]{babel}
+
+\setlength{\parindent}{0pt}
+
+\title{Woordenboek:\\lineaire afbeeldingen \(\leftrightarrow\) matrices}
+\author{Vincent Van Schependom}
+\date{\today}
+
+\begin{document}
+
+	\maketitle
+	
+	\begin{table}[h!]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}[h!]{|c|c|}
+			
+			\hline
+			
+			\textbf{lineaire afbeeldingen} & \textbf{matrices} \\
+			
+			\hline \hline
+			
+			\( L : V \to W \) & \( L^{\beta_W}_{\beta_V} = A \in \R^{m \times n} \) \\
+			
+			\hline
+			
+			\( (L_1+L_2) : V \to W \) & \( (A_1 + A_2) \) (met \(A_1,A_2 \in \R^{m\times n}\)) \\
+			
+			\hline
+			
+			\( (\lambda L) : V \to W \) & \( \lambda A \) (met \(A \in \R^{m\times n}\) en \(\lambda \in \R\)) \\
+			
+			\hline
+			
+			\( U \xrightarrow{K} V\xrightarrow{L} W \) & \( C = (L \circ K)^{\beta_W}_{\beta_U} = B \cdot A = L^{\beta_W}_{\beta_V} \cdot K^{\beta_V}_{\beta_U} \) \\
+			\(\text{dim}_\R U=p, \text{dim}_\R V=n, \text{dim}_\R W=m\) & \( A \in \R^{n \times p}, B \in \R^{m \times n}, C \in \R^{m \times p} \) \\
+			
+			\hline
+			
+			inverteerbare lineaire afbeelding & inverteerbare (vierkante!) matrix \\
+			
+			\hline
+			
+		\end{tabular}
+	\end{table}
+	
+	\centering
+	\textit{Opmerking:}
+	\[ \basis{\text{Id}}{\beta_V}{\beta_V} = \mathbb{I}_n \neq \basis{\text{Id}}{\beta_V}{\beta_V'} = P \]
+	
+\end{document}
+
+
+
