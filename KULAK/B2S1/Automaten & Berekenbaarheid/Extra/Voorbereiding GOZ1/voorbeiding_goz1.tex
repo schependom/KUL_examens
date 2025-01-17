@@ -1,0 +1,242 @@
+\documentclass[kulak]{kulakarticle}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{subfiles}
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\powerset[1]}{\mathcal{P}(#1)}
+
+\newcommand{\NFA}{\text{NFA}}
+\newcommand{\DFA}{\text{DFA}}
+\newcommand{\epsilonboog}{\( \varepsilon \)-boog }
+\newcommand{\epsilonbogen}{\( \varepsilon \)-bogen}
+\newcommand{\epsilonbogens}{\( \varepsilon \)-bogen }
+\let\epsilon\varepsilon
+\newcommand{\mnl}{MN\((L)\)}
+\newcommand{\mnlm}{\text{MN}(L)}
+\DeclareMathOperator{\reach}{reach}
+\DeclareMathOperator{\opeen}{op_1}
+\DeclareMathOperator{\optwee}{op_2}
+
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\pijl}[1]{\overset{#1}{\rightsquigarrow}}
+\newcommand{\rpijl}[1]{\overset{#1}{\rightarrow}}
+
+\newcommand{\rood[1]}{\color{red}#1\color{black}}
+
+\sisetup{output-decimal-marker={,}}
+\sisetup{separate-uncertainty=true}		% Dit is voor de plus-minus
+\sisetup{per-mode=fraction}
+
+\DeclareSIUnit\biti{bit_i}
+\DeclareSIUnit\combinatie{combinatie}
+
+\usepackage[dutch]{babel}
+\usepackage{hyperref}
+
+\setlength{\parindent}{0pt}
+
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\theoremstyle{definition}
+\newtheorem*{stelling}{Stelling}
+
+\tcolorboxenvironment{stelling}{
+	boxrule=1pt,
+	boxsep=2pt,
+	left=2pt,right=2pt,top=2pt,bottom=2pt,
+	sharp corners,
+	before skip=\topsep,
+	after skip=\topsep,
+}
+
+\title{Voorbereiding Gequoteerde Oefenzitting 1}
+\author{Vincent Van Schependom}
+\date{Academiejaar 2024-2025}
+\address{
+	\textbf{Groep Wetenschap \& Technologie Kulak} \\
+	Bachelor Informatica \\
+	Automaten \& Berekenbaarheid}
+
+\begin{document}
+
+	\maketitle
+
+	\[ \text{RegLan} \subset \text{DCFL} \subset \text{niet-ambigue CFL} \subset \text{CFL} \subset \powerset[\Sigma^*] \]
+
+	\subsubsection*{Algemeenheden}
+	\begin{itemize}
+		\item Een oneindige taal is \underline{aftelbaar}, want \[L \in L_\Sigma \Leftrightarrow L \in \powerset[\Sigma^*] \Leftrightarrow L \subseteq \Sigma^* \quad \text{en} \quad \Sigma^*\text{ is aftelbaar oneindig}\]
+		\item Twee verschillende reguliere expressies kunnen dezelfde reguliere taal bepalen
+		\begin{itemize}
+			\item \(R_1=a^*\)
+			\item \(R_2=a^*|\epsilon\)
+			\item \(L_{R_1}=L_{R_2}=\{a^n \mid n\in\N\}\)
+		\end{itemize}
+		\item Equivalentie van NFA's
+		\begin{itemize}
+			\item Indien deze dezelfde taal bepalen
+			\item Bepaalt een equivalentierelatie
+			\item Elke equivalentieklasse komt overeen met één (reguliere) taal
+		\end{itemize}
+		\item Een DFA is een NFA dus de taal bepaald door een DFA is ook regulier. Maar wordt -- omgekeerd -- elke reguliere taal ook bepaald door een DFA? We weten dat elke reguliere taal bepaald wordt door een NFA, dus het volstaat om aan te tonen dat NFA's om te zetten zijn in equivalente DFA's om te bewijzen dat elke reguliere taal bepaald wordt door een DFA. Dit bewijst dan (samen met het eerste) ineens dat DFA's en NFA's equivalent zijn: ze bepalen dezelfde talen, namelijk de reguliere talen.
+		\item We kunnen makkelijk inzien dat er voor een reguliere taal een DFA \underline{bestaat} met het minimale aantal toestanden (rangschik de DFA's naar \(\abs{Q}\)), maar de \underline{constructie} van de minimale DFA (aan de hand van de equivalentierelatie \(f\)-gelijk) is de echte vraag.
+		\item De \underline{verzameling niet-reguliere talen is overaftelbaar}, want RegLan is aftelbaar, RegLan \(\cup \text{ }\overline{\text{RegLan}}\) is precies gelijk aan \(\powerset[\Sigma^*]\) en die laatste verzameling is overaftelbaar.
+	\end{itemize}
+
+	\subsubsection*{Alle talen}
+
+	\begin{itemize}
+		\item Gesloten onder uiteenlopende operaties:\\unie, doorsnede, verschil, complement, omkering, concatenatie, Kleene ster, ...
+		\item \underline{Oneindige} talen zijn \underline{altijd aftelbaar}, want elke taal is een deelverzameling van \(\Sigma^*\) en dat is een \underline{aftelbaar} oneindige verzameling.
+	\end{itemize}
+
+		\newpage
+
+	\subsubsection*{Reguliere talen}
+
+	\begin{itemize}
+		\item \textit{Gesloten onder / algebra voor} de operaties... \begin{itemize}
+			\item Unie
+			\item Concatenatie
+			\item Kleene ster
+			\item Complement
+		\end{itemize}
+		\item (Verrassende) voorbeelden van reguliere talen:
+		\begin{itemize}
+			\item \underline{\(\Sigma^*\)}\\
+			kan beschreven worden met de RegExp \((a_1|a_2|...|a_n)^*\) met \(a_i\in \Sigma, n=\abs{\Sigma}, a_i\neq a_j\) voor \(i\neq j\)
+			\item \underline{Eindige talen}\\
+			kunnen beschreven worden met een reguliere expressie die alle symbolen uit het alfabet oplijst met daartussen een |
+			\item \underline{De lege taal}\\
+			Bouw een simpele DFA met 1 niet-accepterende toestand met 1 lus naar zichzelf met daarop elk symbool uit het alfabet.
+		\end{itemize}
+		\item RegLan \(\subset\) CFL, want
+		\begin{itemize}
+			\item RegLan \(\subseteq\) CFL: elke NFA is een speciaal type PDA (namelijk eentje zonder stack)
+			\item \(\exists\)CFL \(L\) : \(L \notin \) RegLan, bijvoorbeeld \(L=\{0^n1^n \mid n\in\N\}\)
+		\end{itemize}
+		\item Er zijn \underline{oneinig veel reguliere talen} \begin{itemize}
+			\item Er zijn oneindig veel strings over \(\Sigma \Rightarrow\) \(\Sigma^*\) is een oneindige verzameling
+			\item Elke \underline{eindige} deelverzameling van \(\Sigma^*\) is regulier
+			\item \(\uparrow\) want we kunnen zo'n deelverzameling = taal \(L=\{s_1,...,s_n\}\) beschrijven met een reguliere expressie \((s_1|...|s_n)\).
+		\end{itemize}
+		\item \(L \notin \text{RegLan} \Rightarrow \overline{L} \notin \text{RegLan} \)
+	\end{itemize}
+
+		\newpage
+
+	\subsubsection*{Contextvrije talen}
+
+	\begin{itemize}
+		\item \underline{Elke reguliere taal is contextvrij}. \begin{itemize}
+			\item Een FSA is een PDA waarbij de stapel niet meespeelt.
+			\item Alternatieve manier om dit in te zien: stel een CFG op voor de reguliere taal \begin{itemize}
+				\item Op basis van de \underline{reguliere expressie}: \begin{itemize}
+					\item Basisgevallen: \begin{align*}
+						a &\rightarrow \{a\}\\
+						\epsilon &\rightarrow \{\epsilon\}\\
+						\phi &\rightarrow \emptyset
+					\end{align*}
+					\item Recursieve gevallen: \begin{align*}
+						S & \rightarrow S_1S_2 && \text{voor de concatenatie } E_1E_2\\
+						S & \rightarrow S_1 | S_2 && \text{voor de 'keuze' } E_1|E_2\\
+						S & \rightarrow S_1S | \epsilon && \text{voor de ster } E_1^*
+					\end{align*}
+				\end{itemize}
+				\item Op basis van de \underline{DFA}: de vorm van de grammatica is dan als volgt \begin{align*}
+					A & \rightarrow aB && a \in \Sigma, B \in V\\
+					B & \to a
+				\end{align*} In de eerste regel wordt dan de overgang \(\delta(A,a)=B\) gesimuleerd, waarbij \(A,B \in Q\)
+			\end{itemize}
+		\end{itemize}
+		\item Er bestaan geen eindige talen die niet contextvrij zijn:\begin{itemize}
+			\item Elke eindige taal is regulier
+			\item Elke reguliere taal is contextvrij
+			\item Dus \underline{elke eindige taal is contextvrij}!
+		\end{itemize}
+		\item \underline{Gesloten} onder \begin{itemize}
+			\item Unie (\(S \rightarrow S_1\mid S_2\)), maar DCFL niet!
+			\item Concatenatie (\(S \rightarrow S_1S_2\))
+			\item Kleene ster (\(S \rightarrow SS_1 \mid \epsilon\))
+		\end{itemize}
+		\item \underline{Niet gesloten} onder \begin{itemize}
+			\item Complement, maar DCFL wel! \underline{Het complement van een DCFL is opnieuw DCFL}
+			\item Doorsnede, verschil, ...
+			\item Truk van productautomaat werkt niet door stacks
+			\item Je kan wel productautomaat maken tussen PDA en DFA bvb.
+		\end{itemize}
+		\item Ambiguïteit: \begin{itemize}
+			\item \underline{Deterministische talen zijn niet-ambigu}\\
+			want een ambigue taal kan onmogelijk deterministisch zijn
+			\item Er bestaan \underline{niet-ambigue talen die niet deterministisch zijn} \begin{itemize}
+				\item \(L=\{s\hat{s} \mid s\in\{a,b\}^*\}=\{\text{palindromen}\}\)
+				\item Niet ambigue grammatica: \(S \rightarrow aSa \mid bSb \mid \epsilon\)
+				\item Maar PDA weet van tevoren niet wat midden is en moet ernaar raden \(\rightarrow\) ND
+			\end{itemize}
+		\end{itemize}
+		\newpage
+		\item Hoe niet-deterministische taal vinden? \begin{itemize}
+			\item Neem de \underline{unie van twee CFL's die overlappen}. \begin{itemize}
+				\item Stel dat deze unie DCFL is
+				\item Dan is ook het complement DCFL
+				\item Bekom een contradictie en besluit dat de unie niet deterministisch kan zijn
+			\end{itemize}
+			\item Neem een \underline{\(L \notin\) CFL waarvoor \(\bar{L} \in\) CFL}. \begin{itemize}
+				\item Als \(\bar{L} \in\) DCFL zou gelden, dan geldt ook \(\bar{\bar{L}}=L\in\) DCFL
+				\item Maar L is niet eens CFL!
+				\item Dus is \(\bar{L} \notin\) DCFL
+			\end{itemize}
+		\end{itemize}
+		\item De doorsnede van een reguliere taal met een contextvrije taal is \underline{contextvrij}. Maak daarvoor een generische product-\underline{PDA} aan de hand van de DFA die de reguliere taal bepaalt en de PDA die de contextvrije taal bepaalt.
+		\item De doorsnede van een DCFL en een reguliere taal is een DCFL: maak een product-\underline{DPDA} tussen een DPDA en DFA.
+		\item \( \{a^nb^nc^n \mid n \in \N\} \notin \) CFL
+	\end{itemize}
+
+	Het symmetrisch verschil van twee talen \(L_1\) en \(L_2\) is \(
+	L_1 \triangle \L_2
+	\).\\De DFA die deze taal bepaalt heeft als verzameling eindtoestanden \[
+	F = (F_1 \times Q_2) \cup (Q_1 \times F_2) \setminus (F_1 \times F_2) \]
+
+	\subsubsection*{Pompend Lemma Reguliere Talen}
+
+	We bewijzen dit aan de hand van het pompend lemma voor reguliere talen.
+
+	Stel dat er een pomplengte \(d\) bestaat zodanig dat elke string \(s \in L\) met lengte \(\abs{s}\geq d\) kan opgedeeld worden in 3 stukken \(x,y,z \in \Sigma^*\) zodanig dat \(s=xyz\) en zodat\begin{enumerate}
+		\item \(\forall i \geq 0 : xy^iz \in L \)
+		\item \(\abs{y}>0\)
+		\item \(\abs{xy}\leq d\)
+	\end{enumerate}
+
+	Beschouw zo'n string \(s=...\) met \(s \geq d\). Beschouw een willekeurige opdeling \(s=xyz\) met \(\abs{y}>0\) en \(\abs{xy}\leq d\). Dan ...
+
+	Indien men te string \(t=...\) (kies een \(i\) zodat \(t=xy^iz\)), dan behoort \(t\) niet tot de taal en de taal is dus niet regulier.
+
+	\subsubsection*{Pompend Lemma Contextvrije Talen}
+
+	We bewijzen dit aan de hand van het pompend lemma voor contextvrije talen.
+
+	Stel dat er een pomplengte \(p\) bestaat zodanig dat elke string \(s \in L\) met lengte \(\abs{s}>p\) kan opgedeeld worden in 5 stukken \(u,v,x,y,z \in \Sigma^*\) zodanig dat \(s=uvxyz\) en zodat\begin{enumerate}
+		\item \(\forall i \geq 0 : uv^ixy^iz \in L \)
+		\item \(\abs{vy}>0\)
+		\item \(\abs{vxy}\leq p\)
+	\end{enumerate}
+
+	Neem zo'n string \(s\) die (strikt) langer is dan \(p\), namelijk \(s=...\)
+	Beschouw een willekeurige opdeling \(s=uvxyz\) met \(\abs{vy}>0\) en \(\abs{vxy}\leq p\). Dan ...
+
+	Indien men te string \(t=...\) (kies een \(i\) zodat \(t=uv^ixy^iz\)), dan behoort \(t\) niet tot de taal en de taal is dus niet contextvrij.
+
+\end{document}
+
+
+

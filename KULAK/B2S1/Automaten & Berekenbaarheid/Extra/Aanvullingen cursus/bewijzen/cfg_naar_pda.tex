@@ -1,0 +1,48 @@
+\documentclass[../aanvullingen_cursus.tex]{subfiles}
+\begin{document}
+
+
+\begin{stelling}
+	De constructie van een PDA uit een CFG \(G\), zoals hieronder beschreven, levert een PDA die de taal \(L_G\) accepteert. Met andere woorden: een contextvrije taal wordt bepaald door een PDA.
+
+	\hfill
+
+	Construeer, vertrekkend vanaf de CFG \(G=(V,\Sigma_G,R,S)\), de PDA \(P=(Q,\Sigma,\Gamma,\delta,q_s,F)\) als volgt:
+	\begin{itemize}
+		\item \(Q=\{q_s,x,q_f\}\)
+		\item \(\Sigma = \Sigma_G \qquad \qquad\) \scriptsize(het alfabet van de PDA is gelijk aan de verzameling terminalen van de CFG) \normalsize
+		\item \(\Gamma = \Sigma_G \cup V \cup \{\$\}\)
+		\item Overgangsfunctie \(\delta:Q\times \Sigma_\epsilon \times \Gamma_\epsilon \to \powerset[Q\times\color{red}\Gamma_\epsilon^*\color{black}]\):
+		\begin{align*}
+			&(1) & \delta(q_s,\epsilon,\epsilon) &=\{(x,S\$)\} && \text{met \(S\in V\) het startsymbool van }G \\
+			&(2) & \delta(x,\epsilon, A) &= \{(x,\varphi) \mid (A\rightarrow\varphi) \in R, \varphi \in (\Sigma_G \cup V)^*\} && \text{met } A \in V \\
+			&(3) & \delta(x,a,a) &= \{(x,\epsilon)\} && \text{met } a \in \Sigma_G \\
+			&(4) & \delta(x,\epsilon,\$) &= \{(q_f,\epsilon)\}
+		\end{align*}
+		\item \(F=\{q_f\}\)
+	\end{itemize}
+\end{stelling}
+
+\newpage
+
+\begin{proof}
+	We moeten nagaan dat er een 1-op-1 verband is tussen een afleiding van een string \(s \in \Sigma_G^*\) in de CFG \(G\) en een accepterende uitvoering van de PDA \(P\) voor \(s\).
+	\begin{itemize}
+		\item We overlopen de stappen in een accepterende uitvoering van \(P\) -- waarbij de string \(s\) wordt aanvaard -- en argumenteren dat die stappen in de PDA precies overeenkomen met het toepassen van regels in de CFG om \(s\) te bekomen.
+		\begin{itemize}
+			\item In de PDA beginnen we gegarandeerd met (1): we hebben vanuit de starttoestand \(q_s\) slechts één mogelijke boog die we kunnen kiezen. In deze stap zetten we eerst een dollarteken en vervolgens een startsymbool op de stapel. Dit komt in de CFG overeen met gewoonweg de afleiding starten bij het startsymbool \(S\). Na het nemen van deze (1)-overgang, hebben we geen tekens van \(s\) geparst.
+			\item Vanuit toestand \(x\) hebben we nu twee keuzes:
+			\begin{itemize}
+				\item We nemen een (2)-overgang. Dit komt in de CFG overeen met het vervangen van een NT \(A\in V\) door de rechterkant van een regel waarin \(A\) links van de pijl voorkomt.
+				\item We nemen een (3)-overgang. Indien we in het vorige geval (het nemen van een (2)-overgang) een terminaal op de stack zetten, kunnen we die door het nemen van deze overgang van de stack halen (door middel van een \(\epsilon\)).
+			\end{itemize}
+			\item We zien duidelijk een 1-op-1 verband tussen het toepassen van een regel in de CFG en het nemen van ofwel een (2)-overgang (NT vervangen door iets anders), ofwel een (3)-overgang (NT vervangen door een terminaal).
+			\item Als in de CFG alle niet-terminalen rechts van de pijlen vervangen zijn door eindterminalen, en we voor elke stap de gepaste boog namen in de PDA, hebben we nu slechts één laatste optie in de PDA: het nemen van een (4)-overgang. We halen \$ van de stack en belanden in een aanvaardende eindtoestand.
+		\end{itemize}
+
+		We zien dus dat de PDA exact die strings \(s\) aanvaardt die met behulp van regels in de CFG kunnen worden afgeleid.
+	\end{itemize}
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,85 @@
+\documentclass[../aanvullingen_cursus.tex]{subfiles}
+\begin{document}
+
+
+\begin{stelling}
+	De overgangen van DFA naar een MN(\(L\))-relatie (\(\opeen\)), en van de \mnl-relatie naar een DFA (\(\optwee\)), zijn elkaars inversen -- op DFA-isomorfisme na.
+\end{stelling}
+
+We kunnen de stelling ook anders formuleren. Hiervoor beschouwen we twee operaties:
+\begin{itemize}
+	\item \(\opeen(\DFA)\) levert als output een \mnl-relatie \(\sim_D\).
+	\item \(\optwee(\mnlm)\) levert ons als output een DFA.
+\end{itemize}
+
+\begin{stelling}
+	Voor elke DFA \(D\) geldt dat de DFA \(D'=\optwee(\opeen(\DFA))\) isomorf is met \(D\).
+\end{stelling}
+
+\begin{proof}
+	We bewijzen eerst dat \(\opeen\) en \(\optwee\) effectief steeds de gewenste output hebben:
+	\begin{enumerate}
+		\item \underline{\textbf{Elke DFA \(D\) bepaalt een MN(\(L_D\)) (equivalentie)relatie \(\sim_D\)  op \(\Sigma^*\).}}
+
+		Definieer voor elke (bereikbare) toestand volgende deelverzameling van \(\Sigma^*\): \[\reach(q) = \{w \in \Sigma^* \mid \delta^*(q_s,w)=q\}\] De verzameling met als elementen al deze verzamelingen \(\reach(q_i)\) vormt een partitie van \(\Sigma^*\):
+		\begin{itemize}
+			\item \underline{Er bestaat geen \(\reach(q)=\emptyset\).} Elke string \(s \in \Sigma^*\) zit namelijk in een of andere \(\reach(q)\). De overgangsfunctie \(\delta\) van een DFA is totaal, dus bij het parsen van \(s\) kunnen we voor elk symbool een boog volgen in de DFA, zodat we uiteindelijk in een of andere toestand terechtkomen. De string behoort dan precies tot de \(\reach(q)\) van deze toestand. Omdat we veronderstellen dat alle toestanden bereikbaar zijn, is geen enkele \(\reach(q)\) leeg.
+			\item \underline{De \(\reach(q)\)'s zijn disjunct.} Een string \(s \in \Sigma^*\) kan namelijk niet in twee \(\reach(q)\)'s zitten, want we hebben in een DFA nooit een keuze naar welke toestand we zullen overgaan: er zijn nooit twee verschillende bogen met eenzelfde symbool. Bij het parsen van \(s\) belanden we dus in een unieke toestand \(q\) en bijgevolg geldt dat \(s \in \reach(q)\).
+			\item \underline{De unie van alle \(\reach(q)\)'s is precies \(\Sigma^*\).}
+		\end{itemize}
+
+		Omdat partities equivalentierelaties induceren en vice versa, kunnen we dus ook de geïnduceerde equivalentierelatie \(\sim_D\) beschouwen: \[x \sim_D y \quad \Leftrightarrow \quad x \text{ en } y \text{ behoren tot dezelfde} \reach(q) \quad \Leftrightarrow \quad \delta^*(q_s,x)=\delta^*(q_s,y)\] We tonen nu aan dat deze equivalentierelatie \(\sim_D\) een \mnl-relatie is. Herinner: \textbf{een equivalentierelatie \(\sim\) tussen strings is een Myhill-Nerode relatie voor \(L\) als \(\sim\) voldoet aan 3 voorwaarden}. We checken deze 3 voorwaarden nu voor \(\sim_D\):
+		\begin{enumerate}
+			\item \underline{De partitie is eindig}. Inderdaad: DFA's hebben een eindig aantal toestanden en bijgevolg zijn er dus ook een eindig aantal \(\reach(q)\)'s.
+			\item \underline{Rechtscongruentie}: we willen aantonen dat \[x \sim_D y \quad \Rightarrow \quad xa \sim_D ya\] Stel dat \(x \sim_D y\). Dan geldt volgens de definitie van onze equivalentierelatie \(\sim_D\) dat beide strings behoren tot \(\reach(q)\) voor een \(q\in Q\), of nog dat \(\delta^*(q_s,x)=\delta^*(q_s,y)=q\). Vanuit deze toestand \(q\) hebben we voor elk symbool \(a \in \Sigma\) slechts één keuze met betrekking tot de boog die we nemen om over te gaan naar een nieuwe toestand. Noem deze nieuwe toestand \(q'=\delta(q,a)\). We hebben nu met de strings \(xa\) en \(ya\) dezelfde toestand \(q'\) bereikt, wat precies wil zeggen dat \(xa \sim_D ya\).
+			\item \underline{\(\sim_D\) verfijnt de partitie \(\{L,\bar{L}\}\).} We willen aantonen dat \[x \sim_D y \quad \Rightarrow \quad (x\in L \Leftrightarrow y \in L)\] Stel dat \(x \sim_D y\). Als \(x \in L\), dan wil dat zeggen dat \(\delta^*(q_s,x)\in F\). Omdat \(x \sim_D y\) geldt dat \(\delta^*(q_s,x)=\delta^*(q_s,y)\) en dus geldt ook dat \(y \in L\). We kunnen de andere richting analoog bewijzen.
+		\end{enumerate}
+
+		\newpage
+		\item \underline{\textbf{Elke \mnl-relatie \(\sim\) op \(\Sigma^*\) bepaalt een DFA \(D\) zodat \(L=L_D\)}}:
+
+		Gegeven een taal \(L \in L_\Sigma\). We construeren de DFA \((Q,\Sigma,\delta,q_s,F)\) als volgt:
+		\begin{itemize}
+			\item \(Q=\{x_{\sim} \mid x \in \Sigma^*\}\)
+			\item \(q_s = \epsilon_{\sim}\)
+			\item \(F = \{x_{\sim} \mid x \in L\}\)
+			\item \(\delta(x_{\sim},a)=(xa)_{\sim}\)
+		\end{itemize}
+
+		Dit is inderdaad een DFA:
+		\begin{itemize}
+			\item  \underline{\(Q\) en \(F\) hebben slechts een eindig aantal toestanden}, omdat een \mnl-relatie geassocieerd is met een eindige partitie. Er zijn dus slechts een eindig aantal equivalentieklassen.
+			\item \underline{De overgangsfunctie \(\delta\) is goed gedefinieerd}.
+
+			Als \(y,z\in\Sigma^*\) tot dezelfde equivalentieklasse \(x_\sim\) behoren, dan bereiken ze eenzelfde toestand \(q\in Q\). Na het volgen van een boog met een symbool \(a \in \Sigma\) vanuit deze toestand, moeten we in de DFA voor beide strings in een eenzelfde nieuwe toestand \(q'\) terechtkomen, anders zouden er meerdere bogen met dat symbool \(a\) bestaan.
+
+			We bewijzen dat we effectief in die toestand \(q'\) terechtkomen voor beide strings. Omdat volgens de \mnl-relatie op de strings in \(\Sigma^*\) de rechtscongruentie \(y \sim z \Rightarrow ya \sim za\) geldt, behoren de strings \(ya\) en \(za\) tot dezelfde equivalentieklasse \((xa)_\sim\). De definitie \(\delta(x_\sim,a)=(xa)_\sim\) is dus goed.
+		\end{itemize}
+
+		Tot slot bewijzen we nog dat de DFA de gegeven taal \(L \in L_\Sigma\) effectief bepaalt, of nog dat \(L_\DFA = L\): \[x \in L_\DFA \overset{\Delta}{\Leftrightarrow} \delta^*(\epsilon_\sim,x)\in F \quad \Longleftrightarrow \quad x_\sim \in F \overset{\Delta}{\Leftrightarrow} x\in L \] We bewijzen de overgang door per inductie op de lengte van \(x\) aan te tonen dat \[\delta^*(\epsilon_\sim,x)=x_\sim\]
+		\begin{itemize}
+			\item \underline{Basisstap:} als \(\abs{x}=0\), is \(x=\epsilon\) en geldt per definitie van \(\delta^*\) dat \(\delta^*(\epsilon_\sim,x)=\epsilon_\sim\)
+			\item \underline{Inductiehypothese:} stel dat de stelling geldt voor strings \(x\) van lengte hoogstens \(\abs{x}=n\)
+			\item \underline{Inductiestap:} we bewijzen dat de stelling ook geldt voor strings van lengte \(n+1\). Zo'n string \(x'\) kunnen we schrijven als \(x'=xa\) met \(\abs{x}=n,a\in \Sigma\). Nu geldt dat
+			\begin{align*}
+				\delta^*(\epsilon_\sim,x')&=\delta^*(\epsilon_\sim,xa) && x'=xa\\
+				&=\delta\left(\delta^*(\epsilon_\sim,x),a\right) && \text{eigenschap } \delta^* \\
+				&=\delta(x_\sim,a) && \delta^*(\epsilon_\sim,x) \overset{\text{inductiehypothese}}{=}x_\sim \\
+				&=(xa)_\sim && \text{definitie } \delta \\
+				&=(x')_\sim \quad \text{q.e.d.} && x'=xa
+			\end{align*}
+		\end{itemize}
+	\end{enumerate}
+
+	\newpage
+	We willen nu bewijzen dat voor iedere DFA \(D\), de DFA \(D'=\optwee(\opeen(D))\) isomorf is met \(D\). We stellen daarvoor een bijectie op tussen de toestanden van \(D\) en de equivalentieklassen van de bijhorende MN\((L_D)\)-relatie: \[b_1:Q_D\to \{x_{\sim_D} \mid x\in \Sigma^*\}: q \mapsto \reach(q)\] Dan bestaat er omgekeerd dus ook een bijectie \[b_2:\{x_{\sim_D} \mid x\in \Sigma^*\} \to Q_{D'}: x_{\sim_D} \mapsto q' \mid x\in\reach(q')\] tussen de equivalentieklassen van de MN\((L_D)\)-relatie en de toestanden van de DFA \(D'\). We kunnen nu ook de bijectie \[b=(b_2 \circ b_1):Q_D\to Q_{D'}\] tussen de toestanden van \(D\) en de toestanden van \(D'\) beschouwen die ontstaat wanneer we de voorgaande twee bijecties samenstellen. We tonen aan dat \(b\) effectief voldoet aan de eigenschappen voor isomorfisme:
+	\begin{itemize}
+		\item \underline{\(b(F_D)=F_{D'}\)}: er geldt dat \(b(F_D)=b_2(b_1(F_D))\). De bijectie \(b_1\) mapt elke toestand \(q_f \in F_D\) naar een equivalentieklasse in MN(\(L_D\)) zodat elke string in die equivalentieklasse tot \(L_D\) behoort. De bijectie \(b_2\) mapt elke equivalentieklasse die strings uit \(L_D\) bevat naar een aanvaardende eindtoestand in \(D'\). Dus elke aanvaardende eindtoestand uit \(D\) wordt door \(b\) gemapt op een aanvaardende eindtoestand uit \(D'\). Met dezelfde redenering zien we dat ook het omgekeerde geldt.
+		\item \underline{\(b(q_{s})=q_{s'}\)}: er geldt dat \(b(q_s)=b_2(b_1(q_s))\). De starttoestand \(q_s\) wordt gemapt op \(\epsilon_{\sim}\) door \(b_1\) en \(\epsilon_{\sim}\) wordt gemapt op \(q_s'\) door \(b_2\), dus \(q_s\) wordt gemapt op \(q_s'\) door b.
+		\item \underline{\(b(\delta(q,a))=\delta'(b(q),a)\)}: voor elke toestand \(q \in Q\) en elk symbool \(a \in \Sigma\) worden \(q\) en \(\delta(q,a)\) gemapt door \(b_1\) op twee equivalentieklassen in MN(\(L_D\)) zodat alle strings uit de tweede equivalentieklasse kunnen verkregen worden door een \(a\) te zetten achter een string uit de eerste equivalentieklasse. Vervolgens mapt \(b_2\) deze twee equivalentieklasses op twee toestanden in \(D'\) zodat er een \(a\)-overgang is van de eerste toestand naar de tweede toestand. Dit betekent dat \(b(\delta(q,a))=\delta'(b(q),a)\).
+	\end{itemize}
+
+\end{proof}
+
+
+\end{document}

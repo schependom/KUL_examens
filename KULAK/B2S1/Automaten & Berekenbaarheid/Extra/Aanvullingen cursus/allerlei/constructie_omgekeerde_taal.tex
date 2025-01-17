@@ -1,0 +1,28 @@
+\documentclass[../aanvullingen_cursus.tex]{subfiles}
+\begin{document}
+
+\underline{Opgave:}
+Veronderstel dat \(L\) bepaald wordt door de NFA \(M\), m.a.w. dat \(L=L_M\). We construeren een NFA \(M_2=(Q_2,\Sigma,\delta_2,q_{s2},F_2)\) die de omgekeerde taal \(L^R=\{w^R \mid w \in L\}\) van \(L\) bepaalt.
+
+We bouwen hiervoor eerst een NFA \(M_1=(Q_1,\Sigma,\delta_1,q_{s1},F_1)\) die dezelfde taal bepaalt als de NFA \(M\), maar die slechts één eindtoestand heeft:
+\begin{itemize}
+	\item \( Q_1=Q\cup\{q_e\} \)
+	\item Overgangsfunctie: \resizebox{!}{!}{\(\begin{aligned}
+			\delta_1(q,a) &= \delta(q,a) && \forall q \in Q \setminus F, \forall a \in \Sigma_\epsilon \\
+			\delta_1(q,\epsilon) &= q_e && \forall q \in F
+		\end{aligned}\)}
+	\item \(q_{s1}=q_s\)
+	\item \( F_1=\{q_e\} \)
+\end{itemize}
+
+Deze NFA \(M_1\) vormen we nu om naar een NFA \(M_2\), zodat \(M_2\) de omgekeerde taal \(L^R\) bepaalt:
+\begin{itemize}
+	\item \( Q_2=Q_1 \)
+	\item Draai alle bogen om: \(\delta_2(q,a)=\{p \mid q \in \delta_1(p,a)\} \qquad p \in Q_2, \forall a \in \Sigma_\epsilon\)
+	\item \(q_{s2}=q_e\)
+	\item \(F=\{q_{s1}\}\)
+\end{itemize}
+
+De bekomen NFA \(M_2\) bepaalt de omgekeerde taal van \(L=L_M\). Merk op dat -- wegens het feit dat deze taal \(L^R\) door een NFA wordt bepaald -- dit een reguliere taal is.
+
+\end{document}

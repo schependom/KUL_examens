@@ -1,0 +1,33 @@
+\documentclass[../aanvullingen_cursus.tex]{subfiles}
+\begin{document}
+
+
+\begin{stelling}
+	De taal \(L=\{ss \mid s\in \{a,b\}^*\}\) is niet contextvrij.
+\end{stelling}
+
+
+\begin{proof}
+	We bewijzen dit aan de hand van het pompend lemma voor contextvrije talen.
+
+	Stel dat er een pomplengte \(p\) bestaat zodanig dat elke string \(w \in L\) met lengte \(\abs{w}>p\) kan opgedeeld worden in 5 stukken \(u,v,x,y,z \in \Sigma^*\) zodanig dat \(w=uvxyz\) en zodat\begin{enumerate}
+		\item \(\forall i \geq 0 : uv^ixy^iz \in L \)
+		\item \(\abs{vy}>0\)
+		\item \(\abs{vxy}\leq p\)
+	\end{enumerate}
+
+	Neem zo'n string \(w\) die (strikt) langer is dan \(p\), namelijk \begin{align*}
+		w &= s_1s_2 && (s_1=s_2=a^pb^p \in \{a,b\}^*) \\
+			&= a^pb^pa^pb^p \\
+			&= \underbrace{\underbrace{a\cdot\cdots a}_p\underbrace{b\cdot\cdots b}_p}_{\abs{s_1}=2p} \underbrace{\underbrace{a\cdot\cdots a}_p\underbrace{b\cdot\cdots b}_p}_{\abs{s_2}=2p}
+	\end{align*}
+	Stel dat \(w=uvxyz\) en dat \(\abs{vy}>0\) en \(\abs{vxy}\leq p\). Dan bevat \(vxy\) hoogstens \(p\) symbolen en zijn er 3 mogelijke gevallen: \begin{enumerate}
+		\item \underline{\(vxy\) zit volledig in \(s_1\)}: in dat geval worden er 1 of 2 symbolen uit \(s_1\) gepompt en geen enkel uit \(s_2\), wat wil zeggen dat het eerste deel van de resulterende strings \(uv^ixy^iz\) niet meer gelijk is aan het tweede deel en zulke strings dus onmogelijk kunnen behoren tot \(L\).
+		\item \underline{\(vxy\) zit volledig in \(s_2\)}: dit verloopt volledig analoog aan het vorige geval.
+		\item \underline{\(vxy\) zit deels in \(s_1\) en deels in \(s_2\)}: omdat de lengte hoogstens \(p\) is, wordt er ofwel een symbool \(b\) uit \(s_1\) gepompt, ofwel een symbool \(a\) uit \(s_2\), ofwel beiden. In alle 3 de gevallen zullen de gepompte strings niet van de vorm \(ss\) (met \(s \in \{a,b\}^*\)) zijn en dus kunnen de resulterende strings \(uv^ixy^iz\) onmogelijk tot de taal behoren.
+	\end{enumerate}
+	Gevolg: \(w\) kan niet gepompt worden en dus is \(L\) niet contextvrij.
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,37 @@
+\documentclass[../aanvullingen_cursus.tex]{subfiles}
+\begin{document}
+
+Gegeven \(\NFA_1 = (Q_1,\Sigma,\delta_1,q_{s1},\{q_{f1}\})\) en \(\NFA_2 = (Q_2,\Sigma,\delta_2,q_{s2},\{q_{f2}\})\). \\
+
+De concatenatie \(\NFA_1\NFA_2\) is de \(\NFA = (Q,\Sigma,\delta,q_s,F)\) waarbij
+
+\begin{itemize}
+	\item \(Q = Q_1 \cup Q_2\)
+	\item \rood[\( q_s=q_{s1} \)]
+	\item \(F = \{q_{f2}\}\)
+	\item \(\delta\) gedefinieerd als:
+	\begin{alignat*}{3}
+		& \delta(q_{f1}, x)           &  & = \emptyset      &  & \quad \forall x \in \Sigma                                                     \\
+		& \delta(q_{f1}, \varepsilon) &  & = q_{s2}         &  &                                                                                \\
+		& \delta(q, x)                &  & = \delta_1(q, x) &  & \quad \forall q \in Q_1 \setminus \{q_{f1}\}, \forall x \in \Sigma_\varepsilon \\
+		& \delta(q, x)                &  & = \delta_2(q, x) &  & \quad \forall q \in Q_2, \forall x \in \Sigma_\varepsilon
+	\end{alignat*}
+	Hierbij moet de eerste regel eigenlijk niet expliciet worden vermeld. We zijn hier bezig met NFA's, dus als er geen overgangsregel voor een bepaald symbool \( x \) gedefinieerd is, wordt er vanuit gegaan dat \( \delta(q,x)=\emptyset \).
+\end{itemize}
+
+De ster \((\NFA_1)^*\) is de \(\NFA = (Q,\Sigma,\delta,q_s,F)\) waarbij
+
+\begin{itemize}
+	\item \(Q = Q_1 \cup \{q_s,q_f\}\)
+	\item \(F = \{q_{f}\}\)
+	\item \(\delta\) gedefinieerd als:
+	\begin{alignat*}{3}
+		& \delta(q_{s}, x)            &  & = \emptyset         &  & \quad \forall x \in \Sigma                                \\
+		& \delta(q_{s}, \varepsilon)  &  & = \{q_{s1},q_{f1}\} &  &                                                           \\
+		& \delta(q_{f1}, \varepsilon) &  & = \{q_{s},q_{f}\}   &  &                                                           \\
+		& \delta(q_{f1}, x)            &  & = \emptyset    &  & \quad \forall x \in \Sigma \\
+		& \delta(q, x)                &  & = \delta_1(q, x)    &  & \quad \forall q \in Q_1 \setminus \{q_{f1}\}, \forall x \in \Sigma_{\rood[\varepsilon]}
+	\end{alignat*}
+\end{itemize}
+
+\end{document}

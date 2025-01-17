@@ -1,0 +1,25 @@
+\documentclass[../aanvullingen_cursus.tex]{subfiles}
+\begin{document}
+
+
+\begin{stelling}
+	\( A_\text{TM} = \{ \enc{M,s} \mid M \text{ is een TM en }s\in L_M \} \) is onbeslisbaar.
+\end{stelling}
+
+
+\begin{proof}
+	Let op de mismatch tussen eigenschappen \(P\) en \(A_\text{TM}\), die uit koppels \(\enc{M,s}\) bestaat.
+
+	Om \( A_{\text{TM}} \) met behulp van Rice’s stelling onbeslisbaar te verklaren, kunnen we de volgende redenering gebruiken:
+
+	\begin{itemize}
+		\item Stel dat er een beslisbare procedure zou bestaan voor \( A_{\text{TM}} \). Dat zou betekenen dat er een algoritme is dat voor elk paar \( \langle M, s \rangle \) kan beslissen of \( M \) de invoer \( s \) accepteert.
+		\item 	Dit zou betekenen dat we ook de vraag kunnen beantwoorden of een gegeven TM een niet-lege taal herkent door eenvoudigweg een willekeurige invoer te controleren of er eender welke invoer \( s \) bestaat waarvoor \( M \) accepteert.
+		\item Nu kan \( A_{\text{TM}} \) slechts beslisbaar zijn als \( L(M) \neq \emptyset\) (of \( M \) enige invoer accepteert) beslisbaar is. Maar wegens de stelling van Rice is die laatste niet beslisbaar. Daarom kan ook \( A_{\text{TM}} \) niet beslisbaar zijn.
+	\end{itemize}
+
+
+\end{proof}
+
+
+\end{document}

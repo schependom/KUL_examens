@@ -1,0 +1,123 @@
+\documentclass[kulak]{kulakarticle}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{subfiles}
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\powerset[1]}{\mathcal{P}(#1)}
+
+\newcommand{\NFA}{\text{NFA}}
+\newcommand{\DFA}{\text{DFA}}
+\newcommand{\epsilonboog}{\( \varepsilon \)-boog }
+\newcommand{\epsilonbogen}{\( \varepsilon \)-bogen}
+\newcommand{\epsilonbogens}{\( \varepsilon \)-bogen }
+\let\epsilon\varepsilon
+\newcommand{\mnl}{MN\((L)\)}
+\newcommand{\mnlm}{\text{MN}(L)}
+\DeclareMathOperator{\reach}{reach}
+\DeclareMathOperator{\opeen}{op_1}
+\DeclareMathOperator{\optwee}{op_2}
+
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\enc}[1]{\langle #1 \rangle}
+\newcommand{\pijl}[1]{\overset{#1}{\rightsquigarrow}}
+\newcommand{\rpijl}[1]{\overset{#1}{\rightarrow}}
+
+\newcommand{\rood[1]}{\color{red}#1\color{black}}
+
+\sisetup{output-decimal-marker={,}}
+\sisetup{separate-uncertainty=true}		% Dit is voor de plus-minus
+\sisetup{per-mode=fraction}
+
+\DeclareSIUnit\biti{bit_i}
+\DeclareSIUnit\combinatie{combinatie}
+
+\usepackage[dutch]{babel}
+\usepackage{hyperref}
+
+\setlength{\parindent}{0pt}
+
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\theoremstyle{definition}
+\newtheorem*{stelling}{Stelling}
+\newtheorem*{definitie}{Definitie}
+
+\tcolorboxenvironment{stelling}{
+	boxrule=1pt,
+	boxsep=2pt,
+	left=2pt,right=2pt,top=2pt,bottom=2pt,
+	sharp corners,
+	before skip=\topsep,
+	after skip=\topsep,
+}
+\tcolorboxenvironment{definitie}{
+	boxrule=1pt,
+	boxsep=2pt,
+	left=2pt,right=2pt,top=2pt,bottom=2pt,
+	sharp corners,
+	before skip=\topsep,
+	after skip=\topsep,
+}
+
+\title{Eerste gequoteerde oefenzitting}
+\author{Automaten \& Berekenbaarheid}
+\date{15 november 2024}
+\address{
+	\textbf{Groep Wetenschap \& Technologie Kulak} \\
+	Bachelor Informatica \\
+	Automaten \& Berekenbaarheid}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Vraag 1}
+
+	Beschouw de taal \( L = \{0^n1^m2^{n+m} \mid n,m \in \N \} \) over het alfabet \(\Sigma=\{0,1,2\}\).
+	\begin{itemize}
+		\item Is \(L\) regulier? Zo ja, geef dan een reguliere expressie \(E\) zodat \(L_E=L\). Zo niet, bewijs.
+		\item Is \(L\) context-vrij? Zo ja, geef dan een context-vrije grammatica \(G\) zodat \(L_G=L\). Zo niet, bewijs.
+	\end{itemize}
+
+	\section*{Vraag 2}
+
+	Voor een string \(s=s_1s_2\cdots s_n\) definiëren we VoegABToe\((s)\). Deze functie zal na elke letter in \(s\) afwisselend een \(a\) en een \(b\) zetten. Hieronder een aantal voorbeelden: \begin{align*}
+		\text{VoegABToe}(\epsilon) &= \epsilon \\
+		\text{VoegABToe}(a) &= aa \\
+		\text{VoegABToe}(ccc) &= cacbca \\
+		\text{VoegABToe}(appels) &= aapbpaeblasb
+	\end{align*}
+
+	Bewijs dat voor alle reguliere talen \(L\) geldt dat \[\text{ABTaal}(L) = \{ \text{voegABToe}(s) \mid s \in L \}\] ook regulier is.
+
+	\section*{Vraag 3}
+
+	Geef een context-vrije grammatica voor onderstaande talen:
+	\begin{itemize}
+		\item \(L_1 = \text{ABTaal}(\Sigma^*)\) met \(\Sigma = \{a,b\}\)
+		\item \(L_2 = \{y \in \Sigma^* \mid \text{de lengte van $y$ is deelbaar door 2, door 3 of door beiden}\}\)
+		\item \(L_3 = \{y \in \Sigma^* \mid \text{$aba$ is geen substring van } y \}\)
+	\end{itemize}
+
+	\section*{Vraag 4}
+
+	Beschouw het alfabet \(\Sigma = \{a,b,c\}\). Voor elk symbool \(\sigma \in \Sigma\) en elke string \(s\in\Sigma^*\) beschouwen we de functie \(n_\sigma(s)\) die het aantal voorkomens van \(\sigma\) in de string \(s\) telt: \begin{align*}
+		n_a(s) &= \text{aantal voorkomens van $a$ in $s$}\\
+		n_b(s) &= \text{aantal voorkomens van $b$ in $s$}\\
+		n_c(s) &= \text{aantal voorkomens van $c$ in $s$}
+	\end{align*} Bewijs dat de volgende taal over \(\Sigma\) niet context-vrij is: \[L = \{s\in \Sigma^* \mid n_a(s) < n_b(s) \text{ en } n_b(s) < n_c(s)\}\]
+
+\end{document}
+
+
+

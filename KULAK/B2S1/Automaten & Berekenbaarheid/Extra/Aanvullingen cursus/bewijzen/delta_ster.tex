@@ -1,0 +1,46 @@
+% !TEX root = ../aanvullingen_cursus.tex
+\documentclass[../aanvullingen_cursus.tex]{subfiles}
+
+\begin{document}
+
+De overgangsfunctie \[ \delta^* : Q \times \Sigma^* \to Q\] van een DFA, is een functie die een koppel \((q,s)\) afbeeldt op de unieke toestand \(p\) zodat \(q \pijl{s} p\). \\We kunnen deze functie ook inductief definiëren, en wel als volgt:
+\begin{enumerate}
+	\item \( \delta^*(q,\epsilon)=q \)
+	\item \( \delta^*(q,aw) = \delta^*(\delta(q,a),w) \qquad \forall a\in\Sigma, w\in\Sigma^*\)
+\end{enumerate}
+
+
+\begin{stelling}
+	In een DFA geldt dat \[\delta^*(q,wa) = \delta\left(\delta^*(q,w),a\right) \text{ voor } a\in\Sigma, w\in\Sigma^*\]
+\end{stelling}
+
+
+\begin{proof}
+
+	We bewijzen dit per inductie op de lengte van \(w\).
+
+	\begin{itemize}
+		\item \underline{Basisstap}: ingeval de lengte van \(w\) gelijk is aan 0, geldt dat \(w=\epsilon\). In dat geval geldt dat
+		\begin{align*}
+			\delta^*(q,wa) &= \delta^*(q,\epsilon a) && w=\epsilon \\
+							&= \delta^*(\delta(q,\epsilon),a) && \text{(2)} \\
+							&= \delta^*(q,a) \\
+							&= \delta(q,a) && \abs{a}=1 \\
+							&= \delta\left(\delta^*(q,\epsilon),a\right) && \text{(1)} \\
+							&= \delta\left(\delta^*(q,w),a\right) && w=\epsilon
+		\end{align*}
+		\item \underline{Inductiehypothese}: stel dat de stelling geldt voor strings \(w\) van hoogstens lengte \(\abs{w}=n\), m.a.w. dat voor zulke strings geldt dat \(\delta^*(q,wa) = \delta\left(\delta^*(q,w),a\right) \text{ voor } a\in\Sigma, w\in\Sigma_{\epsilon}^*\).
+		\item \underline{Inductiestap}: we bewijzen dat de stelling ook geldt voor strings van lengte \(n+1\). Zo'n string \(w'\) kunnen we schrijven als \(w'=bw\) met \(\abs{w}=n,b\in \Sigma\). Nu geldt dat
+		\begin{align*}
+			\delta^*(q,w'a) &= \delta^*(q, bwa) && w'=bw \\
+			&= \delta^*(\delta(q,b), wa) && \text{(1)} \\
+			&= \delta(\delta^*(\delta(q,b),w), a) && \text{inductiehypothese} \\
+			&= \delta\left(\delta^*(q,bw),a\right) && (2) \text{VRNL} \\
+			&= \delta\left(\delta^*(q,w'),a\right) && w'=bw
+		\end{align*}
+	\end{itemize}
+
+\end{proof}
+
+
+\end{document}

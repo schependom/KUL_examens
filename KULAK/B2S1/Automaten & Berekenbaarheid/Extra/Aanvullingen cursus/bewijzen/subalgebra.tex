@@ -1,0 +1,35 @@
+\documentclass[../aanvullingen_cursus.tex]{subfiles}
+\begin{document}
+
+\begin{stelling}
+	RegLan is een subalgebra van \(L_{\Sigma}\) voor de operaties \textit{unie}, \textit{concatenatie}, \textit{Kleene*} en \textit{complement}.
+\end{stelling}
+
+\begin{proof}
+	We bewijzen de stelling voor elke operatie apart:
+
+	\begin{itemize}
+
+		\item \underline{Unie}:\\
+		Zij \(E_1,E_2 \in \) RegExp de reguliere expressies die respectievelijk de talen \(L_{E_1}\) en \(L_{E_2}\) bepalen, met dus duidelijk \(L_{E_1},L_{E_2} \in \) RegLan. Omdat de unie van beide talen wordt bepaald door een reguliere expressie, namelijk door \((E_1|E_2)\), geldt dat \((L_{E_1}\cup L_{E_2}) \in \) RegLan. We besluiten dat de operatie \textit{unie} inwendig is voor de subalgebra gevormd door RegLan.
+		\item \underline{Concatenatie}:\\
+		Beschouw \(L_{E_1}\) en \(L_{E_2}\) zoals hierboven beschreven. Omdat de concatenatie van beide reguliere talen wordt bepaald door een reguliere expressie, namelijk door \((E_1E_2)\), geldt dat \((L_{E_1}L_{E_2}) \in \) RegLan. We besluiten dat de operatie \textit{concatenatie} inwendig is voor de subalgebra gevormd door RegLan.
+		\item \underline{Kleene*}\\
+		Beschouw \(L_{E_1}\) zoals hierboven beschreven. Omdat de Kleene* van deze reguliere taal wordt bepaald door een reguliere expressie, namelijk door \((E_1)^*\), geldt dat \(L_1^* \in\) RegLan. We besluiten dat de operatie \textit{Kleene*} inwendig is voor de subalgebra gevormd door RegLan.
+		\item \underline{Complement}\\
+		Beschouw de reguliere taal \(L_{E_1}\) zoals hierboven beschreven. Ze wordt bepaald door de reguliere expressie \(E_1\). Omdat reguliere expressies en NFA's equivalent zijn, kunnen we een NFA \(N\) bouwen die dezelfde taal bepaalt als \(E_1\). Elke NFA kan omgezet worden in een equivalente DFA, dus dat kunnen we ook hier doen. In de equivalente DFA \(D\) (die dus ook \(L_{E_1}\) bepaalt) maken we niet-aanvaardende toestanden van alle aanvaarde\underline{\textbf{nde}} toestanden en vice versa. De bekomen DFA \(D'\) bepaalt nu het complement van \(L_{E_1}\). We gaan vervolgens omgekeerd te werk: we bouwen een RE op vanuit \(D'\), door eerst een GNFA te maken en die vervolgens te reduceren tot deze slechts 2 toestanden meer heeft. Tot slot lezen we de reguliere expressie af op de (unieke) boog tussen de start- en eindknoop. De GNFA bepaalt nog steeds \(\bar{L}_{E_1}\), want deze taal werd ook door de DFA \(D'\) herkend en het procédé paste de taal niet aan. We hebben dus de RE gevonden die het complement van een willekeurige reguliere taal bepaalt. Dit wil precies zeggen dat \(\bar{L}_{E_1} \in \) RegLan, of nog: ook de operatie \textit{complement} is inwendig voor de subalgebra gevormd door RegLan.
+
+		Alternatief: maak een generische product DFA die \(\bar{L}=\Sigma^*\setminus L \) bepaalt:
+		\begin{itemize}
+			\item \(\DFA_1\) is de DFA die \(\Sigma^*\) bepaalt: hij bevat 1 (aanvaardende) toestand, waar twee bogen toekomen: de startboog en de lus met daarop alle symbolen uit het alfabet. Deze laatste boog vertrekt natuurlijk ook uit die enige toestand.
+			\item \(\DFA_2\) is de DFA die \(L\) bepaalt.
+			\item \(Q=Q_1 \times Q_2\)
+			\item \(\delta(p \times q, x)=\delta_1(p,x) \times \delta_2(q,x) \quad \Leftrightarrow \quad
+			\delta\left((p,q), x\right)=\left(\delta_1(p,x), \delta_2(q,x)\right)\)
+			\item \(q_s = (q_{s1},q_{s2})\)
+			\item \(F = F_1 \times (Q_2 \setminus F_2)\)
+		\end{itemize}
+	\end{itemize}
+\end{proof}
+
+\end{document}

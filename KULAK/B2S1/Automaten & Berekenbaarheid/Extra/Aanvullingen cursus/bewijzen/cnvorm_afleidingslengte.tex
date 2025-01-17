@@ -1,0 +1,16 @@
+\documentclass[../aanvullingen_cursus.tex]{subfiles}
+\begin{document}
+
+
+\begin{stelling}
+	Een string van lengte \(n>0\) uit een grammatica in Chomsky normaalvorm heeft lengte \(2n-1\).
+\end{stelling}
+
+
+\begin{proof}
+
+	Bij de afleiding van een string vanuit een CFG \(G\) in Chomsky normaalvorm, starten we met een niet-terminaal symbool \(S\), dat een lengte heeft van \(n=1\). Elke toepassing van een regel van de vorm \(A\to BC\) met \(A \in V\) en \(B,C \in V \setminus \{S\}\) zal de lengte van de tot dan toe afgeleide string verhogen met 1. We bekomen dus na \(n-1\) zulke stappen een string van lengte \(n\) die enkel bestaat uit niet-terminalen. Als we vervolgens elk niet-terminaal in de bekomen string vervangen door een terminaal \(a\in \Sigma\), passen we precies \(n\) regels toe. Omdat we eerder al \(n-1\) afleidingsstappen uitvoerden, komt de totale afleidingslengte hiermee op \(n-1+n=2n-1\).
+\end{proof}
+
+
+\end{document}

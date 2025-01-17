@@ -1,0 +1,417 @@
+\documentclass[kulak]{kulakarticle}
+
+\DeclareUnicodeCharacter{2212}{I~AM~HERE!!!!}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} % for \mathbb
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{subfiles}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\powerset[1]}{\mathcal{P}(#1)}
+
+\newcommand{\NFA}{\text{NFA}}
+\newcommand{\DFA}{\text{DFA}}
+\newcommand{\CFG}{\text{CFG}}
+\newcommand{\epsilonboog}{\( \varepsilon \)-boog }
+\newcommand{\epsilonbogen}{\( \varepsilon \)-bogen}
+\newcommand{\epsilonbogens}{\( \varepsilon \)-bogen }
+\let\epsilon\varepsilon
+\newcommand{\mnl}{MN\((L)\)}
+\newcommand{\mnlm}{\text{MN}(L)}
+\DeclareMathOperator{\reach}{reach}
+\DeclareMathOperator{\opeen}{op_1}
+\DeclareMathOperator{\optwee}{op_2}
+\DeclareMathOperator{\prog}{prog}
+\DeclareMathOperator{\pr}{Pr}
+\DeclareMathOperator{\cn}{Cn}
+\DeclareMathOperator{\mn}{Mn}
+
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\enc}[1]{\langle #1 \rangle}
+\newcommand{\pijl}[1]{\overset{#1}{\rightsquigarrow}}
+\newcommand{\rpijl}[1]{\overset{#1}{\rightarrow}}
+
+\newcommand{\rood[1]}{\color{red}#1\color{black}}
+
+\sisetup{output-decimal-marker={,}}
+\sisetup{separate-uncertainty=true}		% Dit is voor de plus-minus
+\sisetup{per-mode=fraction}
+
+\DeclareSIUnit\biti{bit_i}
+\DeclareSIUnit\combinatie{combinatie}
+
+\usepackage[dutch]{babel}
+\usepackage{hyperref}
+
+\setlength{\parindent}{0pt}
+
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\theoremstyle{definition}
+\newtheorem*{stelling}{Stelling}
+\newtheorem*{definitie}{Definitie}
+
+\tcolorboxenvironment{stelling}{
+	boxrule=1pt,
+	boxsep=2pt,
+	left=2pt,right=2pt,top=2pt,bottom=2pt,
+	sharp corners,
+	before skip=\topsep,
+	after skip=\topsep,
+}
+\tcolorboxenvironment{definitie}{
+	boxrule=1pt,
+	boxsep=2pt,
+	left=2pt,right=2pt,top=2pt,bottom=2pt,
+	sharp corners,
+	before skip=\topsep,
+	after skip=\topsep,
+}
+
+\title{Aanvullingen cursus A\&B}
+\author{Vincent Van Schependom}
+\date{Academiejaar 2024-2025}
+\address{
+	\textbf{Groep Wetenschap \& Technologie Kulak} \\
+	Bachelor Informatica \\
+	Automaten \& Berekenbaarheid}
+
+\begin{document}
+
+	\maketitle
+
+	\setcounter{section}{1}
+
+	\section{Talen en Automaten}
+
+	\subsection*{Pagina 11, bewijs subalgebra:}
+
+	\subfile{bewijzen/subalgebra}
+
+	\subsection*{Pagina 15, zelf doen 4:}
+
+	\subfile{allerlei/constructie_omgekeerde_taal}
+
+	\subsection*{Pagina 18-20, de algebra van NFA's}
+
+	\subfile{allerlei/constructie_concat_ster}
+
+	\subsection*{Pagina 21, bewijs structurele inductie}
+
+	\subfile{bewijzen/constructie_nfa_re_bewaart_taal}
+
+	\subsection*{Pagina 26}
+
+	\subfile{bewijzen/nfa_naar_gnfa}
+
+	\subsection*{Pagina 26}
+
+	\subfile{allerlei/acceptatiepad_gnfa}
+
+	\newpage
+	\subsection*{Pagina 28, bewijs DFA}
+
+	\subfile{bewijzen/dfa_equivalent_nfa}
+
+	\subsection*{Pagina 30}
+
+	\subfile{bewijzen/delta_ster.tex}
+
+	\newpage
+	\subsection*{Pagina 34, bewijs \( \DFA_{\text{min}} \)}
+
+	\(\DFA_{\text{min}} = (\tilde{Q}, \Sigma, \tilde{\delta}, \tilde{q_s}, \tilde{F})\)
+	\begin{itemize}
+		\item \(\tilde{Q} = \{S \mid \exists q \in Q : S = [q]_{\sim_f}\}\) = equivalentieklassen van de equivalentierelatie f-gelijk (\(\sim_f\))
+		\item \(\tilde{\delta}(S, a) = P\) indien er een \(q \in S\) bestaat zodat \( \delta(q,a) \in P\)
+		\item \(\tilde{q_s} = [q_s]_{\sim_f}\)
+		\item \(\tilde{F} = \{S \in \tilde{Q} \mid S \cap F \neq \emptyset \} = \{S \in \tilde{Q} \mid S \subseteq F\} \)
+	\end{itemize}
+	Merk op dat \(S \cap F \neq \emptyset \Leftrightarrow S \subseteq F\), want alle elementen (toestanden) van \(S\) zijn f-gelijk: ofwel behoren alle toestanden in \(S\) tot \(F\), ofwel geen enkele.
+
+	\subfile{bewijzen/dfa_min_equivalent_dfa}
+
+	\textbf{Zie p37 voor het bewijs van de minimaliteit:}\\
+	``Als \(N\) een DFA is zonder onbereikbare toestanden en waarin elke twee toestanden f-verschillend zijn, dan bestaat er geen machine
+	met strikt minder toestanden die dezelfde taal bepaalt."
+
+	\begin{stelling}
+		Twee DFA's zijn isomorf als en slechts als hun \mnl-relaties gelijk zijn.
+	\end{stelling}
+
+	\begin{proof}
+		Stel dat \(D_1\) en \(D_2\) isomorf zijn met isomorfisme \(f\). Zij \(g(q)\) een functie die een toestand \(q \in Q_1\) mapt naar de bijhorende equivalentieklasse in de \mnl-relatie van \(D_2\) en zij \(h(q)\) een functie die een toestand \(q \in Q_2\) mapt naar de bijhorende equivalentieklasse in de \mnl-relatie van \(D_1\). Voor elke toestanden \(q \in Q_1\) geldt dat de equivalentieklasse \(g(q)\) gelijk is aan de equivalentieklasse \(h(f(q))\).
+	\end{proof}
+
+	\textbf{Nu volgt de uniciteit:}\\
+	Stel dat \(D_1\) en \(D_2\) twee minimale DFA's zijn voor een taal \(L\). We zullen bewijzen dat ze isomorf zijn. Beiden
+	hebben hetzelfde aantal toestanden \(n\) - anders was één van de twee niet minimaal. Neem nu het supremum van die twee DFA’s: je krijgt een DFA met opnieuw \(n\) toestanden, want meer kan niet, maar ook minder niet. In termen van \mnl-relaties, wil dat zeggen dat de drie relaties identiek zijn. Uit bovenstaande stelling volgt dan dat de drie DFA's isomorf zijn.
+
+	\newpage
+	\subsection*{Pagina 43, equivalentie \mnl \,en DFA}
+
+	\subfile{bewijzen/dfa_mnl_equiv}
+
+	\subsection*{Pagina 74}
+
+	\subfile{bewijzen/cfg_naar_pda}
+
+	\subsection*{Pagina 67}
+
+	\subfile{bewijzen/cnvorm_afleidingslengte}
+
+	\newpage
+	\subsection*{Pagina 80}
+
+	\subfile{bewijzen/ss_niet_contextvrij}
+
+	\newpage
+
+	\section{Talen \& Berekenbaarheid}
+
+	\subsection*{Pagina 108}
+
+	\begin{stelling}
+		\(\overline{EQ_\CFG}\) is herkenbaar.
+	\end{stelling}
+
+	\begin{proof}
+		Gegeven twee contextvrije grammatica's \(G_1\) en \(G_2\). We bouwen een herkenner \(H\) voor \(\overline{EQ_\CFG}\). Bij input \(\enc{G_1,G_2}\) doet \(H\) het volgende: converteer \(G_1\) en \(G_2\) eerst naar hun Chomsky Normaal Vorm. Genereer daarna alle mogelijke strings met een derivatielengte 1: dat zijn er eindig veel. Indien er een string is die niet door beide CFG's wordt afgeleid, reject. Doe nu hetzelfde voor alle strings met derivatie lengte \(2, 3, 4, ...\). Indien geldt dat \(L_{G_1} \neq L_{G_2}\), zal \(H\) inderdaad stoppen.
+	\end{proof}
+
+	\begin{stelling}
+		\(EQ_\CFG\) is niet herkenbaar.
+	\end{stelling}
+
+	\begin{proof}
+		Dit volgt uit de vorige stelling enerzijds en uit het feit dat \(EQ_\CFG\) niet beslisbaar is anderzijds.
+	\end{proof}
+
+	\subsection*{Pagina 113}
+
+	\begin{stelling}
+		\(\text{ALL}_\text{RegExp}\) is beslisbaar.
+	\end{stelling}
+
+	\begin{proof}
+		Gegeven een reguliere expressie \(E\), kan je een DFA \(D\) opstellen die dezelfde taal bepaalt, i.e. \(L_E=L_D\). Stel nu de minimale DFA \(D_{\min}\) op zodat \(L_D=L_{D_{\min}}=L_E\). Als \(D_{\min}\) isomorf is met de DFA die slechts 1 toestand heeft en die vanuit die toestand slechts 1 boog heeft met daarop alle symbolen in \(\Sigma\), dan geldt dat \(L_E=\Sigma^*\).
+	\end{proof}
+
+	\subsection*{Pagina 124}
+
+	\begin{stelling}
+		Stel dat \(L_1 \leq_m L_2\), dus m.a.w. \[ \exists \text{ Turing-berekenbare, totale } f : \Sigma_1^*\to\Sigma_2^* \text{ zodat } f(L_1) \subseteq L_2 \text{ en } f(\overline{L_1}) \subseteq \overline{L_2} \] dan geldt dat \(s\in L_1 \Leftrightarrow f(s)\in L_2\)
+	\end{stelling}
+
+	\begin{proof}
+		\begin{align}
+			f(L_1) \subseteq L_2                       & \Rightarrow (x \in L_1 \Rightarrow f(x) \in L_2) \label{rechterimpl} \\
+			f(\overline{L_1}) \subseteq \overline{L_2} & \Rightarrow (x \in \overline{L_1} \Rightarrow f(x) \in \overline{L_2})\nonumber \\
+														& \Rightarrow (x \notin L_1 \Rightarrow f(x) \notin L_2)\nonumber \\
+														& \Rightarrow (f(x) \in L_2 \Rightarrow x \in L_1) \label{linkerimpl}
+		\end{align}
+		Uit \eqref{rechterimpl} en \eqref{linkerimpl} volgt de equivalentie \((s\in L_1 \Leftrightarrow f(s)\in L_2)\).
+	\end{proof}
+
+	\begin{stelling}
+		Als \(A \leq_m B\), dan ook \(\overline{A} \leq_m \overline{B}\).
+	\end{stelling}
+
+	\begin{proof}
+		Uit voorgaand bewijs volgt dat \(A \leq_m B \Leftrightarrow (s\in A \Leftrightarrow f(s)\in B)\) met \( f \) een Turing-berekenbare, totale functie \(\Sigma_A^*\to\Sigma_B^*\). Nu geldt dat \begin{align*}
+			A \leq_m B & \Leftrightarrow (s\in A \Leftrightarrow f(s)\in B) \\
+			& \Leftrightarrow (s\notin \overline{A} \Leftrightarrow f(s)\notin \overline{B}) && \text{definitie complement} \\
+			& \Leftrightarrow (s\in \overline{A} \Leftrightarrow f(s)\in \overline{B}) && \text{negatie } (\neg) \\
+			& \Leftrightarrow \overline{A} \leq_m \overline{B}.
+		\end{align*}
+		Dit bewijst de stelling.
+	\end{proof}
+
+	\subsection*{Pagina 125}
+
+	\begin{stelling}
+		\(E_\text{TM}\) is niet beslisbaar.
+	\end{stelling}
+
+	\begin{proof}
+		Uit het bewijs op pagina 109 van de cursus werd \(\overline{A_\text{TM}}\) many-to-one gereduceerd tot \(E_\text{TM}\), dus \(\overline{A_\text{TM}} \leq_m E_\text{TM}\). Omdat \(\overline{A_\text{TM}}\) niet beslisbaar is, is \(E_\text{TM}\) dat ook niet.
+	\end{proof}
+
+	\begin{stelling}
+		\(E_\text{TM}\) is niet herkenbaar.
+	\end{stelling}
+
+	\begin{proof}
+		In oefenzitting 7 werd bewezen dat \(\overline{E_\text{TM}}\) herkenbaar is. \(E_\text{TM}\) kan dus niet herkenbaar zijn, want als een taal zowel herkenbaar als co-herkenbaar is, is die taal beslisbaar en hierboven bewezen we reeds dat \(E_\text{TM}\) niet beslisbaar is.
+	\end{proof}
+
+	\subsection*{Pagina 128}
+
+	\begin{stelling}
+		Er zijn overaftelbaar veel orakelmachines.
+	\end{stelling}
+
+	\begin{proof}
+		Voor elke taal is er een orakel, dus de verzameling van alle mogelijke orakelmachines is overaftelbaar.
+	\end{proof}
+
+	\begin{stelling}
+		Het aantal orakelmachines voor een bepaalde taal is aftelbaar oneindig.
+	\end{stelling}
+
+	\begin{proof}
+		Orakelmachines zijn een uitbreiding van Turingmachines, namelijk Turingmachines die een willekeurig aantal keer een orakel voor een taal kunnen oproepen. Omdat het aantal Turingmachines aftelbaar oneindig is, is het aantal orakelmachines voor een bepaalde taal dat ook.
+	\end{proof}
+
+	\begin{stelling}
+		Het is \underline{niet} zo dat een orakelmachine \(O^Y\) met orakel voor een `moeilijke' taal \(Y\) eender welke andere taal \(X\) kan beslissen.
+	\end{stelling}
+
+	\begin{proof}
+		Dit volgt uit de vorige stelling en uit het feit dat het aantal talen overaftelbaar is.
+	\end{proof}
+
+	\subsection*{Pagina 127}
+
+	\begin{stelling}
+		Indien \( A \leq_T B \) en \( B \) is beslisbaar, dan is \( A \) beslisbaar.
+	\end{stelling}
+
+	\begin{proof}
+		Omdat \( A \leq_T B \), is \(A\) beslisbaar relatief t.o.v. \(B\), of nog: \(\exists O^B\) die \(A\) beslist. Deze orakelmachine \( O^B \) roept een orakel  voor \(B\) een willekeurig aantal keer op om \(A\) te beslissen. Omdat \(B\) beslisbaar is, fungeert de beslisser \(M_B\) voor \(B\) als het orakel voor \(B\). \(A\) is dus beslisbaar.
+	\end{proof}
+
+	\begin{stelling}
+		Indien \(A \leq_m B\), dan is \(A \leq_T B\).
+	\end{stelling}
+
+	\begin{proof}
+		Omdat \(A \leq_m B\), geldt dat \(s\in A \Leftrightarrow f(s)\in B\) met \( f \) een Turing-berekenbare functie \(\Sigma_A^*\to\Sigma_B^*\). We construeren nu de Turing-reductie van \(A\) naar \(B\), m.a.w. we bouwen een orakelmachine \(O^B\) die \(A\) beslist. Bij input \(s\) doet \(O^B\) het volgende:
+		\begin{itemize}
+			\item Bereken \(f(s)\). Dit eindigt aangezien \(f\) Turing-berekenbaar is.
+			\item Roep het orakel voor \(B\) een vraag of \(f(s)\in B\).
+			\item Als het orakel ``ja'' antwoordt, aanvaard \(s\), want \(f(s)\in B \Rightarrow s\in A\).
+			\item Als het orakel ``neen'' antwoordt, reject \(s\), want \(f(s)\notin B \Rightarrow s\notin A\).
+		\end{itemize}
+		Nu geldt dat \(O^B\) een beslisser is voor \(A\), of nog dat \(A \leq_T B\).
+	\end{proof}
+
+	\newpage
+	\begin{stelling}
+		Indien \(A \leq_T B \leq_T C\), dan is \(A \leq_T C \qquad \Longrightarrow \qquad \leq_T\) is transitief.
+	\end{stelling}
+
+	\begin{proof} Gegeven is dat \(A \leq_T B \leq_T C\).
+		\begin{align*}
+			A \leq_T B \quad \Longrightarrow \quad &\exists O_1^B \text{ die $A$ beslist}.\\
+			B \leq_T C \quad \Longrightarrow \quad &\exists O_1^C \text{ die $B$ beslist}.
+		\end{align*}
+		Om te bewijzen dat \(A \leq_T C\), bouwen we een orakelmachine \(O_2^C\) die \(A\) beslist. Deze machine mag het orakel voor \(C\) oproepen, maar niet dat voor \(B\). Aan de hand van het orakel voor \(C\) kunnen we \(A\) niet rechtstreeks beslissen, maar we nemen een tussenstap. \hfill \\
+
+		Eerst roept \(O_2^C\) het orakel voor \(C\) op. Omdat \(B \leq_T C\), kunnen we hiermee \(B\) beslissen. Omdat \(B\) beslisbaar is, bestaat er dus een beslisser \(B_B\). Aangezien \(A \leq_T B\), kunnen we aan de hand van die beslisser \(B_B\) voor \(B\) de taal \(A\) beslissen. We hebben zonet bewezen dat \(O_2^C\) aan de hand van het orakel voor \(C\) de taal \(A\) kan beslissen, m.a.w. \(A \leq_T C\). Dit wil precies zeggen dat \(\leq_T\) transitief is.
+	\end{proof}
+
+	\subsection*{Primitief recursieve functies (\underline{totaal}!)}
+
+	\begin{stelling}
+		Primitief recursieve functies zijn Turing-berekenbaar en kunnen geïmplementeerd worden met \texttt{for}-lussen.
+	\end{stelling}
+
+	\begin{proof}
+		Voor elke primitief recursieve functie \( h \) bestaat er een \(k\in\N\) zodat \(h\) een totale functie \( \N^k\to\N \) is. We tonen aan dat \(f\) Turing-berekenbaar is door er een programma \(\prog(h)\) mee te associëren dat de functiewaarde berekent. Dit programma is een for-programma, waarbij de for-lus enkel gebruikt wordt voor primitieve recursie, afkomstig van de primitieve recursie functie constructor \(\pr\). De basisfuncties zijn evident Turing-berekenbaar en vereisen geen lussen; hetzelfde geldt voor functie-combinaties, bekomen door de combinatie functie constructor \( \cn \).
+		\hfill\\
+
+		De primitief recursieve functie \( h \) heeft een eindig functievoorschrift \(h(x_1,...,x_k) = F_1(...F_n(...x_i...)...)\), waarbij elke \(F_1,...,F_n\) één van de volgende functies is:
+		\begin{itemize}
+			\item nul
+			\item succ
+			\item \(p^i_j\)
+			\item \( \cn \)
+			\item \( \pr \)
+		\end{itemize}
+
+		Het programma van een primitieve recursieve term \( \pr[f,g](\bar{x},y)=h(\bar{x},y) \) gaat als volgt:
+
+		\floatname{algorithm}{Algoritme}
+		\begin{algorithm}
+			\caption{Primitieve Recursie}
+			\begin{algorithmic}[1]
+				\For{$i=0$ to $y$}
+					\If{$i=0$}
+						\State $r=\prog(f)[\bar{x}]$
+					\Else
+						\State $r=\prog(g)[\bar{x}, i-1, r]$
+					\EndIf
+				\EndFor
+			\end{algorithmic}
+		\end{algorithm}
+
+		De berekende waarde van \(\pr[f,g](\bar{x},y)\) is \(r\). We roepen dus 1 keer \(f\) op, 1 keer \(g\) en \(y+1\) keer \(h\). Inductie: veronderstel dat de functies \(f\) en \(g\) kunnen beschreven worden door for-programma's \(\prog(f)\) en \(\prog(g)\) met aantal stappen respectievelijk \(s_{f(\bar{x})}\) en \(s_{g(\bar{x},y,h(\bar{x},i))}\). Veronderstel dat we het aantal stappen voor \(\prog(h(\bar{x},i))\) kunnen berekenen, namelijk \(s_{h(\bar{x},i)}\). Dan is het aantal stappen voor \(h(\bar{x},i+1)\) gegeven door \(s_{h(\bar{x},i+1)}=s_{f(\bar{x})}+s_{g(\bar{x},y,h(\bar{x},i))}\). Omdat we op voorhand  weten hoeveel keer we de lus uitvoeren, is de lus inderdaad een for-lus.
+	\end{proof}
+
+	\newpage
+	\subsection*{Recursieve functies (\(\mu\)-recursive, kunnen \underline{partieel} zijn!)}
+
+	Elke recursieve functie kan beschreven worden met een term bestaande uit de basisfuncties en Cn, Pr en Mn. Aangezien er slechts een aftelbaar aantal dergelijke termen zijn, zijn er ook slechts een \underline{aftelbaar aantal} \underline{recursieve functies} (\(\leftrightarrow\) aftelbaar aantal TM's).
+
+	\begin{stelling}
+		Recursieve functies zijn Turing-berekenbaar en kunnen geïmplementeerd worden met \texttt{while}-lussen.
+	\end{stelling}
+
+	Het programma \(\prog(g)\) geassocieerd met een recursieve functie is een while-programma, waarbij de while-lus enkel gebruikt wordt door de \textit{onbegrensde minimisator} \(\mn[f]\). We bewezen hiervoor al dat Pr, Cn en de basisfuncties Turing-berekenbaar zijn en geïmplementeerd kunnen worden met for-lussen. Voor \(g=\mn[f]\) berekent onderstaande while-lus, hetgeen een \( \mu \)-recursive programma \(\prog(g)\) is, de waarde \(g(\bar{x})\):
+
+	\floatname{algorithm}{Onbegrensde minimisatie}
+	\begin{algorithm}
+		\caption{Primitieve Recursie}
+		\begin{algorithmic}[1]
+			\State $y = -1$
+			\State $z = 1$
+			\While{$z\neq 0$}
+				\State $y = y+1$
+				\State $z=\prog(f)[\bar{x}, y]$
+			\EndWhile
+		\end{algorithmic}
+	\end{algorithm}
+
+	\subsection*{Pagina 135}
+
+	\begin{stelling}
+		Er bestaat een partiële recursieve functie waarvan het domein niet beslisbaar is.
+	\end{stelling}
+
+	\begin{proof}
+		Denk aan een functie \(f\) die een string \(m\) en een getal \(s\) als argument neemt, maarbij de string \(m\) als geheel getal kan morden doorgegeven. De functie interpreteert deze string als de beschrijving van een Turingmachine \(M\) met een lege band en een starttoestand \(q_s\). Vervolgens simuleert \(f\) de Turingmachine \(M\) voor \(s\) stappen op de string \(m\). Als de machine na \(y\) stappen in een eindtoestand \(q_e\) of \(q_f\) is, is \(f(m,s)=0\), anders is \(f(m,s)=1\). De onbegrensde minimizatie \(\operatorname{Mn}[f](m)\) geeft dus enkel een waarde terug als de Turingmachine \(M\), geëncodeerd aan de hand van de string \(m\), stopt en het resultaat van deze minimisatie is het aantal stappen dat werd uitgevoerd. Omdat \(H_\text{TM}\) onbeslisbaar is, is het domein van (de partiële, \(\mu\)-recursieve functie) \(\operatorname{Mn}[f](m)\) dat ook. Er bestaat dus een partiële recursieve functie waarvan het domein niet beslisbaar is.
+
+		Merk op dat we de functie \(f\) kunnen schrijven met primitieve recursie (en \(f\) dus \underline{totaal} is): alle stappen morden bepaald door de eindige transitiefunctie \(\delta : Q \times \Gamma \to Q \times \Gamma \times \{L,R,S\}\) van de Turingmachine en bovendien is het aantal stappen dat we willen nemen op voorhand bekend, namelijk \(s\).
+	\end{proof}
+
+	\begin{stelling}
+		Het domein van een (partiële) recursieve functie is herkenbaar.
+	\end{stelling}
+
+	\begin{proof}
+		Als er geen onbegrensde minimisatie gebruikt wordt, is een (partiële) recursieve functie \(f\) volledig gedefinieerd. Als er ergens een functie \(\operatorname{Mn}[g]\) wordt gebruikt, kan \(f(x)\) gedefinieerd zijn of niet. Indien zulke onbegrensde minimisaties allemaal gedefinieerd zijn, is \(f\) ook overal gedefinieerd en behoort \(x\) tot \(\operatorname{dom}(f)\). Het domein is dus herkenbaar.
+	\end{proof}
+
+	\begin{stelling}
+		Turingberekenbare functies zijn te coderen als recursieve functies.
+	\end{stelling}
+
+	\begin{proof}
+		We vertrekken vanaf een encodering \(m\) van een Turingmachine \(M\) die \(f(x)\) berekent. We gebruiken twee keer onbegrensde minimisatie. De eerste keer berekenen we het aantal stappen die \(M\) nodig heeft om \(f(x)\). We gebruiken hiervoor een functie \(m_1(m,s)\) die 0 teruggeeft als de Turingmachine \(M\), beschreven door \(m\), na \(s\) stappen eindigt en 1 teruggeeft als \(M\) niet eindigt na \(s\) stappen. De tweede keer gebruiken we de functie \(m_2(m,s,y)\), die de Turingmachine \(M\) met encodering \(m\) voor \(s\) stappen laat lopen en 0 teruggeeft als het resultaat \(y\) gevonden is, en 1 indien \(y\) niet gevonden werd.
+	\end{proof}
+
+\end{document}
+
+
+

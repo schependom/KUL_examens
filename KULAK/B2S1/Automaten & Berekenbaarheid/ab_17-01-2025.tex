@@ -1,0 +1,102 @@
+\documentclass[kulak]{kulakarticle}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{mathtools}
+
+\DeclareUnicodeCharacter{2212}{I~AM~HERE!!!!}
+
+\let\epsilon\varepsilon
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\DeclareMathOperator{\powerset}{\mathcal{P}}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\usepackage{array}
+\usepackage{multirow}
+
+\sisetup{output-decimal-marker={.}}
+\sisetup{per-mode=symbol}
+\sisetup{per-symbol=/}
+\sisetup{group-digits=integer}
+
+\newcommand{\rood[1]}{\color{red}#1\color{black}}
+
+\usepackage[dutch]{babel}
+\usepackage{hyperref}
+
+%\setlength{\parindent}{0pt}
+% d voor dx
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+
+\usepackage{parskip}
+
+\title{Automaten \& Berekenbaarheid}
+\author{Vincent Van Schependom}
+\date{17 januari 2025}
+\address{
+	\textbf{Automaten \& Berekenbaarheid}\\
+	Jorik Jooken \& Prof. Patrick De Causmaecker}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Vraag 1}
+
+	\begin{enumerate}
+		\item[a)] Formuleer nauwkeurig het pompend lemma voor reguliere talen.
+		\item[b)] Bewijs het pompend lemma voor reguliere talen.
+		\item[c)] Leg kort uit waarom het onmogelijk is om het pompend lemma voor reguliere talen te gebruiken om aan te tonen dat een gegeven taal \(L\) regulier is.
+	\end{enumerate}
+
+	\section*{Vraag 2}
+
+	\begin{enumerate}
+		\item[a)] Geef de definitie van een contextvrije grammatica. Leg dit eventueel in eigen woorden uit als je je de definitie niet exact meer herinnert.
+		\item[b)] Leg nauwkeurig uit wanneer een string \(s\) geaccepteerd wordt door een contextvrije grammatica \(G\).
+		\item[c)] Welke vorm heeft een contextvrije grammatica die in Chomsky Normaal Vorm staat?
+		\item[d)] Wat is het verband tussen de lengte van een string s en de lengte van de afleiding van \(s\) m.b.v. een grammatica die in Chomsky Normaal Vorm staat? \\
+		\textit{Bijvraag: wat met de lege string?}
+	\end{enumerate}
+
+	\section*{Vraag 3}
+
+	Geef de definitie van een beslisbare taal. Bewijs dat niet alle talen beslisbaar zijn. Formuleer het acceptatieprobleem voor Turingmachines. Laat zien dat de verzameling van Turingmachines die een string accepteren een taal is en formuleer het beslissingsprobleem voor deze taal (\(A_\text{TM}\)). Bewijs dat \(A_\text{TM}\) niet beslisbaar is. Geef een andere voorbeeld van een niet-beslisbaar probleem en bewijs de onbeslisbaarheid ervan door gebruik te maken van de onbeslisbaarheid van \(A_\text{TM}\).
+
+	\subsubsection*{Bijvragen:}
+	\begin{enumerate}
+		\item Waarom is de verzameling \(L_\Sigma\) van alle talen niet-aftelbaar?\\ \textit{Ik gaf het diagonaalargument van Cantor: \(L_\Sigma = \powerset({\Sigma^*})\).}
+		\item \textit{Ik zei dat je een bijectie kon opstellen tussen \(\N\) en de verzameling van alle Turingmachines:} \begin{align*}
+			\abs{\Gamma} + \abs{Q} &= 2,\\
+			\abs{\Gamma} + \abs{Q} &= 3,\\
+			\abs{\Gamma} + \abs{Q} &= 4,\\
+									& \vdots
+		\end{align*}
+		Hoe kan je op een andere manier -- namelijk via Goëdels visie -- bewijzen er slechts een aftelbaar aantal Turingherkenbare functies zijn?\\
+		\textit{Elke (partiële) recursieve functie bestaat uit een eindig aantal termen som, succ, \(p^n_i\), Cn, Pr of Mn. De verzameling van al deze functies is dus aftelbaar. Aangezien er een direct verband is tussen (partiële) recursieve functies en Turingmachines, is aantal Turingmachines ook aftelbaar.}
+	\end{enumerate}
+
+	\newpage
+
+	\section*{Vraag 4}
+
+	Geef de nodige definities en formuleer de stelling van Rice over de beslisbaarheid van niet-triviale taal-invariante eigenschappen van Turing-machines. Bewijs deze stelling. Gebruik de stelling om te bewijzen dat \(A_\text{TM}\) niet beslisbaar is. Geef de definitie van de `bezige bever' van Radó. Kan de stelling gebruikt worden om de onberekenbaarheid van het aantal stappen van de bezige bever te bewijzen? Indien wel, doe dat, indien niet, argumenteer waarom niet.
+
+	\textit{Hint: je kan niet rechtstreeks bewijzen dat \(A_\text{TM} \notin Besl\) m.b.v. de stelling van Rice. Hiervoor moet je eerst een many-to-one reductie \(A_\text{TM} \leq_m A_{\text{TM},s}=\{\langle M \rangle \mid M \text{ is een TM en } s \in L_M\}\) uitvoeren. Omdat \(A_{\text{TM},s} = \text{Pos}_P\) voor de niet-triviale, taalinvariante eigenschap \(P = \{M \mid M \text{ is een TM en } s \in L_M\}\), is \(A_{\text{TM},s}\) onbeslisbaar. Uit \(A_\text{TM} \leq_m A_{\text{TM},s}\) volgt dan dat \(A_\text{TM}\) ook onbeslisbaar is.}
+
+	\textit{Blijkbaar kan je effectief aan de hand van \(S(n)\) bewijzen dat \(A_{\text{TM}} \notin Besl\) :( \\ Uitleg van de prof was wel te vaag om te snappen waarom.}
+
+\end{document}
+
+
+
