@@ -145,7 +145,7 @@
 	\begin{figure}[h!]
 		\centering
 		\begin{circuitikz}
-			\draw (0,0) node[] (top) {} to[short, o-*, C, l_=$C$, i>_=$i$] ++ (-1.5,0) node[] (weerstand3) {}
+			\draw (0,0) node[] (top) {} to[short, o-*, C, l_=$C$, i>_=$I$] ++ (-1.5,0) node[] (weerstand3) {}
 						to[short, -*] ++ (-1,0) node[] (weerstand2) {}
 						to[short, -*] ++ (-1.5,0) node[] (source) {}
 						to[short, -] ++ (-0.5,0)
@@ -155,11 +155,11 @@
 						to[short, vsource, l=$E_0$] ++ (0,-3)
 						to[short, -o] ++ (8,0) node[] (bottom) {};
 
-			\draw (weerstand2.center) to[R,l_=$R_2$] ++ (0,-3);
-			\draw (weerstand3.center) to[R,l=$R_3$] ++ (0,-3);
-			\draw (source.center) to[controlled isource,l_=$2I$] ++ (0,-3);
+			\draw (weerstand2.center) to[short, -*, R,l_=$R_2$] ++ (0,-3);
+			\draw (weerstand3.center) to[short, -*, R,l=$R_3$] ++ (0,-3);
+			\draw (source.center) to[short, -*, controlled isource,l_=$2I$] ++ (0,-3);
 
-			\draw (top) to[open, v=$v$] (bottom);
+			\draw (top) to[open, v=$V$] (bottom);
 		\end{circuitikz}
 	\end{figure}
 
