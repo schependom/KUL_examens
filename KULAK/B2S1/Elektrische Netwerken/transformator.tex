@@ -1,0 +1,18 @@
+\begin{circuitikz}
+	\draw   (0,0) node[transformer] (T) {};
+
+	% Input and output nodes
+	\draw (T.A1) node[anchor=east, ocirc] (i) {}
+	(T.A2) node[anchor=east, ocirc] (j) {}
+	(T.B1) node[anchor=west, ocirc] (m) {}
+	(T.B2) node[anchor=west, ocirc] (k) {};
+
+	% Labels near terminals
+	\draw (i) ++ (-0.15,0) node[anchor=east, circle, draw] {$i$}
+	(j) ++ (-0.15,0) node[anchor=east, circle, draw] {$j$}
+	(m) ++ (0.15,0) node[anchor=west, circle, draw] {$m$}
+	(k) ++ (0.15,0) node[anchor=west, circle, draw] {$k$}
+
+	% Transformer ratio label
+	(T.base) node[above] {$n:1$};
+\end{circuitikz}
