@@ -1,4 +1,4 @@
-\documentclass[kulak]{kulakarticle}
+\documentclass{kuburgiearticle}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -26,8 +26,7 @@
 \usepackage{multirow}
 
 \sisetup{output-decimal-marker={.}}
-\sisetup{per-mode=symbol}
-\sisetup{per-symbol=/}
+\sisetup{per-mode=power}
 \sisetup{group-digits=integer}
 
 \newcommand{\rood[1]}{\color{red}#1\color{black}}
@@ -46,11 +45,89 @@
 \date{20 januari 2025}
 \address{
 	\textbf{Elektrische Netwerken}\\
+	X0E58A\\
 	Ben Hermans}
 
 \begin{document}
 
 	\maketitle
+
+	\section*{Tips}
+
+	\begin{itemize}
+		\item Lees goed het voorblad!
+		\item Schrijf niet op de kladbladen, want die worden niet verbeterd. Je moet al je antwoorden op de opgavebundel schrijven (er is voldoende plaats voorzien).
+		\item Werk door. Het examen is véél te uitgebreid om op 3 uur tijd helemaal af te werken. Ik raad aan om bij grote `bepaal de beschrijving' achtige oefeningen (zoals Oefening 1 van dit examen) alle vergelijkingen op te schrijven, maar ze nog niet meteen op te lossen. Laat dit voor het einde. Als je op miraculeuze wijze nog tijd zou over hebben, kan je ze eventueel verder uitwerken.
+	\end{itemize}
+
+	\section*{Vraag 1}
+
+	\begin{figure}[h!]
+		\centering
+		\begin{tikzpicture}
+		\draw (10,2.5) node[op amp] (opamp) {};
+
+		\draw (0,2) node[] (vtop) {} to[open, o-o, v=$v_1$] (0,0) node[] (vbottom) {};
+
+		\draw (vtop.center) to[short, -*, i=$i_1$] ++ (1.5,0) node[] (i3) {}
+							to[short, -*] ++ (1.5,0) node[] (weerstand1) {}
+							to[short, -*, R, l_=$?\,\unit{\ohm}$] ++ (3,0) node[] (weerstand2) {}
+							to[short] (opamp.+);
+
+		\draw (i3.center) to[short, -*, controlled isource, l=$2i_3$] ++ (0,-2);
+		\draw (weerstand1.center) to[short, -*, R, l=$?\,\unit{\ohm}$] ++ (0,-2);
+		\draw (weerstand2.center) to[short, -*, R, l=$?\,\unit{\ohm}$] ++ (0,-2);
+
+		\draw (opamp.-) to[short] ++ (-0.2,0)
+						to[short] ++ (0,4.5)
+						to[short, -] ++ (3.5,0)
+						to[short, -o, i<_=$i_2$] ++ (2,0) node [] (v2top) {};
+
+		\draw (weerstand1.center) to[short, -*] ++ (0,1) node [] (condensator1) {}
+								  to[short, -*, C, l=$\frac{1}{?}\,\unit{\farad}$] ++ (3,0) node [] (z) {}
+								  to[short] ++ (0,-1);
+
+		\draw (condensator1) ++ (1.5, 2.5) node[op amp] (opamp2) {};
+
+		\draw (z.center) to[short, -*, C, l=$\frac{1}{?}\unit{\farad}$] ++ (0, 2.5) node [] (out) {}
+						to[short] (opamp2.out)
+						to[short, -] ++ (1.5,0)
+						to[short, -, R, l=$?\,\unit{\ohm}$] ++ (0,-2.5)
+						to[short] ++ (-1.5,0);
+
+		\draw (out.center) to[short, R, l=$\SI{5}{\ohm}$] ++ (0,2)
+						to[short] ++ (-3,0)
+						to[short] ++ (0,-1.5)
+						to[short] (opamp2.-);
+
+		\draw (condensator1.center) to[short] ++ (0,2) to (opamp2.+);
+
+		\draw (opamp.out) to[short,-*] ++ (0.5,0) node [] (zrechts) {}
+							to[short, -] ++ (0,0.5)
+							to[short, L, l=$?\,\SI{}{\henry}$] ++ (0,2)
+							to[short, -, R, l=$?\,\SI{}{\ohm}$] ++ (0,2)
+							to[short, -*] ++ (0,0.5);
+
+		\draw (zrechts.center) to[C, l_=$\frac{1}{?}\unit{\farad}$, -*] ++ (0,-2.5)
+								to[short, -*] ++ (1,0)
+								to[R, l_=$?\,\unit{\ohm}$, -] ++ (0,2.5)
+								to[short, -] ++ (-1,0);
+
+		\draw (vbottom.center) to[short, -o] ++ (14,0) node[] (v2bottom) {};
+		\draw (v2top) to[open, v=$v_2$] (v2bottom);
+
+	\end{tikzpicture}
+	\end{figure}
+
+	\vspace{0.5cm}
+
+	\begin{enumerate}
+		\item[a)] Bepaal een beschrijving van bovenstaande tweepoort.
+		\item[b)] Welke beschrijvingen bestaan nog? Antwoord in één zin.
+		\item[c)] Bepaal het Thévenin-equivalent indien we de tweepoort afsluiten met een spanningsbron van \({i_2=\SI{2}{\ampere}}\). Als deze niet bestaat, geef dat dan duidelijk aan.
+	\end{enumerate}
+
+	\newpage
 
 	\section*{Vraag 2}
 
@@ -125,6 +202,8 @@
 
 	\section*{Vraag 3}
 
+	\vspace{-0.5cm}
+
 	\begin{figure}[h!]
 		\centering
 		\input{transformator.tex}
@@ -163,7 +242,7 @@
 		\end{circuitikz}
 	\end{figure}
 
-	Teken het fasorendiagram van bovenstaand netwerk, ervan uitgaande dat \(I\neq 0\). De complexe amplitudes van \(E_0\) en \(I\) zijn respectievelijk \SI{2}{\volt} en \(\sqrt{2}\,\SI{}{\ampere}\).
+	Teken het fasorendiagram van bovenstaand netwerk, ervan uitgaande dat \(I\neq 0\). Verder geldt dat \({\omega=\SI{1}{\radian\per\second}}, R_1=\SI{0.5}{\ohm}, R_2=\SI{1}{\ohm},R_3=\SI{1}{\ohm}\) en \(C=\SI{1}{\farad}\). De complexe amplitudes van \(E_0\) en \(I\) zijn respectievelijk \SI{2}{\volt} en \(\sqrt{2}\,\SI{}{\ampere}\).
 
 	\vspace{1cm}
 
@@ -254,11 +333,11 @@
 		\centering
 		\begin{tikzpicture}
 			\draw[help lines, color=gray!30] (-4,-4) grid (4,4);
-			\draw[-latex] (-4,0)--(4,0) node[right]{$i$};
-			\draw[-latex] (0,-4)--(0,4) node[above]{$v$};
+			\draw[-latex] (-4,0)--(4,0) node[right]{$v$};
+			\draw[-latex] (0,-4)--(0,4) node[above]{$i$};
 			\draw[ultra thick,black] plot[domain=-1.58:4, samples = 50, smooth]({\x}, {-(1/2)*exp(-\x)+\x});
 		\end{tikzpicture}
-		\caption{De \((v,i)\)-karakteristiek van de niet-lineaire weerstand.}
+		\caption{De \((v,i)\)-karakteristiek van de niet-lineaire component.}
 		\label{fig:nietlineair}
 	\end{figure}
 
