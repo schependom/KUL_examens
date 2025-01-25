@@ -1,0 +1,211 @@
+\documentclass[kulak]{kulakarticle}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{mathtools}
+\usepackage{enumitem}
+
+\DeclareUnicodeCharacter{2212}{I~AM~HERE!!!!}
+
+\let\epsilon\varepsilon
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\DeclareMathOperator{\powerset}{\mathcal{P}}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\usepackage{array}
+\usepackage{multirow}
+
+\sisetup{output-decimal-marker={.}}
+\sisetup{per-mode=symbol}
+\sisetup{per-symbol=/}
+\sisetup{group-digits=integer}
+
+\newcommand{\rood[1]}{\color{red}#1\color{black}}
+
+\usepackage[dutch]{babel}
+\usepackage{hyperref}
+
+%\setlength{\parindent}{0pt}
+% d voor dx
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+
+\usepackage{parskip}
+
+\title{Examen Numerieke Wiskunde}
+\author{ViS}
+\date{24 januari 2025}
+\address{
+	\textbf{Numerieke Wiskunde}\\
+	X0A43A (I2, N2, W2)\\
+	Prof. Koen Van Den Abeele\\
+	Drs. Marie Cloet}
+
+\begin{document}
+
+	\maketitle
+
+	Het examen bestaat uit 3 delen:
+
+	\begin{table}[h!]
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabular}{r l}
+			\hline
+			                               \multicolumn{2}{c}{\textbf{Theorie}}                                \\ \hline
+			                  Duur & 60 minuten                                                                \\
+			              Tijdslot & \textit{tijdslot individueel per student}                                 \\
+			         Voorbereiding & op rij 1 en rij 3, vooraan in het lokaal                                  \\
+			Mondelinge verdediging & Bij prof. Van Den Abeele in A341                                          \\
+			          Hulpmiddelen & Eigen schrijfgerief                                                       \\
+			                       & Formularium is voorzien                                                   \\
+			                 Score & 8 punten                                                                  \\ \hline
+			                        \multicolumn{2}{c}{\textbf{Bespreking practicum}}                          \\ \hline
+			                  Duur & 10 minuten                                                                \\
+			              Tijdslot & Aansluitend op mondelinge verdediging theorie                             \\
+			         Voorbereiding & n.v.t.                                                                    \\
+			Mondelinge verdediging & Bij de assistent in A352                                                  \\
+			          Hulpmiddelen & Het verslag is voorzien bij Marie                                         \\
+			                 Score & 4 punten (volledig practicum)                                             \\ \hline
+			                             \multicolumn{2}{c}{\textbf{Oefeningen}}                               \\ \hline
+			                  Duur & 160 minuten                                                               \\
+			              Tijdslot & \textit{elk moment voor en na het theoriegedeelte}                        \\
+			Mondelinge verdediging & n.v.t.                                                                    \\
+			          Hulpmiddelen & Handboek, slides, eigen notities, oefeningenbundel, grafisch rekenmachine \\
+			                       & \textbf{Geen opgeloste oefeningen}                                        \\
+			                 Score & 8 punten \\ \hline
+		\end{tabular}
+	\end{table}
+
+	Nog enkele algemene instructies:
+	\begin{itemize}
+		\item Het consulteren van hulpmiddelen die niet toegelaten zijn bij de verschillende onderdelen wordt aanzien als examenfraude.
+		\item Je geeft telkens alles (vragen, antwoorden, klad) af.
+		\item Zorg dat op kladpapier duidelijk de vermelding KLAD staat.
+		\item ZORG DAT JE NAAM OP ELK BLAD STAAT.
+		\item Werk gestructureerd en netjes.
+	\end{itemize}
+
+	\flushright
+
+	\textbf{Veel succes!}
+
+	\flushleft
+
+	\newpage
+
+	\section*{Theorie}
+
+	\subsection*{Vraag 1}
+
+	\begin{enumerate}
+		\item Bespreek de conditie van het probleem ``zoek het nulpunt van een niet-lineaire functie''. Laat dit ook zien op tekeningen.
+		\item Geef 3 methodes voor het vinden van het nulpunt van een niet-lineaire functie, waaronder 1 meerstapsmethode en 1 niet-stationaire methode. Bespreek voor elk van de methoden het principe, de convergentiesnelheid en de voor- en nadelen.
+		\item Wat verstaat men onder de begrippen convergentiefactor en orde van convergentie?
+		\item Bespreek de voorwaarde(n) voor convergentie bij substitutiemethodes waarbij \(x^{(k)}=F\left(x^{(k+1)}\right)\). Toon dit ook visueel aan.
+		\item Leg uit waarom de methode van Newton-Raphson voor enkelvoudige nulpunten steeds convergeert.
+		\item Toon aan dat de convergentiefactor een invloed heeft op de stabiliteit van een convergente substitutiemethode.
+		\item Wat is de numerieke betekenis van de convergentiefactor?
+		\item Verklaar waarom de methode van Halley sneller convergeert dan de methode van Newton-Raphson.
+	\end{enumerate}
+
+	\subsection*{Vraag 2}
+
+	\textit{Geef kort het antwoord op onderstaande vraag; het is niet nodig om dit heel uitgebreid uit te schrijven.}
+	Verklaar waarom een gedeelde differentie onafhankelijk is van de volgorde van de gebruikte punten.
+
+	\newpage
+
+	\section*{Oefeningen}
+
+	\subsection*{Vraag 1}
+
+	Beschouw onderstaand stelsel van lineaire vergelijkingen.
+	\begin{align*}
+		\begin{cases}
+			-3x + y = 5\\
+			-6x + 4y - z = 3\\
+			-6x + 8y - 6z = 1
+		\end{cases}
+	\end{align*}
+
+	\begin{enumerate}
+
+		\item Stel dat we handmatig de \(LU\)-ontbinding van dit stelsel zouden willen bepalen.
+		\begin{enumerate}
+			\item Is het noodzakelijk om een pivotering toe te passen? Verklaar waarom wel/niet.
+			\item Heeft het zin om optimale pivotering toe te passen? Verklaar waarom wel/niet.
+			\item Bereken de \(LU\)-ontbinding van de systeemmatrix, indien nodig met optimale pivotering.
+		\end{enumerate}
+
+		\item Stel dat we iteratief de oplossing zouden willen berekenen aan de hand van de methode van Jacobi of de methode van Gauss-Seidel.\\\textit{Hint: voor deze vraag kan je gerust je GRM gebruiken.}
+		\begin{enumerate}
+			\item Speelt de volgorde van de vergelijkingen een rol? Leg duidelijk uit waarom wel/niet.
+			\item Ben je zeker dat de methoden zullen convergeren?
+			\item Reken het resultaat van beide methoden uit na 2 iteratiestappen, gegeven dat \(x_0 = [1, \, 1 \, 1]^\top\). Is de uitkomst zoals je verwacht, als je weet dat de exacte oplossing gelijk is aan \([-1 \,, 30 \,, -17]^\top /8\)?
+		\end{enumerate}
+
+	\end{enumerate}
+
+	\newpage
+
+	\subsection*{Vraag 2}
+
+	In het practicum over numerieke integratie werden onder andere onderstaande twee (correcte) foutenplots teruggevonden voor de integraal \[I_5 = \int_{0}^{10} 13(x-x^2)\exp\left(-\frac{3x}{2}\right),\]waarop de convergentie van de middelpuntsregel te zien is:
+
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|}
+			\hline \\
+			Loglogplot van de middelpuntsregel \\ met (dalend) lineair verband\\
+			en met afvlakking op het eind. \\ \\\hline
+		\end{tabular}
+		\hspace{1cm}
+		\begin{tabular}{|c|}
+		\hline\\
+		Semilog foutenplot van de \\
+		middelpuntsregel, de trapeziumregel\\
+		en de regel van Simspon.  \\ \\\hline
+		\end{tabular}
+	\end{table}
+
+	\begin{enumerate}
+		\item Op welke grafiek kan je het makkelijkst de convergentie-orde van de middelpuntsregel bepalen? Tijdens de oefenzitting gebruikten we steevast \texttt{semilogy} voor het maken van foutenplots. Is dat bij deze beste grafiek ook het geval? Verklaar waarom.
+
+		\item Gebruik de grafiek om de convergentie-orde van de middelpuntsregel te schatten en vergelijk die met de theoretische convergentie-orde.\\
+		\textit{Hint: je kan gebruik maken van het feit dat \(f(x)=13(x-x^2)\exp\left(-\frac{3x}{2}\right)\) volgende afgeleiden heeft:}
+		\begin{align*}
+			f'(x) &= 13\left[1-\frac{7}{2}x+\frac{3}{2}x^2\right] \exp\left(-\frac{3x}{2}\right)\\
+			f''(x) &= 13\left[-5+\frac{33}{4}x-\frac{9}{4}x^2\right] \exp\left(-\frac{3x}{2}\right)
+		\end{align*}
+
+		\item Op figuur (a) zien we dat de fout stagneert na \(10^{8}\) functie-evaluaties. Hoe kan je dit verklaren?
+
+	\end{enumerate}
+
+	\newpage
+
+	\subsection*{Vraag 3}
+
+	\begin{enumerate}
+
+		\item Geef alle veeltermen met minimale graad die voldoen aan \[p(-1)=p(0)=p(-1)=a, \quad p'(0)=1\] door gebruik te maken van Hermite interpolatie.
+
+		\item Bepaal in detail de conditie tegenover zowel de absolute als de relatieve fouten wanneer we de gevonden veeltermen evalueren in \(a\).
+
+		\item Geef twee methodes om de veelterm te evalueren en bespreek kort welke het meest stabiel is. Een uitgebreide foutenanalyse is dus niet nodig.
+
+	\end{enumerate}
+
+\end{document}
+
+
+
