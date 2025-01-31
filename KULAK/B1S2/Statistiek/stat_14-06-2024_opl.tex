@@ -95,7 +95,7 @@ Gustav heeft 14 winkels en verkoopt onder andere kippenboutjes. Hij wil weten of
 	\underline{Oplossing}
 	\begin{align*}
 		\alpha & = P(\text{type I fout})                                                        \\
-		& = P(H_0 \text{ verwerpen}) \mid H_0 \text{ waar})                              \\
+		& = P(H_0 \text{ verwerpen} \mid H_0 \text{ waar})                              \\
 		& = P\left(\bar{X}<950 \mid \frac{\bar{X}-1000}{100/\sqrt{14}}\sim N(0,1)\right) \\
 		& = P\left(Z<\frac{950-1000}{100/\sqrt{14}} \mid Z \sim N(0,1) \right)                  \\
 		& = \texttt{pnorm(950,1000,100/sqrt(14))}\\
