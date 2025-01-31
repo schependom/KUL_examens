@@ -110,7 +110,7 @@
 		\item Bespreek de conditie van het probleem ``zoek het nulpunt van een niet-lineaire functie''. Laat dit ook zien op tekeningen.
 		\item Geef 3 methodes voor het vinden van het nulpunt van een niet-lineaire functie, waaronder 1 meerstapsmethode en 1 niet-stationaire methode. Bespreek voor elk van de methoden het principe, de convergentiesnelheid en de voor- en nadelen.
 		\item Wat verstaat men onder de begrippen convergentiefactor en orde van convergentie?
-		\item Bespreek de voorwaarde(n) voor convergentie bij substitutiemethodes waarbij \(x^{(k)}=F\left(x^{(k+1)}\right)\). Toon dit ook visueel aan.
+		\item Bespreek de voorwaarde(n) voor convergentie bij substitutiemethodes waarbij \(x^{(k+1)}=F\left(x^{(k)}\right)\). Toon dit ook visueel aan.
 		\item Leg uit waarom de methode van Newton-Raphson voor enkelvoudige nulpunten steeds convergeert.
 		\item Toon aan dat de convergentiefactor een invloed heeft op de stabiliteit van een convergente substitutiemethode.
 		\item Wat is de numerieke betekenis van de convergentiefactor?
@@ -159,7 +159,7 @@
 
 	\subsection*{Vraag 2}
 
-	In het practicum over numerieke integratie werden onder andere onderstaande twee (correcte) foutenplots teruggevonden voor de integraal \[I_5 = \int_{0}^{10} 13(x-x^2)\exp\left(-\frac{3x}{2}\right),\]waarop de convergentie van de middelpuntsregel te zien is:
+	In het practicum over numerieke integratie werden onder andere onderstaande twee (correcte) foutenplots teruggevonden voor de integraal \[I_5 = \int_{0}^{10} 13(x-x^2)\exp\left(-\frac{3x}{2}\right) \diff x,\]waarop de convergentie van de middelpuntsregel te zien is:
 
 	\begin{table}[h!]
 		\centering
@@ -173,7 +173,7 @@
 		\hline\\
 		Semilog foutenplot van de \\
 		middelpuntsregel, de trapeziumregel\\
-		en de regel van Simspon.  \\ \\\hline
+		en de regel van Simpson.  \\ \\\hline
 		\end{tabular}
 	\end{table}
 
@@ -183,8 +183,8 @@
 		\item Gebruik de grafiek om de convergentie-orde van de middelpuntsregel te schatten en vergelijk die met de theoretische convergentie-orde.\\
 		\textit{Hint: je kan gebruik maken van het feit dat \(f(x)=13(x-x^2)\exp\left(-\frac{3x}{2}\right)\) volgende afgeleiden heeft:}
 		\begin{align*}
-			f'(x) &= 13\left[1-\frac{7}{2}x+\frac{3}{2}x^2\right] \exp\left(-\frac{3x}{2}\right)\\
-			f''(x) &= 13\left[-5+\frac{33}{4}x-\frac{9}{4}x^2\right] \exp\left(-\frac{3x}{2}\right)
+			f'(x) &= 13\left(1-\frac{7}{2}x+\frac{3}{2}x^2\right) \exp\left(-\frac{3x}{2}\right)\\
+			f''(x) &= 13\left(-5+\frac{33}{4}x-\frac{9}{4}x^2\right) \exp\left(-\frac{3x}{2}\right)
 		\end{align*}
 
 		\item Op figuur (a) zien we dat de fout stagneert na \(10^{8}\) functie-evaluaties. Hoe kan je dit verklaren?

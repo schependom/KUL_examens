@@ -1,0 +1,148 @@
+\documentclass[kulak]{kulakarticle}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{mathtools}
+\usepackage{enumitem}
+
+\DeclareUnicodeCharacter{2212}{I~AM~HERE!!!!}
+
+\let\epsilon\varepsilon
+
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\DeclareMathOperator{\powerset}{\mathcal{P}}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\usepackage{array}
+\usepackage{multirow}
+
+\sisetup{output-decimal-marker={.}}
+\sisetup{per-mode=symbol}
+\sisetup{per-symbol=/}
+\sisetup{group-digits=integer}
+
+\newcommand{\rood[1]}{\color{red}#1\color{black}}
+
+\usepackage[dutch]{babel}
+\usepackage{hyperref}
+
+%\setlength{\parindent}{0pt}
+% d voor dx
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+
+\usepackage{parskip}
+
+\title{Examen Gegevensstructuren \& Algoritmen}
+\author{ViS}
+\date{31 januari 2025}
+\address{
+	\textbf{Gegevensstructuren \& Algoritmen}\\
+	X0A45A (I2, N3 \& N3 minor Informatica)\\
+	Prof. Jan Goedgebeur\\
+	Drs. Jarne Reynders}
+
+\begin{document}
+
+	\maketitle
+
+	\section*{Theorie (10 punten, herleid naar 5)}
+
+	Mondeling (25 min) met schriftelijke voorbereiding (35 min).
+
+	\subsection*{Vraag 1}
+
+	\begin{enumerate}
+		\item[a)] Leg gedetailleerd het \textsc{Quicksort} algoritme uit.
+		\item[b)] Hoe ziet de gerandomiseerde versie van dit algoritme eruit?
+		\item[c)] Wat is de complexiteit in het slechtste, het beste en het gemiddelde geval? Voor het gemiddelde geval volstaat een intuïtieve redenering; een formeel bewijs hoeft niet.
+		\item[d)] Wat is de complexiteit wanneer alle elementen van de te sorteren lijst identiek zijn?
+		\item[e)] Leg uit hoe je het \(i\)-de kleinste element kan selecteren een (ongesorteerde) lijst van onderling verschillende getallen.
+		\item[]\textbf{Mondelinge bijvragen}
+		\begin{itemize}
+			\item Wat doet \textsc{Partition} precies? Leg gedetailleerd uit.
+			\item Hoe kan je de performantie verbeteren ingeval alle elementen van de lijst identiek zijn?\\
+			\textit{Antwoord: splits \(A\) in 3 delen, namelijk een deel waarbij alle elementen \(< A[r]\) zijn, een deel waarbij alle elementen gelijk aan de pivot zijn en een deel waarbij alle elementen \(> A[r]\) zijn. Je hebt naast de variabele \(i\) dus nog een tweede counter \(k\) nodig.}
+			\item Wat is het verschil tussen \textsc{Randomised-Select} en \textsc{Quicksort}?\\
+			\textit{Antwoord: \textsc{Randomised-Select} zal zichzelf enkel recursief aanroepen voor een van de twee helften \(A[ p.. q-1]\) of \(A[q+1 .. r]\); het \textsc{Quicksort}-algoritme doet dat voor beide helften.}
+		\end{itemize}
+	\end{enumerate}
+
+	\subsection*{Vraag 2}
+
+	\begin{enumerate}
+		\item[a)] Geef de definitie van een (binary) heap.
+		\item[b)] Beschrijf het algoritme om de structuur van zo'n heap te onderhouden/herstellen.
+		\item[c)] Bewijs m.b.v. de mastermethode wat de complexiteit van dit algoritme is.
+		\item[]\textbf{Mondelinge bijvragen}
+		\begin{itemize}
+			\item Waar bevindt het kleinste element zich in een max-heap?\\
+			\textit{Antwoord: in een van de bladeren. }
+		\end{itemize}
+	\end{enumerate}
+
+	\subsection*{Vraag 3}
+
+	\begin{enumerate}
+		\item[a)] Geef 3 technieken die kunnen worden aangewend om te \textit{proben} in een open-address hashtabel.
+		\item[b)] Bespreek voor elk van deze technieken de voor- en nadelen.
+	\end{enumerate}
+
+	\newpage
+
+	\section{Oefeningen (10 punten, herleid naar 5)}
+
+	Hier kreeg je 3 uur de tijd voor.
+
+	\subsection*{Vraag 1 (1 punt)}
+
+	Los onderstaande recurrentievergelijken op aan de hand van de mastermethode, of leg uit waarom de mastermethode eventueel niet toepasbaar is.
+	\begin{align*}
+		T(n) &= 16 T \left(\frac{n}{4}\right) + n^2 \sqrt{n} \\
+		T(n) &= 9 T \left(\frac{n}{3}\right) + \lg n
+	\end{align*}
+
+	\subsection*{Vraag 2 (3 punten)}
+
+	Gegeven een rij van verschillende positieve gehele getallen \(a_1, a_2, ..., a_n\). Er treedt een \textit{inversie} op wanneer voor twee getallen geldt dat \(i<j\) en \(a_i>a_j\). De rij \([30,10,40,20]\), bijvoorbeeld, heeft 3 inversies, die we aanduiden met de posities van hun voorkomen in de rij: \((1,2), (1,4)\) en \((3,4)\).
+
+	\begin{itemize}
+		\item[a)] Schrijf een \(\Theta(n \lg n)\) algoritme dan het aantal inversies van een gegeven rij berekent.
+		\item[b)] Toon de complexiteit van je algoritme aan.
+	\end{itemize}
+
+	\subsection*{Vraag 3 (1,5 punten)}
+
+	Sorteer volgende rij met het counting sort algoritme.
+	\begin{align*}
+		A = [5_1, 0_2, 1_3, 0_4, 2_5, 3_6, 5_7, 0_8, 3_9, 2_{10}]
+	\end{align*}
+	Toon voldoende tussenstappen en onderscheid entries met dezelfde sleutel. Het subscript van elk element geeft diens index in de originele rij aan.
+
+	\subsection*{Vraag 4 (2,5 punten)}
+
+	Normaal gezien worden uitdrukkingen van wiskundige bewerkingen in infix-vorm geschreven, zoals bijvoorbeeld  \(9-2*3+(4-5)\). Een andere manier om de volgorde van de bewerkingen aan te geven is de \textit{fully parenthesised} schrijfwijze. Het eerder aangehaalde voorbeeld schrijven we dan als \( (((9 - (2*3)) + (4 - 5)) \).
+
+	\begin{enumerate}
+		\item[a)] Schrijf een zo efficiënt mogelijk algoritme dat een \textit{fully parenthesised} uitdrukking evalueert.
+		\item[b)] Bepaal de complexiteit van je algoritme.
+	\end{enumerate}
+
+	Je mag ervan uit gaan dat er geen delingen gebeuren. Denk goed na over de gepaste datastructu(u)r(en) voor je algoritme.
+
+	\subsection*{Vraag 5 (2 punten)}
+
+	Construeer een rood-zwart boom met sleutels \[10, 20, 30, 7, 17, 3, 11, 12, 18\] door deze sleutels in volgorde toe te voegen aan een lege boom.
+
+\end{document}
+
+
+
