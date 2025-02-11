@@ -1,6 +1,6 @@
-# Exams - BSc Computer Science @ KU Leuven
+# Exams - Computer Science @ KU Leuven
 
-📚🎓👨🏼‍🏫🖥️
+📚🎓👨🏼‍🏫🖥️\
 All (non-trivial) exams I have ever taken at KU Leuven.
 
 ## BSc
