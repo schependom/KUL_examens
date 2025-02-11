@@ -52,7 +52,7 @@
 
 	\maketitle
 
-	\section*{Tips}
+	\section*{Tips voor onze opvolgers}
 
 	\begin{itemize}
 		\item Lees goed het voorblad!
@@ -60,42 +60,44 @@
 		\item Werk door. Het examen is véél te uitgebreid om op 3 uur tijd helemaal af te werken. Ik raad aan om bij grote `bepaal de beschrijving' achtige oefeningen (zoals Oefening 1 van dit examen) alle vergelijkingen op te schrijven, maar ze nog niet meteen op te lossen. Laat dit voor het einde. Als je op miraculeuze wijze nog tijd zou over hebben, kan je ze eventueel verder uitwerken.
 	\end{itemize}
 
+	\newpage
+
 	\section*{Vraag 1}
 
 	\begin{figure}[h!]
 		\centering
 		\begin{tikzpicture}
-		\draw (10,2.5) node[op amp] (opamp) {};
+		\draw (10,3.5) node[op amp] (opamp) {};
 
 		\draw (0,2) node[] (vtop) {} to[open, o-o, v=$v_1$] (0,0) node[] (vbottom) {};
 
-		\draw (vtop.center) to[short, -*, i=$i_1$] ++ (1.5,0) node[] (i3) {}
-							to[short, -*] ++ (1.5,0) node[] (weerstand1) {}
-							to[short, -*, R, l_=$?\,\unit{\ohm}$] ++ (3,0) node[] (weerstand2) {}
-							to[short] (opamp.+);
+		\draw (vtop.center) to[short, -*, i=$i_1$] ++ (2,0) node[] (i3) {}
+							to[short, -*] ++ (1,0) node[] (weerstand1) {}
+							to[short, -*, R, l_=$\frac{3}{2}\,\unit{\ohm}$] ++ (3,0) node[] (weerstand2) {};
 
-		\draw (i3.center) to[short, -*, controlled isource, l=$2i_3$] ++ (0,-2);
-		\draw (weerstand1.center) to[short, -*, R, l=$?\,\unit{\ohm}$] ++ (0,-2);
-		\draw (weerstand2.center) to[short, -*, R, l=$?\,\unit{\ohm}$] ++ (0,-2);
+		\draw (i3.center) to[short, -*, controlled isource, l_=$2i_3$] ++ (0,-2);
+		\draw (weerstand1.center) to[short, -*, R, l=$3\,\unit{\ohm}$] ++ (0,-2);
+		\draw (weerstand2.center) to[short, -*, R, l=$2\,\unit{\ohm}$] ++ (0,-2);
 
 		\draw (opamp.-) to[short] ++ (-0.2,0)
-						to[short] ++ (0,4.5)
+						to[short] ++ (0,3.5)
 						to[short, -] ++ (3.5,0)
 						to[short, -o, i<_=$i_2$] ++ (2,0) node [] (v2top) {};
 
 		\draw (weerstand1.center) to[short, -*] ++ (0,1) node [] (condensator1) {}
-								  to[short, -*, C, l=$\frac{1}{?}\,\unit{\farad}$] ++ (3,0) node [] (z) {}
+								  to[short, -*, C, l=$\frac{1}{3}\,\unit{\farad}$] ++ (3,0) node [] (z) {}
 								  to[short] ++ (0,-1);
 
 		\draw (condensator1) ++ (1.5, 2.5) node[op amp] (opamp2) {};
 
-		\draw (z.center) to[short, -*, C, l=$\frac{1}{?}\unit{\farad}$] ++ (0, 2.5) node [] (out) {}
+		\draw (z.center) to[short, -*, C, l=$\frac{1}{6}\unit{\farad}$] ++ (0, 2.5) node [] (out) {}
 						to[short] (opamp2.out)
 						to[short, -] ++ (1.5,0)
-						to[short, -, R, l=$?\,\unit{\ohm}$] ++ (0,-2.5)
-						to[short] ++ (-1.5,0);
+						to[short, -*, R, l=$\frac{6}{5}\,\unit{\ohm}$] ++ (0,-2.5)
+						to[short] ++ (-1.5,0)
+						to[short] (opamp.+);
 
-		\draw (out.center) to[short, R, l=$\SI{5}{\ohm}$] ++ (0,2)
+		\draw (out.center) to[short, R, l=$\SI{13}{\ohm}$] ++ (0,2)
 						to[short] ++ (-3,0)
 						to[short] ++ (0,-1.5)
 						to[short] (opamp2.-);
@@ -103,14 +105,15 @@
 		\draw (condensator1.center) to[short] ++ (0,2) to (opamp2.+);
 
 		\draw (opamp.out) to[short,-*] ++ (0.5,0) node [] (zrechts) {}
-							to[short, -] ++ (0,0.5)
-							to[short, L, l=$?\,\SI{}{\henry}$] ++ (0,2)
-							to[short, -, R, l=$?\,\SI{}{\ohm}$] ++ (0,2)
-							to[short, -*] ++ (0,0.5);
+							to[short, -] ++ (0,0.25)
+							to[short, -, R, l=$2\,\SI{}{\ohm}$] ++ (0,1.75)
+							to[short, L, l=$7\,\SI{}{\henry}$] ++ (0,1.75)
+							to[short, -*] ++ (0,0.25);
 
-		\draw (zrechts.center) to[C, l_=$\frac{1}{?}\unit{\farad}$, -*] ++ (0,-2.5)
+		\draw (zrechts.center) to[short, -*, i=$i_3$] ++ (0,-1)
+								to[R, l_=$3\,\unit{\ohm}$, -*] ++ (0,-2.5)
 								to[short, -*] ++ (1,0)
-								to[R, l_=$?\,\unit{\ohm}$, -] ++ (0,2.5)
+								to[C, l_=$\frac{1}{6}\unit{\farad}$, -] ++ (0,2.5)
 								to[short, -] ++ (-1,0);
 
 		\draw (vbottom.center) to[short, -o] ++ (14,0) node[] (v2bottom) {};
@@ -126,6 +129,24 @@
 		\item[b)] Welke beschrijvingen bestaan nog? Antwoord in één zin.
 		\item[c)] Bepaal het Thévenin-equivalent indien we de tweepoort afsluiten met een spanningsbron van \({i_2=\SI{2}{\ampere}}\). Als deze niet bestaat, geef dat dan duidelijk aan.
 	\end{enumerate}
+
+	\vspace{2cm}
+
+	\subsection*{Tips voor onze opvolgers:}
+	\begin{itemize}
+		\item Er staat al een behoorlijk deel van de punten op het correct neerschrijven van alle vergelijkingen:
+		\begin{itemize}
+			\item De stroom- en spanningswetten
+			\item De vergelijkingen van de opamps (\(i_- = i_+ = 0\), $e_-=e_+$ en $i_\text{out} = $ niet gekend).
+		\end{itemize}
+		Schrijf deze dus zeker \textit{allemaal} op -- ook degene die je eigenijk niet nodig hebt.
+		\item Wanneer je de beschrijving zoekt, is het onbegonnen werk om gewoon wat random vergelijkingen te beginnen substitueren in andere vergelijkingen. Kijk goed naar wat je nodig hebt:
+		\begin{itemize}
+			\item Je wil een uitdrukking met \(i_1, i_2, v_1\) en \(v_2\). Je kan -- door het netwerk kritisch te analyseren -- de spannings- / stroomdeler toepassen; zo vind je vrij snel een beschrijving.
+		\end{itemize}
+		\item Als je de beschrijving niet zou gevonden hebben, vermeld dan zeker hoe je vraag b) zou oplossen: je kijkt waar er al dan niet gedeeld wordt door nul. Als er zo'n deling door nul optreedt, bestaat de beschrijving in kwestie niet. Alleen dit levert al een half punt op!
+		\item Dit volgt de lijn van het vorig puntje: als je het equivalent niet gevonden hebt, schrijf dan gewoon op hoe een Thévenin equivalent er precies uitziet (let op met DC/AC!) en leg uit hoe je dit zou bepalen (alle onafhankelijke bronnen op nul, \(R_\text{eq}=v/i\), ...).
+	\end{itemize}
 
 	\newpage
 
@@ -309,7 +330,7 @@
 				\draw(boven.center) to[short] ++ (0,1)
 				to[short, -] ++ (-5,0) node[] (linksboven) {}
 				to[short,i>_=$i$] ++ (0,-1.5)
-				to[bigR] ++ (0, -3)
+				to[R] ++ (0, -3)
 				to[short] ++ (0,-1.5);
 			\end{circuitikz}
 			\subcaption{}
