@@ -1,12 +1,12 @@
 # Exams - Computer Science @ KU Leuven
 
 📚🎓👨🏼‍🏫🖥️\
-All (non-trivial) exams I have ever taken during my studies at KU Leuven.
+Most (non-trivial) exams I have ever taken during my studies at KU Leuven.
 
 ## BSc
 
 -   At KU Leuven campus Kulak Kortrijk.
--   (Hopefully) an exchange semester @ DTU - Technical University of Denmark during the first semester of my 3rd bachelor's.
+-   An exchange semester @ DTU - Technical University of Denmark - during the first semester of my 3rd bachelor's.
 
 ## MSc
 
